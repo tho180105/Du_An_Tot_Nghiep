@@ -1,0 +1,151 @@
+<!-- Header -->
+<div ng-include="'admin_header.html'"></div> 
+
+<!-- Content wrapper -->
+
+	<div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Quản Lý /</span> Quản Lý Tài Khoản</h4>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active " id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">QUẢN LÝ TÀI KHOẢN</button>
+                    </li>
+         
+                  </ul>
+
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="card mb-4">
+                            <h5 class="card-header">PHÂN QUYỀN</h5>
+                            <hr class="my-0" />
+                            <div class="card-body">
+                              <form id="formAccountSettings" autocomplete="off">
+                                <div class="row">
+                                  
+                                   <div class="mb-3 col-md-6">
+                                    <label for="" class="form-label ">AccountId</label>
+                                    <input class="form-control " ng-disabled="test1" ng-model="form.accountid" />
+                                  </div>
+                                  <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="">Role</label>
+                                    <select class="form-control" ng-model="roleId">
+                                      <option value="" disabled>Selected </option>
+                                      <option ng-repeat = "c in role" ng-value="c.roleid" >{{c.rolename}}</option>
+                                    </select>
+                                  </div>
+                                  <div class="mb-3 col-md-6">
+                                    <label  class="form-label">Email</label>
+                                    <input class="form-control"  ng-model="form.email" />
+                                  </div>
+                                  <div class="mb-3 col-md-6">
+                                    <label class="form-label">Name</label>
+                                    <input class="form-control"ng-model="form.name" />
+                                  </div>
+                                  <div class="mb-3 col-md-6">
+                                    <label  class="form-label">PhoneNumber</label>
+                                    <input class="form-control"  ng-model="form.phonenumber" />
+                                  </div>
+                                  <div class="mb-3 col-md-6">
+                                    <label  class="form-label">Password</label>
+                                    <input class="form-control"  type="password" ng-model="form.password" />
+                                  </div>
+                                </div>
+                                <div class="mt-2">
+                                  <button ng-click="Save()" class="btn btn-info me-2 {{disabledSave}}" >Save</button>
+                                  <button ng-click="Update()" class="btn btn-success me-2 {{disabledUpdate}}">Update</button>
+                                  <button ng-click="" class="btn btn-danger me-2">Delete</button>
+                                  <button ng-click="reset()" class="btn btn-outline-secondary">Cancel</button>
+                                </div>
+                              </form>
+                            </div>
+                            <!-- /Account -->
+                          </div>
+                         
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="card mb-4">
+                            <div class="card-body">
+                            	<form action="">
+                            		<div class="row">
+                            			<div class="mb-3 col-md-4">
+		                                    <label for="organization" class="form-label">Category</label>
+		                                    <select class="form-control" ng-change="changeEvent()" ng-model="changeModel">
+		                                      <option value="" selected>Full role </option>
+		                                      <option ng-repeat = "c in role" ng-value="c.roleid" >{{c.rolename}}</option>
+		                                    </select>
+		                                  </div>
+		                                   <div class="mb-3 col-md-6">
+		                                    <label class="form-label" for="">Keyword</label>
+		                                    <input  class="form-control" type="text">
+		                                  </div>
+		                                  <div class="col-md-2" style="margin-top: 30px">
+			                                  <button class="btn btn-primary me-2">Search</button>
+			                               </div>
+	                            		</div>
+                            	</form>
+                              	<table class="table table-bordered table-hover">
+		                          <thead>
+		                            <tr>
+		                              <th>AccountId</th>
+		                              <th>Name</th>
+		                              <th>Email</th>
+		                              <th>PhoneNumber</th>
+		                              <th>Role</th>
+		                              <th>Action</th>
+		                            </tr>
+		                          </thead>
+		                          <tbody>
+		                            <tr ng-repeat ="cs in account" class="col-12">
+		                                <td>{{cs.accountid}}</td>
+		                                <td>{{cs.name}}</td>
+		                                <td>{{cs.email}}</td>
+		                                <td>{{cs.phonenumber}}</td>
+		                                <td>{{cs.role.rolename}}</td>
+		                                <td>
+		                                  <div class="dropdown">
+		                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+		                                      <i class="bx bx-dots-vertical-rounded"></i>
+		                                    </button>
+		                                    <div class="dropdown-menu">
+		                                      <a class="dropdown-item" href="" ng-click="Edit(cs)"
+		                                        ><i class="bx bx-edit-alt me-1"></i> Edit</a
+		                                      >
+		                                      <a class="dropdown-item" href="" ng-click="Delete(cs)"
+		                                        ><i class="bx bx-trash me-1"></i> Delete</a
+		                                      >
+		                                    </div>
+		                                  </div>
+		                                </td>
+		                              </tr>
+		                          </tbody>
+		                        </table>
+                        		
+                            </div>
+                          </div>
+               
+                        </div>
+                      </div>
+                      
+                    </div>
+					
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+	
+	</div>
+            <!-- / Content -->
+
+<!-- Footer------------------------------------------->
+ <div ng-include="'admin-footer.html'"></div> 
+  

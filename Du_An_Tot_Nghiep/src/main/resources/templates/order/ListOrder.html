@@ -1,0 +1,51 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
+    <main id="main" ng-controller="ListOrder-ctrl">
+
+
+        <div class="container">
+            <br>    
+            <h2>Đơn hàng của tôi</h2>
+            <br>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" >
+                <li class="w-20 text-center" style="width: 20%;">
+                    <a class="nav-link active text-dark" data-toggle="tab" href="#home">Tất cả đơn</a>
+                </li>
+                <li class="w-20 text-center" style="width: 20%;">
+                    <a class="nav-link text-dark" data-toggle="tab" href="#menu1">Chờ thanh toán</a>
+                </li>
+                <li class="w-20 text-center" style="width: 20%;">
+                    <a class="nav-link text-dark" data-toggle="tab" href="#menu2">Đang vận chuyển</a>
+                </li>
+                <li class="w-20 text-center" style="width: 20%;">
+                    <a class="nav-link text-dark" data-toggle="tab" href="#menu2">Đã giao</a>
+                </li>
+                <li class="w-20 text-center" style="width: 20%;">
+                    <a class="nav-link text-dark" data-toggle="tab" href="#menu2">Đã hủy</a>
+                </li>
+                
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div id="home" class="container tab-pane active"><br>
+                    <div th:replace="~{/order/_list}" ></div>
+                </div>
+                <div id="menu1" class="container tab-pane "><br>
+                    <div th:replace="~{/order/_orderUnconfirmed}" ></div>
+                </div>
+                <div id="" class="container tab-pane fade"><br>
+                    <h3>Menu 1</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat.</p>
+                </div>
+                <div id="menu2" class="container tab-pane fade"><br>
+                    <h3>Menu 2</h3>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                        totam rem aperiam.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>

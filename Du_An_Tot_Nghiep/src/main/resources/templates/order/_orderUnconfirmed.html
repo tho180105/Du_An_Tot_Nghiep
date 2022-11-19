@@ -1,0 +1,62 @@
+<div >
+  
+    <div class="card mb-4" 
+    ng-repeat="item in order | filter :{ orderstatus: {orderstatustitle:'Chưa xử lý' }}">
+      
+      <div class="card-body">
+        <span style="font-family: Arial, Helvetica, sans-serif; color:rgb(138, 134, 134);">
+          <img alt="" src="https://frontend.tikicdn.com/_desktop-next/static/img/account/delivery_done.png"
+            style="height: 30px;">
+          {{item.orderstatus.orderstatustitle}}</span>
+        <div class="col-12 mt-2" style="border-bottom: 1px solid rgb(209, 206, 206);"></div>
+        <!-- tổng order  -->
+        <div class="ng-tongOrder">
+          <!-- ng-repeat orderdetail -->
+          <div class="row mt-4" ng-repeat="detail in item.detailorder">
+  
+            <div class="col-1">
+              <img src="/Admin/assets/img/avatars/1.png" alt="" height="60px" width="60px">
+            </div>
+            <div class="col-9">
+              {{detail.productRepository.product.productname}}
+              <br>
+              SL:   {{detail.quantity}}
+            </div>
+            <div class="col-2 text-right" >
+             {{detail.productprice*detail.quantity}}₫
+            </div>
+            <br>
+            <div class="col-12 mt-4" style="border-bottom: 1px solid rgb(209, 206, 206);"></div>
+          </div>
+          <!--  -->
+  
+          
+  
+          <div class="row mt-2 mb-2">
+            <div class="col-9"></div>
+            <div class="col-3 hBVEFq ">
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="total-money col-10 " >
+                  <div class="title">Tổng tiền: </div> &ensp;
+                  <div class="total "> {{item.totalmoneyFormat}} ₫</div>
+                </div>
+              </div>
+  
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="button-group col-10 ">
+                  <p class="ml-2 col-2"></p>
+                  <div class="ml-2" ng-click="cancelOrder(item.orderid)">Hủy đơn hàng</div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+        <!--  -->
+      </div>
+    </div>
+  
+  </div>

@@ -1,0 +1,352 @@
+<div xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic (~{::main})}">
+	<main id="main">
+	<div ng-controller="checksize-ctrl">
+		<!-- Breadcrumb Section Begin -->
+		<div class="breacrumb-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="breadcrumb-text product-more">
+							<a href="./home.html"><i class="fa fa-home"></i> Home</a> <a
+								href="./shop.html">Shop</a> <span>Detail</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Breadcrumb Section Begin -->
+
+		<!-- Product Shop Section Begin -->
+		<section class="product-shop spad page-details">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3">
+						<div class="filter-widget">
+							<h4 class="fw-title">Categories</h4>
+							<ul class="filter-catagories">
+								<li th:each="c : ${cates}"><a
+									th:href="@{|/product/list?cid=${c.categoryid}|}">[[${c.categoryname}]]</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-9">
+						<div class="row">
+							<!-- <div class="col-lg-6 swiper">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide" th:each="i :${listimage}">
+										<img th:src="@{|/img/products-main/${i.imagepath}.jpg|}" alt="" class="SmallProductImg">
+									</div>
+								</div>
+								<div class="swiper-pagination"></div>
+							</div> -->
+							<div class="col-lg-6">
+	                            <div class="product-pic-zoom">
+	                                <img class="product-big-img" th:src="@{|/img/products-main/${item.mainproductimage}.jpg|}" alt="">
+	                                <div class="zoom-icon">
+	                                    <i class="fa fa-search-plus"></i>
+	                                </div>
+	                            </div>
+	                            <div class="product-thumbs">
+	                                <div class="product-thumbs-track ps-slider owl-carousel">
+	                                    <div th:each="i :${listimage}">
+	                                    	<div class="pt" th:attr="data-imgbigurl='/img/products-main/'+${i.imagepath}+'.jpg'"><img
+	                                            th:src="@{|/img/products-main/${i.imagepath}.jpg|}" alt=""></div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+							<div class="col-lg-6">
+								<div class="product-details">
+									<div class="pd-title">
+										<span>[[${item.category.categoryname}]]</span>
+										<h3>[[${item.productname}]]</h3>
+										<a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
+									</div>
+									<div class="pd-rating">
+										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+											class="fa fa-star-o"></i> <span>(5)</span>
+									</div>
+									<div class="pd-desc">
+										<p>[[${item.describe}]]</p>
+										<h4>
+											$[[${item.sellingprice}]] <span>$[[${item.listedprice}]]</span>
+										</h4>
+									</div>
+
+									<p style="color: red; font-weight: bold;">{{message}}</p>
+
+									<div class="pd-size-choose">
+										<div class="sc-item">
+											<input type="radio" id="md-size"
+												ng-click="getSizegetItem('M')" ng-model="check"> <label
+												for="md-size">M</label>
+										</div>
+										<div class="sc-item">
+											<input type="radio" id="lg-size"
+												ng-click="getSizegetItem('L')" ng-model="check"> <label
+												for="lg-size">L</label>
+										</div>
+										<div class="sc-item">
+											<input type="radio" id="xl-size"
+												ng-click="getSizegetItem('XL')" ng-model="check"> <label
+												for="xl-size">XL</label>
+										</div>
+									</div>
+									<div class="quantity">
+										<div class="pro-qty" style="width: 80px; padding: 0">
+											<input type="number" value="1" min="1"
+												style="width: 100%; padding: 0; margin: 0; font-size: 18px" />
+										</div>
+										<!-- <a th:href="@{|/cart/${item.productid}|}" class="primary-btn pd-cart" disabled="disabled" ng-disabled="check">Add To Cart</a>-->
+										<!-- <button class="primary-btn pd-cart" style="border: none"
+											ng-disabled="check" th:onclick="|window.location.href='/cart/'+${item.productid}|">Add To Cart
+										</button> -->
+										<button class="primary-btn pd-cart" style="border: none"
+											ng-disabled="check" ng-click="SubmitAddToCart()">Add To Cart
+										</button>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="product-tab">
+							<div class="tab-item">
+								<ul class="nav" role="tablist">
+									<li><a class="active" data-toggle="tab" href="#tab-1" role="tab">MÔ TẢ SẢN PHẨM</a></li>
+									<li><a data-toggle="tab" href="#tab-2" role="tab">THÔNG SỐ</a></li>
+									<li><a data-toggle="tab" href="#tab-3" role="tab">ĐÁNH GIÁ KHÁCH HÀNG</a></li>
+								</ul>
+							</div>
+							<div class="tab-item-content">
+								<div class="tab-content">
+									<div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
+										<div class="product-content">
+											<div class="row">
+												<div class="col-lg-7">
+													<h5>MÔ TẢ</h5>
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+														elit, sed do eiusmod tempor incididunt ut labore et dolore
+														magna aliqua. Ut enim ad minim veniam, quis nostrud
+														exercitation ullamco laboris nisi ut aliquip ex ea commodo
+														consequat. Duis aute irure dolor in</p>
+													<h5>Features</h5>
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+														elit, sed do eiusmod tempor incididunt ut labore et dolore
+														magna aliqua. Ut enim ad minim veniam, quis nostrud
+														exercitation ullamco laboris nisi ut aliquip ex ea commodo
+														consequat. Duis aute irure dolor in</p>
+												</div>
+												<div class="col-lg-5">
+													<img src="img/product-single/tab-desc.jpg" alt="">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="tab-2" role="tabpanel">
+										<div class="specification-table">
+											<table>
+												<tr>
+													<td class="p-catagory">Đánh giá trung bình</td>
+													<td>
+														<div class="pd-rating">
+															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																class="fa fa-star-o"></i> <span>(5)</span>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="p-catagory">Giá</td>
+													<td>
+														<div class="p-price">$[[${item.sellingprice}]]</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="p-catagory">Add To Cart</td>
+													<td>
+														<div class="cart-add">
+															<a href="" style="text-decoration: none; color: black;">+
+																add to cart</a>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="p-catagory">Kho</td>
+													<td>
+														<div class="p-stock">{{sumQuantity}} sản phẩm</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="p-catagory">Size</td>
+													<td>
+														<div class="p-size">M, L, XL</div>
+													</td>
+												</tr>
+
+											</table>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="tab-3" role="tabpanel">
+										<div class="customer-review-option">
+											<h4>[[${qtyComment}]] Comments</h4>
+											<div class="comment-option" th:each="rate : ${listRate}">
+												<div class="co-item">
+													<div class="avatar-pic">
+														<img src="../img/product-single/avatar-1.png" alt="">
+													</div>
+													<div class="avatar-text">
+														<div class="at-rating" th:if="${rate.starnumber} == 5">
+															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																class="fa fa-star"></i>
+														</div>
+														<th:block th:unless="${rate.starnumber} == 5">
+															<div class="at-rating" th:if="${rate.starnumber} == 4">
+																<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																	class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																	class="fa fa-star-o"></i>
+															</div>
+
+															<th:block th:unless="${rate.starnumber} == 4">
+																<div class="at-rating" th:if="${rate.starnumber} == 3">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
+																		class="fa fa-star-o"></i>
+																</div>
+																<th:block th:unless="${rate.starnumber} == 3">
+																	<div class="at-rating" th:if="${rate.starnumber} == 2">
+																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																		<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
+																		<i class="fa fa-star-o"></i>
+																	</div>
+																	<th:block th:unless="${rate.starnumber} == 2">
+																		<div class="at-rating" th:if="${rate.starnumber} == 1">
+																			<i class="fa fa-star"></i> <i class="fa fa-star-o"></i>
+																			<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
+																			<i class="fa fa-star-o"></i>
+																		</div>
+																	</th:block>
+																</th:block>
+															</th:block>
+														</th:block>
+														<h5>
+															[[${rate.account.name}]] <span>[[${rate.ratedate}]]</span>
+														</h5>
+														<div class="at-reply">[[${rate.content}]] !</div>
+													</div>
+												</div>
+											</div>
+											<a href="#">Hiển thị tất cả bình luận</a>
+
+
+
+											<div class="leave-comment "
+												style="display: flex; justify-content: flex-end; align-items: flex-end;">
+												<button class="site-btn mt-3 open_modal_btn">Bình luận</button>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="related-products spad">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-title">
+							<h2>SẢN PHẨM TƯƠNG TỰ</h2>
+						</div>
+					</div>
+				</div>
+				<div class="owl-carousel owl-theme">
+					<div th:each="p : ${item.category.products}">
+						<div class="product-item ">
+							<div class="pi-pic">
+								<img th:src="@{|/img/products-main/${p.mainproductimage}.jpg|}"
+									alt="">
+								<div class="sale">Sale</div>
+								<div class="icon">
+									<i class="icon_heart_alt"></i>
+								</div>
+								<ul>
+									<li class="w-icon active"><a href="#"><i
+											class="icon_bag_alt"></i></a></li>
+									<li class="quick-view"><a
+										th:href="@{|/product/detail/${p.productid}|}">+ Quick View</a></li>
+									<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+								</ul>
+							</div>
+							<div class="pi-text">
+								<div class="catagory-name">[[${p.category.categoryname}]]</div>
+								<a href="#">
+									<h5>[[${p.productname}]]</h5>
+								</a>
+								<div class="product-price">
+									$[[${p.sellingprice}]] <span>$[[${p.listedprice}]]</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Related Products Section End -->
+		<div class="modal1 hide">
+			<div class="modal1_inner">
+				<div class="modal1_header">
+					<p>BÌNH LUẬN</p>
+					<a href=""><i class="fa fa-times"></i></a>
+				</div>
+				<div class="modal1_body">
+					<p>{{product.category.categoryname}} - {{product.productid}}. {{product.productname}}</p>
+					<div class="star-widget">
+						<div class="rowItem">
+							<input type="radio" name="rate" id="rate-5" > 
+							<label for="rate-5" class="fa fa-star" ng-click="checkStars('5')"></label>
+
+							<input type="radio" name="rate" id="rate-4"> 
+                            <label for="rate-4" class="fa fa-star" ng-click="checkStars('4')"></label>
+
+							<input type="radio" name="rate" id="rate-3"> 
+                            <label for="rate-3" class="fa fa-star" ng-click="checkStarts('3')"></label>
+
+							<input type="radio" name="rate" id="rate-2"> 
+                            <label for="rate-2" class="fa fa-star" ng-click="checkStars('2')"></label>
+
+							<input type="radio" name="rate" id="rate-1"> 
+                            <label for="rate-1" class="fa fa-star" ng-click="checkStars('1')"></label>
+						</div>
+
+						<form>
+							<div class="textarea">
+								<textarea cols="30" placeholder="Vui lòng nhập đánh giá..." id="comment"></textarea>
+							</div>
+							<div class="hashtag">
+	                            <a href="" class="tag" onclick="tagNodeList(0)">Chất lượng rất tốt</a>
+	                            <a href="" class="tag" onclick="tagNodeList(1)">Sản phẩm okkk</a> 
+	                            <a href="" class="tag" onclick="tagNodeList(2)">Giao hàng nhanh</a> 
+	                            <a href="" class="tag" onclick="tagNodeList(3)">Sản phẩm tuyệt vời</a>
+	                        </div>
+						</form>
+					</div>
+					<div class="message">{{message1}}</div>
+				</div>
+				<div class="modal1_footer">
+					<button ng-click="comment()">BÌNH LUẬN</button>
+				</div>
+			</div>
+		</div>
+		</div>
+	</main>
+</div>
+

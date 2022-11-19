@@ -1,0 +1,185 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
+	<main id="main">
+	
+	<div ng-controller="indexCtrl-ctrl">
+		 <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <a href="#"><i class="fa fa-home"></i> Home</a>
+                        <span>Shop</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
+
+    <!-- Product Shop Section Begin -->
+    <section class="product-shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+                    <div class="filter-widget">
+                        <h4 class="fw-title"> <a href="#" style="color: #333;">Categories</a> </h4>
+                        <ul class="filter-catagories">             
+                            <li ng-repeat="cate in itemscategory"><a href="" ng-click="getProductByCategory(cate.categoryid)">{{cate.categoryname}}</a> </li> 
+                        </ul>
+                    </div>
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Brand</h4>
+                        <div class="fw-brand-check">
+                            <div class="bc-item">
+                                <label for="bc-calvin">
+                                    Calvin Klein
+                                    <input type="checkbox" id="bc-calvin">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="bc-item">
+                                <label for="bc-diesel">
+                                    Diesel
+                                    <input type="checkbox" id="bc-diesel">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="bc-item">
+                                <label for="bc-polo">
+                                    Polo
+                                    <input type="checkbox" id="bc-polo">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="bc-item">
+                                <label for="bc-tommy">
+                                    Tommy Hilfiger
+                                    <input type="checkbox" id="bc-tommy">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Price</h4>
+                        <form >
+	                        <div class="filter-range-wrap">
+	                            <div class="range-slider">
+	                                <div class="price-input">
+	                                    <input type="text" id="minamount" name="min" th:value="0" >
+	                                    <input type="text" id="maxamount" name="max" th:value="1000">
+	                                </div>
+	                            </div>
+	                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+	                                data-min="0" data-max="1000">
+	                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+	                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+	                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+	                            </div>
+	                        </div>
+	                        <button class="filter-btn" style="border: none;">Filter</button>
+                        </form>
+                    </div>
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Tags</h4>
+                        <div class="fw-tags">
+                            <a href="#">Towel</a>
+                            <a href="#">Shoes</a>
+                            <a href="#">Coat</a>
+                            <a href="#">Dresses</a>
+                            <a href="#">Trousers</a>
+                            <a href="#">Men's hats</a>
+                            <a href="#">Backpack</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 order-1 order-lg-2">
+                    <div class="product-show-option">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7">
+                                <div class="select-option">
+									
+									<form method="post">
+										<select name="mySelect" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.id" 
+										ng-model="data.selectedOption" ng-change="onchangeSearch()" style="padding: 6px;">
+		                                   
+		                                </select>
+		                          
+									</form>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 text-right">
+                                <p>Show {{pager.size}} Of {{(pager.size * pager.count)-1}} Product</p>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="product-list">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6" ng-repeat="product in pager.items">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img ng-src="{{'/img/products-main/'+product.mainproductimage+'.jpg'}}" alt="">
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a ng-href="{{'/product/detail/'+product.productid}}" >+ Quick View</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">{{product.category.categoryname}}</div>
+                                        <a ng-href="{{'/product/detail/'+product.productid}}">
+                                            <h5>{{product.productname}}</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            ${{product.sellingprice}}
+                                            <span>${{product.listedprice}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+          
+                        </div>
+                    </div>
+                    <nav aria-label="Page navigation example" class="mt-3 mx-auto" style="display: flex; align-items: center; justify-content: center;">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            <a class="page-link text-white fw-bold"  href="" ng-click="pager.first()" aria-label="First Page" style="background-color: #e7ab3c">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                            
+                          </li>
+                          <li class="page-item">
+                            <a class="page-link text-white fw-bold"  href="" ng-click="pager.prev()" aria-label="First Page" style="background-color: #e7ab3c">
+                              <span aria-hidden="true">Prev</span>
+                            </a>
+                            
+                          </li>
+                          <li class="page-item" ><a class="page-link bg-light fw-bold" href="">{{pager.page+1}} Of {{pager.count}}</a>
+                          	
+                          </li>
+                          <li class="page-item">
+                            <a class="page-link text-white fw-bold"  href="" ng-click="pager.next()" aria-label="First Page" style="background-color: #e7ab3c">
+                              <span aria-hidden="true">Next</span>
+                            </a>
+                            
+                          </li>
+                          <li class="page-item">
+                            <a class="page-link text-white fw-bold" href="" ng-click="pager.last()"  aria-label="Last Page" style="background-color: #e7ab3c">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            
+                          </li>
+                          
+                        </ul>
+                      </nav>
+                </div>
+            </div>
+           </div>
+    </section>
+	    </div>
+    </main>
+</div>

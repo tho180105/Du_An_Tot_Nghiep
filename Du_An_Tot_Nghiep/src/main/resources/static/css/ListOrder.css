@@ -1,0 +1,57 @@
+.hBVEFq .total-money {
+    font-size: 17px;
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.total-money .title {
+    font-weight: 300;
+    color: rgb(128, 128, 137);
+    margin-right: 8px;
+}
+
+.hBVEFq .total-money .total {
+    font-weight: 400;
+    color: rgb(56, 56, 61);
+}
+
+
+.hBVEFq .button-group {
+    display: flex;
+    -webkit-box-pack: justify;
+    /* justify-content: space-between; */
+}
+
+.hBVEFq .button-group div {
+    padding: 12px 8px;
+    height: 100%;
+    border-radius: 4px;
+    border: 1px solid rgb(11, 116, 229);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: rgb(11, 116, 229);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    /* margin-left: 8px; */
+}
+
+.name{
+    color: rgb(36, 36, 36);
+    font-weight: bold;
+}
+
+.detailorder-content{
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.detailorder:hover{
+    background-color: rgb(246, 252, 255);
+}
+.title-detailOrder{
+    cursor: pointer;
+}

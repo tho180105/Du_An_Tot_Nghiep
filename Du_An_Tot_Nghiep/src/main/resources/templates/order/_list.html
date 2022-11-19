@@ -1,0 +1,61 @@
+<div >
+  
+  <div class="card mb-4" ng-repeat="item in order">
+	
+    <div class="card-body">
+      <span style="font-family: Arial, Helvetica, sans-serif; color:rgb(138, 134, 134);">
+        <img alt="" src="https://frontend.tikicdn.com/_desktop-next/static/img/account/delivery_done.png"
+          style="height: 30px;">
+          {{item.orderstatus.orderstatustitle}}</span>
+      <div class="col-12 mt-2" style="border-bottom: 1px solid rgb(209, 206, 206);"></div>
+      <!-- tổng order  -->
+      <div class="ng-tongOrder">
+        <!-- ng-repeat orderdetail -->
+        <div class="row mt-4" ng-repeat="detail in item.detailorder">
+
+          <div  style="width:9%">
+            <img ng-src="{{'/img/products-main/'+detail.productrepository.product.mainproductimage+'.jpg'}}" alt="" height="60px" width="60px">
+          </div>
+          <div  style="width:74%">
+            {{detail.productrepository.product.productname}}
+            <br>
+            SL:   {{detail.quantity}}
+          </div>
+          <div class="text-right" style="width:17%">
+           {{detail.productprice*detail.quantity}}₫
+          </div>
+          <br>
+          <div class="col-12 mt-4" style="border-bottom: 1px solid rgb(209, 206, 206);"></div>
+        </div>
+        <!--  -->
+
+        
+
+        <div class="row mt-2 mb-2">
+          <div  style="width:74%"></div>
+          <div class="hBVEFq" style="width:26%">
+            <div class="row">
+              <div style="width:17%"></div>
+              <div class="total-money" style="width:83%">
+                <div class="title">Tổng tiền: </div> &ensp;
+                <div class="total "> {{item.totalmoneyFormat}} ₫</div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div  style="width:17%"></div>
+              <div class="button-group"  style="width:83%">
+                <div class="ml-2 ">Mua lại</div>
+                <div class="ml-2" ng-click="link(item)">Xem chi tiết</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <!--  -->
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,185 @@
+:root{
+    --primary-color: #e26e70;
+}
+
+.modal1{
+	position: fixed;
+    top:0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0,0,0,0.6);
+    z-index:1;
+}
+.star-widget .rowItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    margin-bottom: 10px;
+}
+
+.star-widget input{
+    display: none;
+}
+
+.star-widget .rowItem label {
+    font-size: 40px;
+    color: #444;
+    padding: 10px;
+    float: right;
+    transition: all 0.2s ease;
+}
+
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover ~ label {
+    color: #fd4;
+}
+
+input#rate-1:checked ~ label {
+    color: #fd4;
+}
+
+input#rate-2:checked ~ label {
+    color: #fd4;
+}
+
+input#rate-3:checked ~ label {
+    color: #fd4;
+}
+
+input#rate-4:checked ~ label {
+    color: #fd4;
+}
+
+input#rate-5:checked ~ label {
+    color: #fe7;
+    text-shadow: 0 0 20px #952;
+}
+
+
+input:checked ~ form {
+    display: block;
+}
+
+
+form .textarea {
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+}
+
+form .textarea textarea {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: 1px solid #333;
+    background: #222;
+    padding: 10px;
+    font-size: 17px;
+    color: #eee;
+    resize: none;
+}
+
+
+.modal1{
+    position: fixed;
+    top:0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+}
+.modal1_inner{
+    width: 600px;
+    position: relative;
+    top: 20%;
+    margin: auto;
+    background: white;
+    border-radius: 5px;
+    overflow: hidden; /*---------------------------------------*/
+    animation: modalShow 0.2s linear;
+}
+
+.modal1_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--primary-color);
+    color: white;
+}
+
+.modal1_header p{
+	line-height: 15px;
+	margin: 0;
+	color: white;
+	font-weight: bold;
+}
+.modal1_header a{
+	line-height: 15px;
+    color: white;
+}
+
+.modal1_body{
+    padding: 15px;
+}
+
+.modal1_body p{
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.modal1_footer{
+    padding: 15px;
+    text-align: right;
+}
+
+.modal1_footer button{
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* ---- class ẩn để hiện modal1---------*/
+.hide{
+    display: none;
+}
+
+.hashtag{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.hashtag a{
+    text-decoration: none;
+    padding: 8px 4px;
+    background: #222;
+    margin-right: 4px;
+    color: #eee;
+    border-radius: 3px;
+    font-weight: 500;
+    
+}
+
+
+/*------ animation-------------*/
+@keyframes modalShow {
+    from{
+        top: -200px;
+        opacity: 0;
+    }
+
+    to{
+        top: 40%;
+        opacity: 1;
+    }
+}

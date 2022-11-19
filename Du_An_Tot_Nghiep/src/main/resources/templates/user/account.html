@@ -1,0 +1,428 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
+	<main id="main">
+		<!-- Content wrapper -->
+		<!-- Content -->
+		<div class="container mt-3 mb-3" ng-controller="account-ctrl">
+			<div class="card">
+				<div class="card-header">Profile Details</div>
+				<div class="card-body">
+					<div class="row ml-3">
+						<div class="d-flex align-items-start align-items-sm-center gap-4">
+							<img ng-src="{{'/Admin/assets/img/avatars/'+acc.avatar}}" alt="user-avatar"
+								class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+							<div class="button-wrapper ml-3">
+								<label for="upload" class="btn btn-primary ml-2 mb-4" tabindex="0"> <span
+										class="d-none d-sm-block">Upload
+										new photo</span> <i class="bx bx-upload d-block d-sm-none"></i> <input
+										type="file" id="upload" class="account-file-input" hidden
+										accept="image/png, image/jpeg"
+										onchange="angular.element(this).scope().imageChanged(this.files)" />
+								</label>
+								<button type="button" class="btn btn-outline-secondary account-image-reset mb-4"
+									ng-click="resetImage()">
+									<i class="bx bx-reset d-block d-sm-none"></i> <span
+										class="d-none d-sm-block">Reset</span>
+								</button>
+
+								<p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size
+									of 800K</p>
+
+							</div>
+						</div>
+					</div>
+					<form>
+						<div class="row col-12 mt-4">
+							<!-- <div class="mb-3 col-md-4 "> -->
+							<!-- <label for="firstName" class="form-label">Username</label> <input
+								class="form-control" type="text" id="firstName" readonly="readonly" ng-model="acc.accountid" ng-value="items.accountid"/> -->
+							<div class="mb-3 col-md-4 ">
+								<label for="firstName" class="form-label">Username</label> <input class="form-control"
+									type="text" id="firstName" ng-model="acc.name" readonly />
+							</div>
+							<div class="mb-3 col-md-2 mt-3"> <br>
+								<a href="#ChangeName" class="text-dark " data-toggle="modal" data-target="#ChangeName">Thay đổi</a>
+							</div>
+							<div class="mb-3 col-md-4">
+								<label for="lastName" class="form-label">Password</label> <input class="form-control"
+									type="password" name="lastName" ng-model="acc.password" readonly />
+							</div>
+							<div class="mb-3 col-md-2 mt-3"> <br>
+								<a href="#ChangePassword1" class="text-dark " data-toggle="modal"
+									data-target="#ChangePassword1" oncl>Thay đổi</a>
+							</div>
+							<div class="mb-3 col-md-4">
+								<label for="email" class="form-label">E-mail</label> <input class="form-control"
+									type="text" id="email" ng-model="email" readonly />
+							</div>
+							<div class="mb-3 col-md-2 mt-3"> <br>
+								<a href="#ChangeEmail" class="text-dark " data-toggle="modal"
+									data-target="#ChangeEmail">Thay đổi</a>
+							</div>
+							<div class="mb-3 col-md-4">
+								<label for="organization" class="form-label">PhoneNumber</label>
+								<input type="text" class="form-control" id="organization" readonly ng-model="sdt" />
+							</div>
+							<div class="mb-3 col-md-2 mt-3"> <br>
+								<a href="#ChangePhonenumber" class="text-dark " data-toggle="modal"
+									data-target="#ChangePhonenumber">Thay đổi</a>
+							</div>
+
+
+
+
+							<div class="row pl-4 ">
+								<div class="col-6 d-flex flex-column justify-content-around " style="height: 240px">
+									<div id="dropdown_province_border" style="background-color:white;display: inline;">
+										Tỉnh/Thành phố : <input class="mt-2 mb-3" autocomplete="off" type="text"
+											id="province_search" ng-blur="getDistrictAfterSelectProvince()"
+											placeholder="Select province">
+										<div id="dropdown_province" style="overflow-y: scroll;max-height:150px ;">
+											<div class="province_option" ng-value="{{item.id}}"
+												ng-repeat="item in province.data ">{{item.name}}</div>
+										</div>
+									</div>
+									<div id="dropdown_district_border" style="background-color:white;">
+										Quận/Huyện <input class="mt-2 mb-3" autocomplete="off" type="text" name=""
+											id="district_search" ng-blur="getWardAfterSelectDistrict()"
+											placeholder="Select district">
+										<div id="dropdown_district" style="overflow-y: scroll;max-height:150px ;">
+											<div class="district_option" ng-repeat="item in districts "
+												ng-value="{{item.id}}">{{item.name}}</div>
+										</div>
+									</div>
+									<div id="dropdown_ward_border" style="background-color:white;">
+										Xã/Phường <input class="mt-2 mb-3" autocomplete="off" type="text" name=""
+											id="ward_search" placeholder="Select ward">
+										<div id="dropdown_ward" style="overflow-y: scroll;max-height:150px ;">
+											<div class="ward_option" ng-repeat="item in wards " ng-value="{{item.id}}">
+												{{item.name}}</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-6">
+									Địa chỉ cụ thể :
+									<textarea class="mt-2" ng-model="detailAddressOrder" name="" id="" cols="30"
+										rows="8"></textarea>
+								</div>
+							</div>
+
+
+
+
+
+							<div class="mt-2 ml-3">
+								<button class="btn btn-primary me-2" ng-click="">Save changes</button>
+								<button type="reset" class="btn btn-outline-secondary">Cancel</button>
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<!-- Change Name -->
+			<div class="modal fade" id="ChangeName" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Tài khoản</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<form name="fmname" autocomplete="off">
+							<div class="modal-body">
+
+								<div class="card-body p-4 p-sm-5">
+									<h5 class="card-title text-center mb-5 fw-light fs-5"
+										style="color: #cb0c9f!important">Thay đổi
+									họ tên</h5>
+
+
+									<div class="form mb-3">
+										<label>Tên mới</label>
+										<input type="text" class="form-control" ng-model="nameNew"
+											name="passNew" ng-minlength="1" required placeholder="Tên">
+										<i ng-show="fmname.passNew.$invalid && fmname.passNew.$dirty"
+											class="text-danger">
+											Vui lòng nhập tên
+										</i>
+										<i class="text-danger">{{checkPassNew}}</i>
+									</div>
+									
+								</div>
+							</div>
+							<div class="text-center mb-3">
+								<i class="text-danger ">{{resultName}}</i>
+							</div>
+							<div class="modal-footer">
+								<button ng-click="changeName()"
+									class="btn btn-primary  text-uppercase fw-bold w-100" id="changePassword"
+									ng-disabled="fmname.$invalid"
+									style="background-image: linear-gradient(310deg,#7928ca,#ff0080);">Save
+									changes</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Modal  doi mật khẩu-->
+			<div class="modal fade" id="ChangePassword1" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Tài khoản</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<form name="fmpass">
+							<div class="modal-body">
+
+								<div class="card-body p-4 p-sm-5">
+									<h5 class="card-title text-center mb-5 fw-light fs-5"
+										style="color: #cb0c9f!important">Thay đổi
+										Password</h5>
+
+									<div class="form mb-3">
+										<label>password hiện tại</label>
+										<input type="password" class="form-control" ng-model="passwordCurrent"
+											name="passCurrent" required placeholder="Mật khẩu">
+										<i ng-show="fmpass.passCurrent.$invalid && fmpass.passCurrent.$dirty"
+											class="text-danger" ng-hide="true">
+											Vui lòng nhập mật khẩu
+										</i>
+										<i class="text-danger">{{checkPassCurrent}}</i>
+									</div>
+									<div class="form mb-3">
+										<label>Password mới</label>
+										<input type="password" class="form-control" ng-model="passwordNew"
+											name="passNew" ng-minlength="1" required placeholder="Mật khẩu">
+										<i ng-show="fmpass.passNew.$invalid && fmpass.passNew.$dirty"
+											class="text-danger">
+											Vui lòng nhập mật khẩu
+										</i>
+										<i class="text-danger">{{checkPassNew}}</i>
+									</div>
+									<div class="form mb-3">
+										<label>Xác nhận password </label>
+										<input type="password" class="form-control" ng-model="confirmPassword"
+											name="confirmPass" ng-minlength="1" required placeholder="Mật khẩu">
+										<i ng-show="fmpass.confirmPass.$invalid && fmpass.confirmPass.$dirty"
+											class="text-danger">
+											Vui lòng nhập mật khẩu
+										</i>
+										<i class="text-danger">{{checkPassConfirm}}</i>
+									</div>
+								</div>
+							</div>
+							<div onclick="testasd()">asd</div>
+							<Script>
+								function testasd() {
+									alert("test")
+								}
+							</Script>
+							<div class="text-center mb-3">
+								<i class="text-danger ">{{resultPass}}</i>
+							</div>
+							<div class="modal-footer">
+								<button ng-click="changePassword()"
+									class="btn btn-primary  text-uppercase fw-bold w-100" id="changePassword"
+									ng-disabled="fmpass.$invalid"
+									style="background-image: linear-gradient(310deg,#7928ca,#ff0080);">Save
+									changes</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+
+			<!-- Modal  doi sdt -->
+			<div class="modal fade" id="ChangePhonenumber" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Tài khoản</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<form name="fmPhone" autocomplete="off">
+							<div class="modal-body">
+
+								<div class="card-body p-4 p-sm-5" id="formChangePhone">
+									<h5 class="card-title text-center mb-5 fw-light fs-5"
+										style="color: #cb0c9f!important">Thay đổi
+										Số điện thoại</h5>
+
+									<div class="form mb-3" id="checkPhoneCurrent">
+										<div id="changePhoneChild">
+										<label>Số điện thoại hiện tại</label>
+										<input type="text" class="form-control" ng-model="phonenumberCurrent"
+											name="phoneCurrent" required="false" placeholder="Mật khẩu">
+										<i class="text-danger">{{checkPhoneCurrent}}</i>
+										</div>
+									</div>
+									<div class="form mb-3">
+										<label>Số điện thoại mới</label>
+										<input type="text" class="form-control" ng-model="phonenumberNew"
+											name="phoneNew" required placeholder="Mật khẩu">
+										<i class="text-danger">{{checkPhoneNew}}</i>
+									</div>
+								</div>
+							</div>
+							<div class="text-center mb-3">
+								<i class="text-danger ">{{resultPhone}}</i>
+							</div>
+							<div class="modal-footer ">
+
+								<button ng-click="changePhone()" class="btn btn-primary  text-uppercase fw-bold w-100"
+									id="changePhone" ng-disabled="fmPhone.$invalid"
+									style="background-image: linear-gradient(310deg,#7928ca,#ff0080);">Save
+									changes</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+
+			<!-- Modal  email-->
+			<div class="modal fade" id="ChangeEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Tài khoản</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close()">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<form name="fmEmail" autocomplete="off">
+							<div class="modal-body">
+
+								<div class="card-body p-4 p-sm-5">
+									<h5 class="card-title text-center mb-5 fw-light fs-5"
+										style="color: #cb0c9f!important">Thay đổi
+										Email</h5>
+
+									<div class="form mb-3">
+										<label>Email hiện tại</label>
+										<input type="text" class="form-control" ng-model="emailCurrent"
+											name="emailCurrent" ng-minlength="1" required placeholder="Mật khẩu">
+										<i class="text-danger">{{checkEmailCurrent}}</i>
+
+									</div>
+									<div class="form mb-3">
+										<label>Email mới</label>
+										<input type="text" class="form-control" ng-model="emailNew" name="emailNew"
+											ng-minlength="1" required placeholder="Mật khẩu">
+										<i class="text-danger">{{checkEmailNew}}</i>
+
+									</div>
+								</div>
+							</div>
+							<div class="text-center mb-3">
+								<i class="text-danger ">{{resultEmail}}</i>
+							</div>
+							<div class="modal-footer">
+								<button ng-click="changeEmail()" class="btn btn-primary  text-uppercase fw-bold w-100"
+									id="changeEmail" ng-disabled="fmEmail.$invalid"
+									style="background-image: linear-gradient(310deg,#7928ca,#ff0080);">Save
+									changes</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</main>
+</div>
+
+
+
+
+<!-- Modal  email-->
+<!--    
+<div class="modal fade" id="ChangeEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Tài khoản</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<div class="card-body p-4 p-sm-5">
+				<h5 class="card-title text-center mb-5 fw-light fs-5" style="color: #cb0c9f!important">Thay đổi
+					Email</h5>
+				<form name="emailsd1">
+					<div class="form-floating mb-3">
+						<label for="floatingPassword">Email cũ</label>
+						<input type="email" class="form-control" id="floatingPassword" ng-model="emailcu" required
+							ng-minlength="1" name="emailcu" placeholder="Mật khẩu">
+						
+					</div>
+					<div class="form-floating mb-3">
+						<label for="floatingPassword">Email mới</label>
+						<input type="email" class="form-control" id="floatingPassword" ng-model="emailmoi" required
+							ng-minlength="1" name="emailmoi" placeholder="Mật khẩu">
+						
+					</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+		  <button  type="button" ng-click="test()"  data-dismiss="modal" class="btn btn-primary  text-uppercase fw-bold w-100" style="background-image: linear-gradient(310deg,#7928ca,#ff0080);">Save changes</button>
+		</div>
+	  </div>
+	</div>
+  </div> -->
+
+<!-- Modal  phonenumber-->
+<!--    
+<div class="modal fade" id="ChangePhonenumber" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Tài khoản</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<div class="card-body p-4 p-sm-5">
+				<h5 class="card-title text-center mb-5 fw-light fs-5" style="color: #cb0c9f!important">Thay đổi
+					PhoneNumber</h5>
+				<form name="emailsd1">
+					<div class="form-floating mb-3">
+						<label for="floatingPassword">PhoneNumber cũ</label>
+						<input type="email" class="form-control" id="floatingPassword" ng-model="emailcu" required
+							ng-minlength="1" name="emailcu" placeholder="Mật khẩu">
+						
+					</div>
+					<div class="form-floating mb-3">
+						<label for="floatingPassword">PhoneNumber mới</label>
+						<input type="email" class="form-control" id="floatingPassword" ng-model="emailmoi" required
+							ng-minlength="1" name="emailmoi" placeholder="Mật khẩu">
+						
+					</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" data-dismiss="modal" ng-click="test()" class="btn btn-primary  text-uppercase fw-bold w-100" style="background-image: linear-gradient(310deg,#7928ca,#ff0080);">Save changes</button>
+		</div>
+	  </div>
+	</div>
+  </div> -->

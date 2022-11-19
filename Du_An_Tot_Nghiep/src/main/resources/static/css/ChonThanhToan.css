@@ -1,0 +1,36 @@
+#dropdown_province,
+        #dropdown_district,
+        #dropdown_ward {
+            position: absolute;
+            display: none;
+            background-color: white;
+            z-index: 2;
+            overflow-y: scroll;
+            max-height: 150px;
+            width: 260px;
+            padding-left: 10px;
+            border: 1px gray solid;
+        }
+
+
+        #dropdown_province_border,
+        #dropdown_district_border,
+        #dropdown_ward_border {
+            width: 200px;
+        }
+
+        #province_search,
+        #district_search,
+        #ward_search {
+            width: 130%;
+            height: 35px;
+            /* border-radius: 3px; */
+            outline: none;
+        }
+
+        .province_option:hover,
+        .ward_option:hover,
+        .district_option:hover {
+            background-color: gray;
+
+        }

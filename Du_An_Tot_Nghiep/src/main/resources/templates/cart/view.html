@@ -1,0 +1,131 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
+    <main id="main" ng-controller="cart-ctrl">
+        <!-- Hero Section Begin -->
+        <!-- Breadcrumb Section Begin -->
+        <div class="breacrumb-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-text product-more">
+                            <a href="./home.html"><i class="fa fa-home"></i> Home</a>
+                            <a href="./shop.html">Shop</a>
+                            <span>Shopping Cart</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb Section Begin -->
+        <style>
+            .shopping-cart thead th {
+                font-size: 13px !important;
+            }
+
+            .shopping-cart tbody td {
+                padding-top: 5px !important;
+                padding-bottom: 5px !important;
+            }
+
+            .checkboxSelect {
+                transform: scale(1.5);
+            }
+
+            /* style="margin: 0 !important;padding: 0 !important" */
+        </style>
+        <!-- Shopping Cart Section Begin -->
+        <section class="shopping-cart spad d-flex  justify-content-center ">
+            <div style="width: 90%; margin-top: -50px !important">
+                <div class="row ">
+                    <div class="w-100">
+                        <div class="cart-table row">
+                            <table class="col-8">
+                                <thead>
+                                    <tr>
+                                        <th style="padding-left: 20px;padding-right: 20px !important ;"><input
+                                                class="checkboxSelect" ng-click="selectALlItem($event)" type="checkbox">
+                                        </th>
+                                        <th style="width: 10%">Image</th>
+                                        <th class="p-name text-center">Product Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in detailCarts">
+                                        <td><input class="checkboxSelect" ng-click="calculateFee()" type="checkbox"
+                                                value="{{item.productrepository.product.sellingprice*item.quantity}}"
+                                                name="" id="" productRepositoryId="{{item.detailcartid}}"></td>
+
+                                        <td style="width: 10%" class="cart-pic first-row"><img height="100%"
+                                                src="/img/cart-page/product-1.jpg" alt=""></td>
+
+                                        <td class="cart-title first-row text-center"> <a
+                                                href="/product/detail/{{item.productrepository.product.productid}}">
+                                                <h5>{{item.productrepository.product.productname}} -
+                                                    {{item.productrepository.size.sizeid}}</h5>
+                                            </a>
+                                        </td>
+
+                                        <td class="p-price first-row">{{item.productrepository.product.sellingprice}}
+                                        </td>
+                                        <td class="qua-col first-row">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <span class="dec qtybtn" ng-click="decreaseQuantity($event)"
+                                                        detailCartId="{{item.detailcartid}}">-</span>
+                                                    <input detailCartId="{{item.detailcartid}}" type="text"
+                                                        value="{{item.quantity}}" ng-blur="updateBlur($event)">
+                                                    <span class="inc qtybtn" ng-click="increaseQuantity($event)"
+                                                        detailCartId="{{item.detailcartid}}">+</span>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        <td class="total-price first-row">
+                                            {{item.productrepository.product.sellingprice*item.quantity}}</td>
+                                        <td class="close-td first-row" ng-click="delete(item.detailcartid)"><i
+                                                class="ti-close"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-4">
+                                <div class="proceed-checkout" style="position: sticky;top: 0;">
+                                    <div class="col-12 mb-3 m-0 p-0">
+                                        <a href="#" class="primary-btn continue-shop">Continue shopping</a>
+                                        <a href="#" class="primary-btn continue-shop" ng-click="create(2)">Update
+                                            cart</a>
+                                        <!-- <a  class="primary-btn up-cart" ng-click="create(4)">Update cart</a> -->
+                                    </div>
+                                    <ul>
+                                        <li class="subtotal">Subtotal <span>${{totalMoney}}</span></li>
+                                        <li class="subtotal">Discount <span>0</span></li>
+                                        <li class="cart-total">Total <span>${{totalMoney}}</span></li>
+                                    </ul>
+                                    <button class="proceed-btn mb-2" ng-click="getProductsSelected()"
+                                        ng-disabled="!checkSelectBoxProduct()" style="width: 100%;">PROCEED TO CHECK
+                                        OUT</button>
+                                    <code style="margin-top: 10px;"
+                                        ng-hide="checkSelectBoxProduct()">Vui lòng chọn sản phẩm để tiếp tục thanh toán</code>
+                                    <style>
+                                        a.proceed-btn:hover {
+                                            color: white !important;
+                                        }
+                                    </style>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Shopping Cart Section End -->
+
+    </main>
+</div>

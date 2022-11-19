@@ -1,0 +1,149 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
+  <main id="main" ng-controller="DetailOrder-ctrl">
+    <div class="container">
+      <div class="mt-4"> Ngày đặt hàng: {{detailOrder[0].orders.createdate| date: 'dd-MM-yyyy'}}</div>
+      <div class="row mt-3">
+
+        <div class="col-4">
+          ĐỊA CHỈ NGƯỜI NHẬN
+          <br>
+          <div class="card mb-4 mt-4" style="height: 150px;">
+
+            <div class="card-body">
+              <div class="name" > {{detailOrder[0].orders.account.name}}</div>
+              <div class="detailorder-content">Địa chỉ: {{detailOrder[0].orders.address}}</div>
+              <div class="detailorder-content">Điện thoại: {{detailOrder[0].orders.account.phonenumber}}</div>
+              <!--  -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          HÌNH THỨC GIAO HÀNG
+          <br>
+          <div class="card mb-4 mt-4" style="height: 150px;">
+            <div class="card-body">
+              <div class="name"> Giao Tiết Kiệm</div>
+              <div class="detailorder-content">{{detailOrder[0].orders.orderstatus.orderstatustitle}}</div>
+              <div class="detailorder-content">Phí vận chuyển: {{detailOrder[0].orders.shipfee}}đ</div>
+              <!--  -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          HÌNH THỨC THANH TOÁN
+          <br>
+          <div class="card mb-4 mt-4" style="height: 150px;">
+            <div class="card-body">
+              <div class="detailorder-content">{{detailOrder[0].orders.paymentmethod}}
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card mb-4">
+
+        <div class="card-body">
+          <span class="row" style="font-family: Arial, Helvetica, sans-serif; color:rgb(138, 134, 134);">
+
+            <div style="width: 45%; margin-left: 3%;">Sản phẩm</div>
+            <div style="width: 13%;">Giá</div>
+            <div style="width: 13%;">Số lượng</div>
+            <div style="width: 13%;">Giảm giá</div>
+            <div style="width: 13%; padding-right: 3%" class="text-right">Tạm tính</div>
+
+          </span>
+          <div class="row">
+          <div class="col-12 mt-2" style="border-bottom: 1px solid rgb(209, 206, 206);"></div>
+        </div>
+          <!-- tổng order  -->
+          <div class="ng-tongOrder">
+            
+            <!-- ng-repeat orderdetail -->
+            <div class="row  detailorder pt-4" ng-repeat="item in detailOrder">
+              
+              <div style="display: flex; width: 45%; margin-left: 3%;">
+                <img src="/Admin/assets/img/avatars/1.png" alt="" height="60px" width="60px"> &ensp;&ensp;
+                <div>
+                  <span class="title-detailOrder">{{item.productrepository.product.productname}} {{'- ' + item.productrepository.size.sizeid}}</span>
+                  <br>
+
+                  <div class=" hBVEFq mt-2">
+                    <div class="row">
+                      <div class=""></div>
+                      <div class="button-group col-10">
+                        <div class="ml-2 ">Mua lại</div>
+                        <div class="ml-2">Viết nhận xét</div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div style=" width: 13%;">
+                {{item.productprice}} ₫
+              </div>
+
+              <div style=" width: 13%;">
+                {{item.quantity}}
+              </div>
+
+              <div style=" width: 13%;">
+                0 ₫
+              </div>
+
+              <div style=" width: 13%; padding-right: 3%" class="text-right">
+                {{item.totalprice}} ₫
+              </div>
+
+              <br>
+              <div class="col-12 mt-4" style="border-bottom: 1px solid rgb(209, 206, 206);"></div>
+            </div>
+            <!--  -->
+
+            <div class="row mt-2 ">
+              <div style="width: 45%; margin-left: 3%;"></div>
+              <div style="width: 13%;"></div>
+              <div style="width: 10%;"></div>
+              <div style="width: 13%;">
+                <div class=" hBVEFq">
+                  <div class="row ">
+                    <div class="total-money">
+                      <div class="title text-right">
+                        <div class="mt-2"> Tạm tính <br></div>
+                        <div class="mt-2"> Phí vận chuyển <br> </div>
+                        <div class="mt-2">  Giảm giá<br></div>
+                        <div class="mt-2" >   Tổng cộng<br></div>
+                        
+                      </div> &ensp; 
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="width: 16%; padding-right: 3%;" class="text-right">
+                <div class=" hBVEFq">
+                    <div class="total">
+                      <div class="mt-2"> {{detailOrder[0].orders.productmoney}} ₫</div>
+                      <div class="mt-2"> {{detailOrder[0].orders.shipfee}} ₫</div>
+                      <div class="mt-2"> 0 ₫</div>
+                      <div class="mt-2" style="color: rgb(255, 59, 39); font-size: 18px;"> {{detailOrder[0].orders.totalNoneDiscount}} ₫</div>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--  -->
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
