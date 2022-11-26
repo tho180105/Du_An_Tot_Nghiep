@@ -3,12 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 <!-- 	<base th:href="{pageContext.servletContext.contextPath}/" />
  -->
  	<link rel="icon" href="/img/Logo/favicon.ico">
     <!-- Css Styles -->
+    
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/themify-icons.css}" type="text/css">
@@ -42,8 +44,7 @@
 	<footer >
 		<div th:replace="~{/layout/_footer}"></div>
 	</footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+   
     <script th:src="@{/js/AngularController/Cart.js}"></script>
     <script th:src="@{/js/AngularController/Pay.js}"></script>
     <script th:src="@{/js/AngularController/ListOrder.js}"></script>

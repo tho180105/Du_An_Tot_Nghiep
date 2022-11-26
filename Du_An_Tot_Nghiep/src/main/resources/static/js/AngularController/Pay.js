@@ -1,5 +1,5 @@
 // const app = angular.module("app", []);
-// alert("A")
+
 
 app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
   // $rootscope.detailCarts=[]
@@ -147,7 +147,6 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
   };
 
 
-
 $scope.testValidation=function(){
   var x =document.getElementById("form_order")
   if (x.checkValidity()) {
@@ -175,6 +174,7 @@ $scope.testValidation=function(){
       withCredentials:true,
       "Content-Type": "application/json",
       Accept: "application/json",
+      // AccessControlAllowOrigin:'k',
       Authorization:
         "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjllMzQ0MDNlOTZhMzI1NmUwNDFjMGU5ZmE3MzQ0N2ZkMDllN2Y4YTg0NWU5NmE2NTNjODU2YTQ3ZWMwNjQ1MzFjMjNlN2Q0ZGRmMGQ2ODg4In0.eyJhdWQiOiIxMyIsImp0aSI6IjllMzQ0MDNlOTZhMzI1NmUwNDFjMGU5ZmE3MzQ0N2ZkMDllN2Y4YTg0NWU5NmE2NTNjODU2YTQ3ZWMwNjQ1MzFjMjNlN2Q0ZGRmMGQ2ODg4IiwiaWF0IjoxNjYyOTkzMjQxLCJuYmYiOjE2NjI5OTMyNDEsImV4cCI6NDgxODY2Njg0MSwic3ViIjoiMzE4OSIsInNjb3BlcyI6W119.RzxNMS8bWdklm_YXgxtXZ0lSJuecwCmaiWXbuPrhsBkzAS7dLkfEmoPu4bLieDzSWS2v_yeH8XdiqyRim9xbLsOoplo_w0TboQrZXRxWNhw7aFWalp8TfwR04xm79xgWPHhFe1oqMQ6NCcQKarPvsf9alRuupUnBmyi_PueILbeJsT5Ek_MMXALYwAVlmepzHvwF8x_KQ5Ha_TR2S2xNE_htR8MS9eyfss4mvflfUpvTXgF1YUIl5KlQj5duAluGvXadwp-4g_ImFPljFplTxhF0UQ1C7ohW1GkoA_QUFSyLDUfBkMXTaq_slRGd7aUDgHDDy4cgeTAetmlrYtqImJlocL0bzIaHBur6ieXp2UnYKFTlozZN2MUKvmLuwhO5tXJRo4uBfLJAP9nC8BzoPvq4OUDJ43gRYK05uVF8Yq2YqvXftcyixv5bt3KYS3EG82ku0W83drteuVnF0kjxCipykGgFwjZO1Sj8X7vTeqGXk5kfI5zYeu6N11BJgWrVpJxz0lsRlJ7vuxzAFaRUhrp-8v2bhdaPCQl9L2RIDHsX-gG3NNR6dpd6u0JvDfofh4fgp9VWR8BJcHr17_kHp70ZlBdB-anxUYISVi5SI5l0sCLQXzvhqz2guvyZKbj0xieb67dQgpMlipXouQb-xBnIQFN7j0b8j_kACXqxPGU",
     },
@@ -185,7 +185,7 @@ $scope.testValidation=function(){
       setTimeout(init, 300);
     },
     function errorCallback(response) {
-      $scope.getCityStart();
+    /*  $scope.getCityStart();*/
     
     }
   );
@@ -208,7 +208,7 @@ $scope.getDistrictStart =function(){
       $rootScope.district = response.data;
     },
     function errorCallback(response) {
-      $scope.getDistrictStart()
+   /*   $scope.getDistrictStart()*/
 
     }
   );
