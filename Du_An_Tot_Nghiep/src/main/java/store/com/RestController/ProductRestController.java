@@ -1,13 +1,13 @@
 package store.com.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
+import store.com.DAO.CategoryDAO;
 import store.com.DAO.ProductDAO;
 import store.com.Entity.Product;
 
@@ -16,6 +16,9 @@ import store.com.Entity.Product;
 public class ProductRestController {
     @Autowired
     ProductDAO pd;
+
+    @Autowired
+    CategoryDAO cateDAO;
 
     @GetMapping("/count")
     public Integer count() {
@@ -36,4 +39,14 @@ public class ProductRestController {
     public List<Product> findAllByCategory(@PathVariable("categoryid") Integer categoryid) {
         return pd.findByCategoryId1(categoryid);
     }
+
+    @GetMapping("/list2")
+    public List<Product> list1(Model model, @RequestParam("cid") Optional<Integer> cid , @RequestParam("p") Optional<Integer> p) {
+        model.addAttribute("cates", cateDAO.findAll());
+        if(cid.isPresent()){
+            return pd.findByCategoryId(cid.get());
+        }
+        return pd.findAll();
+    }
+
 }

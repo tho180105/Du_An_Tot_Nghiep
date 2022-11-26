@@ -95,15 +95,10 @@
                                     <input ng-model="form.enddate" class="form-control" type="date" name="enddate" required="required">
                                     <div ng-hide="formVoucher.enddate.$valid" style="color: red; font-style: italic; font-weight: 600" >Vui lòng nhập ngày kết thúc</div>
                                   </div>
-                                 <div class="mb-3 col-md-6">
-                                    <label for="" class="form-label">Choose quantity account</label> <br>
-                                    <label class="radio-inline">
-                                      <input ng-model="quantityaccount" type="radio" ng-value="true" name="quantityaccount" true required="required"> Tất cả
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input ng-model="quantityaccount" type="radio" ng-value="false" name="quantityaccountfalse" required="required"> Chọn 1 tài khoản
-                                    </label>
-                                  </div>
+                                    <div class="form-check form-switch mb-3" style="margin-left: 24px">
+                                        <input class="form-check-input togglex" type="checkbox" id="flexSwitchCheckChecked" checked onclick="checkUser()" style="font-size: 20px"/>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Thêm voucher cho tất cả tài khoản</label>
+                                    </div>
                                 </div>
                                 <div class="mt-2">
                                   <button ng-click="create()" class="btn btn-primary me-2" ng-disabled="chi_so!=-1">Save changes</button>
@@ -119,12 +114,12 @@
                         </div>
                       </div>
                       
-                      <div class="row" ng-if="formVoucher.quantityaccountfalse.$invalid">
+                      <div class="row showForm hidex">
                         <div class="col-md-12">
                           <div class="card mb-4">
                             <div class="card-body">
                             	<form action="">
-                            		<div class="row" >
+                            		<div class="row">
 		                                   <div class="mb-3 col-md-6">
 		                                    <label class="form-label" for="">Keyword</label>
 		                                    <input  class="form-control" type="text">
@@ -144,33 +139,19 @@
 		                              <th>Phonenumber</th>
 		                              <th>Coin</th>
 		                              <th>Image</th>
-		                              <th>Action</th>
+
 		                            </tr>
 		                          </thead>
 		                          <tbody>
-		                            <tr ng-repeat ="cs in itemsCategory">
-		                                <td> <input type="checkbox" ng-model="selected" ng-checked="exists(cs)" ng-click="toggle(cs)"> </td>
-		                                <td>{{cs.productid}}</td>
-		                                <td>{{cs.productname}}</td>
-		                                <td>{{cs.listedprice}}</td>
-		                                <td>{{cs.sellingprice}}</td>
-		                                <td>{{cs.mainproductimage}}</td>
-		                                <td>{{cs.category.categoryname}}</td>
-		                                <td>
-		                                  <div class="dropdown">
-		                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-		                                      <i class="bx bx-dots-vertical-rounded"></i>
-		                                    </button>
-		                                    <div class="dropdown-menu">
-		                                      <a class="dropdown-item" href="" ng-click="edit(item)"
-		                                        ><i class="bx bx-edit-alt me-1"></i> Edit</a
-		                                      >
-		                                      <a class="dropdown-item" href="" ng-click="delete(item)"
-		                                        ><i class="bx bx-trash me-1"></i> Delete</a
-		                                      >
-		                                    </div>
-		                                  </div>
-		                                </td>
+		                            <tr ng-repeat ="acc in listAccount">
+		                                <td> <input type="checkbox" ng-model="selected" ng-checked="exists(acc)" ng-click="toggle(acc)"> </td>
+		                                <td>{{acc.accountid}}</td>
+		                                <td>{{acc.name}}</td>
+		                                <td>{{acc.email}}</td>
+		                                <td>{{acc.phonenumber}}</td>
+		                                <td>{{acc.coin}}</td>
+		                                <td>{{acc.image}}</td>
+
 		                              </tr>
 		                          </tbody>
 		                        </table>

@@ -27,6 +27,7 @@ app.config(function($routeProvider) {
 
 		.when("/QuanLyVoucher", {
 			templateUrl: "/Admin/QuanLyVoucher.html",
+			controller: "vouchers-ctrl"
 		})
 
 		.when("/QuanLySize", {
@@ -45,7 +46,7 @@ app.config(function($routeProvider) {
 		
 		.when("/QuanLyVoucher", {
 			templateUrl: "/Admin/QuanLyVoucher.html",
-			controller: "vouchers-ctrl"
+			controller: "voucher-ctrl"
 		})
 
 		.when("/MyProfile", {
@@ -67,6 +68,7 @@ app.config(function($routeProvider) {
 		.when("/unauthorized", {
 			templateUrl: "/Admin/Unauthorized.html",
 		})
+
 		.otherwise({
 			redirectTo: "/main"
 		})

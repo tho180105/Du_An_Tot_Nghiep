@@ -48,7 +48,7 @@ public class ProductController {
 	
 	String minPrice;
 	String maxPrice;
-	
+
 	@RequestMapping("/product/list")
 	public String list(Model model, @RequestParam("cid") Optional<Integer> cid , @RequestParam("p") Optional<Integer> p, @RequestParam(value="search",required = false) String item) {
 		model.addAttribute("cates", categoryDAO.findAll());
@@ -109,13 +109,13 @@ public class ProductController {
 		service.set("xtypeList", list);
 		return "product/list";
 	}
-	
+
 	@RequestMapping("/product/list2")
-    public String list1(Model model) {
-        
+    public String list1(Model model, @RequestParam("cid") Optional<Integer> cid) {
+
         return "product/list2";
     }
-	
+
 
 	@RequestMapping("/product/list/xtype")
     public String test(Model model,@RequestParam(value = "min", required = false) String min, @RequestParam(value= "max", required = false) String max
