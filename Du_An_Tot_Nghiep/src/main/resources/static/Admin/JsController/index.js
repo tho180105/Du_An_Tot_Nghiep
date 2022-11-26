@@ -17,20 +17,30 @@ app.config(function($routeProvider) {
 			templateUrl: "/Admin/ThongKeDonHang.html"
 		})
 
-		.when("/QuanLyDoanhMuc", {
-			templateUrl: "./index1.html"
+		.when("/QuanLyCategory", {
+			templateUrl: "/Admin/QuanLyCategory.html",
+			controller: "category"
+		})
+		.when("/QuanLyStyle", {
+			templateUrl: "/Admin/QuanLyStyle.html",
+			controller: "style"
+		})
+		.when("/QuanLySize", {
+			templateUrl: "/Admin/QuanLySize.html",
+			controller: "size"
 		})
 
 		.when("/QuanLySanPham", {
-			templateUrl: "./index1.html"
+			templateUrl: "/Admin/QuanLySanPham.html",
+			controller: "product-ctrl"
+		})
+		.when("/QuanLyKho", {
+			templateUrl: "/Admin/QuanLyKho.html",
+			controller: "repository"
 		})
 
 		.when("/QuanLyVoucher", {
 			templateUrl: "/Admin/QuanLyVoucher.html",
-		})
-
-		.when("/QuanLySize", {
-			templateUrl: "./index2.html"
 		})
 
 		.when("/QuanLyDiscount", {
@@ -41,11 +51,6 @@ app.config(function($routeProvider) {
 		.when("/QuanLyBanner", {
 			templateUrl: "/Admin/QuanLyBanner.html",
 			controller: "banner-ctrl"
-		})
-		
-		.when("/QuanLyVoucher", {
-			templateUrl: "/Admin/QuanLyVoucher.html",
-			controller: "vouchers-ctrl"
 		})
 
 		.when("/MyProfile", {
@@ -59,13 +64,6 @@ app.config(function($routeProvider) {
 
 		.when("/cart/order", {
 			templateUrl: "./cart/order.html"
-		})
-		.when("/Authority", {
-			templateUrl: "/Admin/Authority.html",
-			controller: "Authority-ctrl"
-		})
-		.when("/unauthorized", {
-			templateUrl: "/Admin/Unauthorized.html",
 		})
 		.otherwise({
 			redirectTo: "/main"
