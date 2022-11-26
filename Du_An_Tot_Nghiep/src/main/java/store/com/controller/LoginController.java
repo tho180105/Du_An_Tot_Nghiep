@@ -6,6 +6,7 @@ import javax.servlet.http.Cookie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +26,15 @@ public class LoginController {
 	CookieService cookie;
 	@Autowired
 	SessionService se;
+	@Autowired
+	BCryptPasswordEncoder getPasswordEncoder;
+	
 	@RequestMapping("/security/login/form")
-	public String login(Model model) {
-		return "security/login";
+	public String login(Model model,Authentication auth) {
+	    if(auth == null) {
+	        return "security/login";
+	    }
+	    return "redirect:/home";
 	}
 	
 	@RequestMapping("/security/login/success")
@@ -38,7 +45,7 @@ public class LoginController {
 			cookie.remove("remember-me");
 		}
 		model.addAttribute("message", "Đăng nhập thành công");
-		return "security/login";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping("/security/login/error")
