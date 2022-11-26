@@ -44,7 +44,7 @@
 							</div>
 							<div class="mb-3 col-md-4">
 								<label for="lastName" class="form-label">Password</label> <input class="form-control"
-									type="password" name="lastName" ng-model="acc.password" readonly />
+									type="password" name="lastName" ng-model="inPutPassword" readonly />
 							</div>
 							<div class="mb-3 col-md-2 mt-3"> <br>
 								<a href="#ChangePassword1" class="text-dark " data-toggle="modal"
@@ -70,51 +70,13 @@
 
 
 
-							<div class="row pl-4 ">
-								<div class="col-6 d-flex flex-column justify-content-around " style="height: 240px">
-									<div id="dropdown_province_border" style="background-color:white;display: inline;">
-										Tỉnh/Thành phố : <input class="mt-2 mb-3" autocomplete="off" type="text"
-											id="province_search" ng-blur="getDistrictAfterSelectProvince()"
-											placeholder="Select province">
-										<div id="dropdown_province" style="overflow-y: scroll;max-height:150px ;">
-											<div class="province_option" ng-value="{{item.id}}"
-												ng-repeat="item in province.data ">{{item.name}}</div>
-										</div>
-									</div>
-									<div id="dropdown_district_border" style="background-color:white;">
-										Quận/Huyện <input class="mt-2 mb-3" autocomplete="off" type="text" name=""
-											id="district_search" ng-blur="getWardAfterSelectDistrict()"
-											placeholder="Select district">
-										<div id="dropdown_district" style="overflow-y: scroll;max-height:150px ;">
-											<div class="district_option" ng-repeat="item in districts "
-												ng-value="{{item.id}}">{{item.name}}</div>
-										</div>
-									</div>
-									<div id="dropdown_ward_border" style="background-color:white;">
-										Xã/Phường <input class="mt-2 mb-3" autocomplete="off" type="text" name=""
-											id="ward_search" placeholder="Select ward">
-										<div id="dropdown_ward" style="overflow-y: scroll;max-height:150px ;">
-											<div class="ward_option" ng-repeat="item in wards " ng-value="{{item.id}}">
-												{{item.name}}</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-6">
-									Địa chỉ cụ thể :
-									<textarea class="mt-2" ng-model="detailAddressOrder" name="" id="" cols="30"
-										rows="8"></textarea>
-								</div>
-							</div>
+							
 
 
 
 
 
-							<div class="mt-2 ml-3">
-								<button class="btn btn-primary me-2" ng-click="">Save changes</button>
-								<button type="reset" class="btn btn-outline-secondary">Cancel</button>
-							</div>
+							
 
 						</div>
 					</form>
@@ -193,40 +155,22 @@
 										<label>password hiện tại</label>
 										<input type="password" class="form-control" ng-model="passwordCurrent"
 											name="passCurrent" required placeholder="Mật khẩu">
-										<i ng-show="fmpass.passCurrent.$invalid && fmpass.passCurrent.$dirty"
-											class="text-danger" ng-hide="true">
-											Vui lòng nhập mật khẩu
-										</i>
 										<i class="text-danger">{{checkPassCurrent}}</i>
 									</div>
 									<div class="form mb-3">
 										<label>Password mới</label>
 										<input type="password" class="form-control" ng-model="passwordNew"
 											name="passNew" ng-minlength="1" required placeholder="Mật khẩu">
-										<i ng-show="fmpass.passNew.$invalid && fmpass.passNew.$dirty"
-											class="text-danger">
-											Vui lòng nhập mật khẩu
-										</i>
 										<i class="text-danger">{{checkPassNew}}</i>
 									</div>
 									<div class="form mb-3">
 										<label>Xác nhận password </label>
 										<input type="password" class="form-control" ng-model="confirmPassword"
 											name="confirmPass" ng-minlength="1" required placeholder="Mật khẩu">
-										<i ng-show="fmpass.confirmPass.$invalid && fmpass.confirmPass.$dirty"
-											class="text-danger">
-											Vui lòng nhập mật khẩu
-										</i>
 										<i class="text-danger">{{checkPassConfirm}}</i>
 									</div>
 								</div>
 							</div>
-							<div onclick="testasd()">asd</div>
-							<Script>
-								function testasd() {
-									alert("test")
-								}
-							</Script>
 							<div class="text-center mb-3">
 								<i class="text-danger ">{{resultPass}}</i>
 							</div>

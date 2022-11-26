@@ -1,7 +1,6 @@
 package store.com;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import store.com.Service.UserService;
 
-@ConditionalOnBean(UserService.class)
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig  extends WebSecurityConfigurerAdapter{
@@ -35,7 +34,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 		http.formLogin()
 			.loginPage("/security/login/form")
 			.loginProcessingUrl("/security/login")
-			.defaultSuccessUrl("/security/login/success",false)
+			.defaultSuccessUrl("/security/login/success",true)
 			.failureUrl("/security/login/error");
 		
 		
