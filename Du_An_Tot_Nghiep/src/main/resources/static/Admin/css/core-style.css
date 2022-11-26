@@ -2718,3 +2718,7 @@ th:last-child{
 	font-size: 16px;
 	padding-left: 20px;
 }
+
+.hidex{
+  display: none;
+}

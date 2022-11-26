@@ -53,4 +53,6 @@ public class AccountRestController {
         dao.deleteById(id);
     }
 
+    @GetMapping("/findAll")
+    public List<Account> findAll(){return dao.findAll();}
 }

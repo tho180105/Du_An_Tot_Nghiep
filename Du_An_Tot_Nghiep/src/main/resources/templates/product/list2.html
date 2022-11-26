@@ -25,7 +25,7 @@
                     <div class="filter-widget">
                         <h4 class="fw-title"> <a href="#" style="color: #333;">Categories</a> </h4>
                         <ul class="filter-catagories">             
-                            <li ng-repeat="cate in itemscategory"><a href="" ng-click="getProductByCategory(cate.categoryid)">{{cate.categoryname}}</a> </li> 
+                            <li ng-repeat="cate in itemscategory"><a ng-click="getProductByCategory(cate.categoryid)" style="cursor: pointer">{{cate.categoryname}}</a> </li>
                         </ul>
                     </div>
                     <div class="filter-widget">
@@ -67,18 +67,18 @@
 	                        <div class="filter-range-wrap">
 	                            <div class="range-slider">
 	                                <div class="price-input">
-	                                    <input type="text" id="minamount" name="min" th:value="0" >
-	                                    <input type="text" id="maxamount" name="max" th:value="1000">
+	                                    <input type="text" id="minamount" name="min" th:value="1" th:min="1">
+	                                    <input type="text" id="maxamount" name="max" th:value="100" th:max="100">
 	                                </div>
 	                            </div>
 	                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-	                                data-min="0" data-max="1000">
+	                                data-min="1" data-max="100">
 	                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
 	                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
 	                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
 	                            </div>
 	                        </div>
-	                        <button class="filter-btn" style="border: none;">Filter</button>
+	                        <button class="filter-btn" style="border: none;" ng-click="FilterByPrice()">Filter</button>
                         </form>
                     </div>
                     <div class="filter-widget">
@@ -116,7 +116,7 @@
                     </div> 
                     <div class="product-list">
                         <div class="row">
-                            <div class="col-lg-4 col-sm-6" ng-repeat="product in pager.items">
+                            <div class="col-lg-4 col-sm-6"  dir-paginate="product in itemsall | filter:q | itemsPerPage: pageSize" current-page="currentPage">
                                 <div class="product-item">
                                     <div class="pi-pic">
                                         <img ng-src="{{'/img/products-main/'+product.mainproductimage+'.jpg'}}" alt="">
@@ -143,39 +143,10 @@
                             </div>
           
                         </div>
+                        <div style="display: flex; justify-content: center; align-items: center">
+                            <dir-pagination-controls></dir-pagination-controls>
+                        </div>
                     </div>
-                    <nav aria-label="Page navigation example" class="mt-3 mx-auto" style="display: flex; align-items: center; justify-content: center;">
-                        <ul class="pagination">
-                          <li class="page-item">
-                            <a class="page-link text-white fw-bold"  href="" ng-click="pager.first()" aria-label="First Page" style="background-color: #e7ab3c">
-                              <span aria-hidden="true">&laquo;</span>
-                            </a>
-                            
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link text-white fw-bold"  href="" ng-click="pager.prev()" aria-label="First Page" style="background-color: #e7ab3c">
-                              <span aria-hidden="true">Prev</span>
-                            </a>
-                            
-                          </li>
-                          <li class="page-item" ><a class="page-link bg-light fw-bold" href="">{{pager.page+1}} Of {{pager.count}}</a>
-                          	
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link text-white fw-bold"  href="" ng-click="pager.next()" aria-label="First Page" style="background-color: #e7ab3c">
-                              <span aria-hidden="true">Next</span>
-                            </a>
-                            
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link text-white fw-bold" href="" ng-click="pager.last()"  aria-label="Last Page" style="background-color: #e7ab3c">
-                              <span aria-hidden="true">&raquo;</span>
-                            </a>
-                            
-                          </li>
-                          
-                        </ul>
-                      </nav>
                 </div>
             </div>
            </div>

@@ -17,17 +17,59 @@ app.controller("indexCtrl-ctrl", function($http, $scope) {
     };
 	$scope.onchangeSearch = function(){
      	var x = $scope.data.selectedOption
-     	console.log(x);
+
+		if(x.id == 2){
+			$scope.itemsall.sort(function (a, b){
+				if(a.productname.toLowerCase() < b.productname.toLowerCase()){
+					return -1;
+				}
+			})
+		}else if(x.id == 3){
+			$scope.itemsall.sort(function (a, b){
+				if(a.productname.toLowerCase() > b.productname.toLowerCase()){
+					return -1;
+				}
+			})
+		} else if(x.id == 4) {
+			$scope.itemsall.sort(function (a,b){
+				return b.sellingprice - a.sellingprice;
+			})
+		}else if(x.id == 5){
+			$scope.itemsall.sort(function (a,b){
+				return a.sellingprice - b.sellingprice;
+			})
+		}else{
+			$scope.itemsall.sort(function (a,b){
+				return b.productid - a.productid;
+			})
+		}
+
 	}
+
+	$scope.FilterByPrice = function (){
+		let minimum = document.querySelector('#minamount').value;
+		let maximum = document.querySelector('#maxamount').value;
+		let mini = minimum.substring(1, minimum.length) * 23000;
+		let max = maximum.substring(1, maximum.length) * 23000;
+		$scope.itemsall.find(function (item){
+			return (item.sellingprice < 300000)
+		})
+		console.log(mini);
+		console.log(max);
+		console.log($scope.itemsall);
+	}
+
 	$scope.initialize = function(){
+		$scope.currentPage = 1;
+		$scope.pageSize = 9;
         //Load Product
-        $http.get("/rest/product").then(resp => {
+        $http.get("/rest/product/list2").then(resp => {
             $scope.itemsall = resp.data;
             console.log($scope.itemsall);
           
         });
         
-        $http.get("/rest/categoryfindAll").then(resp => {
+        $http.get("/rest/cate/findAll").then(resp => {
             $scope.itemscategory = resp.data;
             console.log($scope.itemscategory);
           
@@ -39,19 +81,13 @@ app.controller("indexCtrl-ctrl", function($http, $scope) {
         $http.get(`/rest/product/category/${categoryid}`).then(resp => {
             $scope.itemsall = resp.data;
             console.log($scope.itemsall);
-          	
+
         });
 	}
 
-    
 
     //Start-------------------------------------------------------------------------//
     $scope.initialize();
-	
-	$scope.onChangeCombobox = function() {
-		var search = document.querySelector(".search");
-		console.log(search.value);
-	}
 	    
     $scope.pager = {
 		page : 0,
@@ -91,5 +127,7 @@ app.controller("indexCtrl-ctrl", function($http, $scope) {
 	}
   
 
-}); 
+});
+
+
  

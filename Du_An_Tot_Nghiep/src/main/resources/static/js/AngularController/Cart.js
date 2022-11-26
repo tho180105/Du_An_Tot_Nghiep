@@ -1,4 +1,4 @@
-const app = angular.module("app", []);
+const app = angular.module("app", ['angularUtils.directives.dirPagination']);
 
 app.controller("pay-ctrl", function ($rootScope, $scope) {
   $scope.orderIdPayedDone = $rootScope.orderIdPayed;

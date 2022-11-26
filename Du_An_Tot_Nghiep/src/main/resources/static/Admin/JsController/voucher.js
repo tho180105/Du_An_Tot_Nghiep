@@ -1,10 +1,12 @@
 
-app.controller("vouchers-ctrl", function($http, $scope) {
+app.controller("voucher-ctrl", function($http, $scope) {
 
 	$scope.items = [];
 	$scope.itemsall = [];
 	$scope.form = {};
 	$scope.chi_so = -1;
+	$scope.listAccount = [];
+	$scope.selected = [];
 	
 	$scope.initialize = function(){
 		$scope.chi_so = -1;
@@ -26,14 +28,48 @@ app.controller("vouchers-ctrl", function($http, $scope) {
                 item.enddate = new Date(item.enddate);
             })
         });
-        
-        
+
+		$http.get("/rest/account/findAll").then(resp => {
+			$scope.listAccount = resp.data;
+		});
     }
-    
 
     //Start-------------------------------------------------------------------------//
     $scope.initialize();
-    
+
+	$scope.exists = function(item) {
+		return $scope.selected.indexOf(item) > -1;
+	}
+
+	$scope.toggle = function(item) {
+		var idx = $scope.selected.indexOf(item);
+		if(idx > -1) {
+			$scope.selected.splice(idx, 1);
+			console.log($scope.selected);
+		}else {
+			$scope.selected.push(item);
+			console.log($scope.selected);
+		}
+
+	}
+
+	$scope.checkAll = function() {
+		if($scope.selectAll) {
+			angular.forEach($scope.listAccount, function(item){
+				var idx = $scope.selected.indexOf(item);
+				if(idx >= 0){
+					return true;
+				}else {
+					$scope.selected.push(item);
+				}
+			})
+		}else {
+			$scope.selected = [];
+		}
+		console.log($scope.selected);
+	}
+
+
     //Clear form
     $scope.reset = function() {
 		$scope.form = {
@@ -63,19 +99,19 @@ app.controller("vouchers-ctrl", function($http, $scope) {
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
 		console.log(item);
-			$http.post('/rest/voucher/insert', item).then(resp => {
-				resp.data.startdate = new Date(resp.data.startdate);
-				resp.data.enddate = new Date(resp.data.enddate);
-				$scope.itemsall.push(item);
-				$scope.reset();
-				$scope.items = [];
-				$scope.itemsall = [];
-				$scope.initialize();
-				alert("Insert thành công");
-			}).catch(error => {
-				alert("Insert thất bại");
-				console.log("Error", error);
-			});	
+		$http.post('/rest/voucher/insert', item).then(resp => {
+			resp.data.startdate = new Date(resp.data.startdate);
+			resp.data.enddate = new Date(resp.data.enddate);
+			$scope.itemsall.push(item);
+			$scope.reset();
+			$scope.items = [];
+			$scope.itemsall = [];
+			$scope.initialize();
+			alert("Insert thành công");
+		}).catch(error => {
+			alert("Insert thất bại");
+			console.log("Error", error);
+		});
 	}	
 	
 	
@@ -137,6 +173,19 @@ app.controller("vouchers-ctrl", function($http, $scope) {
 			console.log("Error",error);
 		})
     }
-	
-
 });
+
+
+function checkUser() {
+	var value = true;
+	let check = document.querySelector(".togglex");
+	let showForm = document.querySelector(".showForm");
+	check.classList.toggle("active");
+	if(check.classList.contains("active")) {
+		value = false;
+		showForm.classList.remove("hidex");
+	}else{
+		value = true;
+		showForm.classList.add("hidex");
+	}
+}

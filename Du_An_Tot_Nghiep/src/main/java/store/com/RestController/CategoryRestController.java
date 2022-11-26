@@ -56,7 +56,7 @@ public class CategoryRestController {
 //        return "redirect:thi/index";
 //    }
     
-    @GetMapping("/rest/categoryfindAll")
+    @GetMapping("/findAll")
     public List<Category> findAllCate(){
         return categoryDAO.findAll();
     }
