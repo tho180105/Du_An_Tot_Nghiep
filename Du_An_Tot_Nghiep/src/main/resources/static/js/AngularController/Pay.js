@@ -4,7 +4,13 @@
 app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
   // $rootscope.detailCarts=[]
   $http.get(`/rest/cart`).then((resp) => {
-    $rootScope.detailCarts = resp.data;
+    if(resp.data){
+      $rootScope.detailCarts = resp.data;
+      
+    }else{
+        location.href="/product/list" 
+    }
+   
   });
 
   //Voucher
