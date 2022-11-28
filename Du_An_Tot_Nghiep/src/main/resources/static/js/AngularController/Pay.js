@@ -1,12 +1,16 @@
+// const app = angular.module("app", []);
+
+
 app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
+  // $rootscope.detailCarts=[]
   $http.get(`/rest/cart`).then((resp) => {
     if(resp.data){
       $rootScope.detailCarts = resp.data;
+      
     }else{
-      if(!location.href.includes("cart/order/")){
-        location.href="/home"
-      }
+        location.href="/product/list" 
     }
+   
   });
 
   //Voucher
