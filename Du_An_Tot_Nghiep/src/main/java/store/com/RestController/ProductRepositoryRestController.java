@@ -57,4 +57,14 @@ public class ProductRepositoryRestController {
     public void delete(@PathVariable("id") Integer id) {
         repositoryService.delete(id);
     }
+
+    @GetMapping("/rest/productrepository/{productid}/{sizeid}")
+    public ProductRepository getQtyProductRepository(@PathVariable("productid") Integer productid, @PathVariable("sizeid") String sizeid) {
+        return dao.getQtyProductRepository(productid, sizeid);
+    }
+
+    @GetMapping("/rest/productrepository/{productid}")
+    public Integer sumQuantity(@PathVariable("productid") Integer productid) {
+        return dao.sumQuantity(productid);
+    }
 }

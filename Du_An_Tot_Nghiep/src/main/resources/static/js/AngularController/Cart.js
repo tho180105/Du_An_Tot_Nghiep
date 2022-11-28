@@ -111,14 +111,20 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
   };
   $scope.updateBlur = function (element) {
     let quantity = element.currentTarget.value;
+   
     detailCartId=element.currentTarget.getAttribute("detailCartId")
+    var detailCart = $rootScope.detailCarts.find(
+      (item) => item.detailcartid == detailCartId
+    );
+    if(quantity<1){
+      element.currentTarget.value=detailCart.quantity
+      return;
+    }
     let checkLimitQuantity=$scope.update(
       detailCartId  ,
       quantity 
     );
-    var detailCart = $rootScope.detailCarts.find(
-      (item) => item.detailcartid == detailCartId
-    );
+   
     if(!checkLimitQuantity)element.currentTarget.value=detailCart.quantity
   };
   $scope.delete = function (detailCartId) {

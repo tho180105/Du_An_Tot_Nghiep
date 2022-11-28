@@ -59,15 +59,16 @@ public class RegisterController {
 		if (errors.hasErrors()) {
 			return "security/register";
 		}
+		if(!account.getPassword().equals(confirmPass)) {
+			model.addAttribute("message", "Xác nhận mật khẩu không chính xác!");
+			return "forward:/register/form";
+		}
 		try {
 			Account checkAcc = accService.findById(account.getAccountid());
 			model.addAttribute("message", "Tài khoản đã tồn tại");
 			return "forward:/register/form";
 		} catch (Exception e) {
-			if(!account.getPassword().equals(confirmPass)) {
-				model.addAttribute("message", "Xác nhận mật khẩu không chính xác!");
-				return "forward:/register/form";
-			}
+			
 			List<Account> checkAcc = accService.findAll();
 			for(Account listAcc: checkAcc){
 				if(listAcc.getEmail() ==null){
