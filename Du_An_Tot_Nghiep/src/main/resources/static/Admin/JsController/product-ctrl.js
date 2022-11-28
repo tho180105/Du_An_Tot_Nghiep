@@ -1,5 +1,6 @@
 app.controller("product-ctrl", function ($scope, $http) {
 	$scope.form = {};
+	
 	$scope.initialize = function () {
 		$http.get("/rest/categoryAll").then(resp => {
 			$scope.cates = resp.data;
@@ -40,6 +41,8 @@ app.controller("product-ctrl", function ($scope, $http) {
 		$http.get(`/rest/imagesbyproduct/${item.productid}`).then(resp => {
 			$scope.itemimgs = resp.data;
 		});
+		console.log($scope.itemimgs);
+
 		var itemimg = $scope.itemimgs[item.productid];
 		$scope.formimg = angular.copy(itemimg);
 		$(".nav-tabs .nav-item button.nav-link:eq(1)").tab('show');
@@ -48,6 +51,10 @@ app.controller("product-ctrl", function ($scope, $http) {
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
 		console.log(item);
+		if(item.productname == null || item.purchaseprice == null || item.productstatus== null){
+			alert("Vui lòng các thông tin bắc buộc");
+			return;
+		}
 		if ($scope.form.productid < 1) {
 			$http.post(`/rest/products`, item).then(resp => {
 				$scope.items.push(resp.data);
@@ -71,6 +78,7 @@ app.controller("product-ctrl", function ($scope, $http) {
 				});
 			}
 		}
+		
 	}
 
 		$scope.update = function () {
