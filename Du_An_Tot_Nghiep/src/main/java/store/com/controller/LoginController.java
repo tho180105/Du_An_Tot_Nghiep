@@ -2,6 +2,7 @@ package store.com.controller;
 
 
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import store.com.DAO.AccountDAO;
+import store.com.Entity.Account;
 import store.com.Service.CookieService;
 import store.com.Service.SessionService;
 import store.com.Service.UserService;
@@ -28,6 +31,10 @@ public class LoginController {
 	SessionService se;
 	@Autowired
 	BCryptPasswordEncoder getPasswordEncoder;
+
+	@Autowired
+	private ServletContext servletContext;
+
 	
 	@RequestMapping("/security/login/form")
 	public String login(Model model,Authentication auth) {
@@ -44,8 +51,11 @@ public class LoginController {
 			cookie.add("JSESSIONID", acc.getValue(), 24*30);
 			cookie.remove("remember-me");
 		}
+		System.out.println(auth.getName());
+		servletContext.setAttribute("UserLogin", auth.getName());
 		model.addAttribute("message", "Đăng nhập thành công");
-		return "security/login";
+
+		return "redirect:/home";
 	}
 	
 	@RequestMapping("/security/login/error")
@@ -77,5 +87,5 @@ public class LoginController {
 	public String test(Model model) {
 		return "home/home";
 	}
-	
+
 }

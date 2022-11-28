@@ -1,5 +1,5 @@
 
-app.controller("checksize-ctrl", function($http, $scope){
+app.controller("checksize-ctrl", function($http, $scope, $window){
 	
 	/**
 		QUẢN LÝ CHECKSIZE
@@ -14,30 +14,26 @@ app.controller("checksize-ctrl", function($http, $scope){
 	$scope.rate = {};
 	$scope.sumQuantity = '';
 	$scope.product = {};
-	 
-	 $scope.getSumProductRepo = function(){
-		var x = location.href;
-		var item = Number(x.slice(x.lastIndexOf('/')+1, x.length));
+	$scope.user = {};
+	let x = location.href;
+	let item = Number(x.slice(x.lastIndexOf('/')+1, x.length));
+
+	$scope.initialize = function (){
 		$http.get(`/rest/productrepository/${item}`).then(resp => {
 			$scope.sumQuantity = resp.data;
 			if($scope.sumQuantity>0?$scope.sumQuantity: $scope.sumQuantity = 0)
-			console.log($scope.sumQuantity);
+				console.log($scope.sumQuantity);
 		}).catch(error => {
 			console.log("Error", error);
-		});	
-	} 
-	 
-	 $scope.getSumProductRepo();
-	 
-	 $scope.getOneProduct = function(){
-		var x = location.href;
-		var item = Number(x.slice(x.lastIndexOf('/')+1, x.length));
+		});
+
 		$http.get(`/rest/product/${item}`).then(resp => {
 			$scope.product = resp.data;
 		});
-	 }
-	 $scope.getOneProduct();
-	 
+	}
+
+	$scope.initialize();
+
 	 $scope.getSizegetItem = function(size) {
 		var x = location.href;
 		var item = Number(x.slice(x.lastIndexOf('/')+1, x.length));
@@ -117,7 +113,14 @@ app.controller("checksize-ctrl", function($http, $scope){
 			$scope.message = 'Vui lòng chọn Size bạn mong muốn';
 			return;
 		}
-		window.location.href='/cart/'+item;
+		$http.get(`/rest/cart/cart/${item}`).then(resp => {
+			console.log(resp.data);
+			alert("Thêm vào giỏ hàng thành công");
+		}).catch(error => {
+			alert("Thêm thất bại");
+			console.log("Error", error);
+		})
+
 	}
 });
  

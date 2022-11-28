@@ -28,42 +28,16 @@
                             <li ng-repeat="cate in itemscategory"><a ng-click="getProductByCategory(cate.categoryid)" style="cursor: pointer">{{cate.categoryname}}</a> </li>
                         </ul>
                     </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Brand</h4>
-                        <div class="fw-brand-check">
-                            <div class="bc-item">
-                                <label for="bc-calvin">
-                                    Calvin Klein
-                                    <input type="checkbox" id="bc-calvin">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-diesel">
-                                    Diesel
-                                    <input type="checkbox" id="bc-diesel">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-polo">
-                                    Polo
-                                    <input type="checkbox" id="bc-polo">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-tommy">
-                                    Tommy Hilfiger
-                                    <input type="checkbox" id="bc-tommy">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="filter-widget">-->
+<!--                        <h4 class="fw-title">Search</h4>-->
+<!--                        <div class="fw-brand-check">-->
+<!--                            <div>-->
+<!--                                <input type="text">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="filter-widget">
                         <h4 class="fw-title">Price</h4>
-                        <form >
 	                        <div class="filter-range-wrap">
 	                            <div class="range-slider">
 	                                <div class="price-input">
@@ -79,7 +53,7 @@
 	                            </div>
 	                        </div>
 	                        <button class="filter-btn" style="border: none;" ng-click="FilterByPrice()">Filter</button>
-                        </form>
+
                     </div>
                     <div class="filter-widget">
                         <h4 class="fw-title">Tags</h4>
@@ -110,7 +84,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-5 text-right">
-                                <p>Show {{pager.size}} Of {{(pager.size * pager.count)-1}} Product</p>
+                                <p>Show {{pager.size}} Of {{pager.count}} Product</p>
                             </div>
                         </div>
                     </div> 
