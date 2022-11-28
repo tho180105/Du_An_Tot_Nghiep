@@ -29,7 +29,7 @@ public class ProductRestController {
     @Autowired
     CategoryDAO cateDAO;
 
-    @GetMapping("/count")
+    @GetMapping("/rest/product/count")
     public Integer count() {
         return pd.getCount();
     }
@@ -62,13 +62,23 @@ public class ProductRestController {
         pd.deleteById(id);
     }
 
-    @GetMapping("/list2")
+    @GetMapping("/rest/product/list2")
     public List<Product> list1(Model model, @RequestParam("cid") Optional<Integer> cid , @RequestParam("p") Optional<Integer> p) {
-        model.addAttribute("cates", cateDAO.findAll());
-        if(cid.isPresent()){
-            return pd.findByCategoryId(cid.get());
-        }
         return pd.findAll();
     }
 
+    @GetMapping("/rest/product/findByPrice/{sellingprice1}/{sellingprice2}")
+    public List<Product> listByPrice(@PathVariable("sellingprice1") Float sellingprice, @PathVariable("sellingprice2") Float sellingprice2) {
+        return pd.findProductByPrice(sellingprice, sellingprice2);
+    }
+
+    @GetMapping("/rest/product/{productid}")
+    public Product getProduct(@PathVariable("productid") Integer productid) {
+        return pd.findById(productid).get();
+    }
+
+    @GetMapping("/rest/product/category/{categoryid}")
+    public List<Product> getProductByCategory(@PathVariable("categoryid") Integer categoryid) {
+        return pd.findByCategoryId(categoryid);
+    }
 }

@@ -145,7 +145,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="tab-pane fade" id="tab-2" role="tabpanel">
+									<div class="tab-pane fade-in" id="tab-2" role="tabpanel">
 										<div class="specification-table">
 											<table>
 												<tr>
@@ -189,7 +189,7 @@
 											</table>
 										</div>
 									</div>
-									<div class="tab-pane fade" id="tab-3" role="tabpanel">
+									<div class="tab-pane fade-in" id="tab-3" role="tabpanel">
 										<div class="customer-review-option">
 											<h4>[[${qtyComment}]] Comments</h4>
 											<div class="comment-option" th:each="rate : ${listRate}">
@@ -241,14 +241,10 @@
 											</div>
 											<a href="#">Hiển thị tất cả bình luận</a>
 
-
-
 											<div class="leave-comment "
-												style="display: flex; justify-content: flex-end; align-items: flex-end;">
+												 style="display: flex; justify-content: flex-end; align-items: flex-end;">
 												<button class="site-btn mt-3 open_modal_btn">Bình luận</button>
-
 											</div>
-
 										</div>
 									</div>
 								</div>
@@ -339,10 +335,10 @@
 	                        </div>
 						</form>
 					</div>
-					<div class="message">{{message1}}</div>
+					<div class="message" style="color: red; font-weight: bold">{{message1}}</div>
 				</div>
 				<div class="modal1_footer">
-					<button ng-click="comment()">BÌNH LUẬN</button>
+					<button  ng-click="comment()">BÌNH LUẬN</button>
 				</div>
 			</div>
 		</div>

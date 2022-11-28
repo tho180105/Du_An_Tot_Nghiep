@@ -1,7 +1,6 @@
 
 app.controller("indexCtrl-ctrl", function($http, $scope) {
 
-	
 	$scope.itemsall = [];
 	$scope.itemscategory = [];
 	$scope.data = {
@@ -15,6 +14,14 @@ app.controller("indexCtrl-ctrl", function($http, $scope) {
 	    selectedOption: {id: '1', name: 'Mặc định'} 
 	    
     };
+
+	$scope.setCurrent = function(num) {
+		window.scrollTo(0 ,0);
+		if (paginationService.isRegistered(paginationId) && isValidPageNumber(num)) {
+			num = parseInt(num, 10);
+			paginationService.setCurrentPage(paginationId, num);
+		}
+	};
 	$scope.onchangeSearch = function(){
      	var x = $scope.data.selectedOption
 
@@ -43,20 +50,6 @@ app.controller("indexCtrl-ctrl", function($http, $scope) {
 				return b.productid - a.productid;
 			})
 		}
-
-	}
-
-	$scope.FilterByPrice = function (){
-		let minimum = document.querySelector('#minamount').value;
-		let maximum = document.querySelector('#maxamount').value;
-		let mini = minimum.substring(1, minimum.length) * 23000;
-		let max = maximum.substring(1, maximum.length) * 23000;
-		$scope.itemsall.find(function (item){
-			return (item.sellingprice < 300000)
-		})
-		console.log(mini);
-		console.log(max);
-		console.log($scope.itemsall);
 	}
 
 	$scope.initialize = function(){
@@ -85,49 +78,43 @@ app.controller("indexCtrl-ctrl", function($http, $scope) {
         });
 	}
 
-
     //Start-------------------------------------------------------------------------//
     $scope.initialize();
-	    
+
+	$scope.FilterByPrice = function (){
+		let minimum = document.querySelector('#minamount').value;
+		let maximum = document.querySelector('#maxamount').value;
+		let mini = minimum.substring(1, minimum.length) * 23000;
+		let max = maximum.substring(1, maximum.length) * 23000;
+		$http.get(`/rest/product/findByPrice/${mini}/${max}`).then(resp => {
+			$scope.itemsall = resp.data
+		}).catch( error => {
+			console.log('Error', error);
+		})
+	}
+
     $scope.pager = {
 		page : 0,
 		size : 9,
-		
+
 		get items() {
 			var start = this.page * this.size;
 			var end = start + this.size;
 			return $scope.itemsall.slice(start, end);
 		},
-		
 		get count() {
-			return Math.ceil(1.0 * $scope.itemsall.length / this.size);
-		},
-		
-		first() {
-			this.page = 0;
-		},
-		
-		prev() {
-			this.page--;
-			if(this.page < 0) {
-				this.last();
-			}
-		},
-		
-		next() {
-			this.page++;
-			if(this.page >= this.count){
-				this.first();
-			}
-		},
-		
-		last(){
-			this.page = this.count - 1;
+			return Math.ceil(1.0 * $scope.itemsall.length);
 		}
 	}
-  
-
 });
+
+window.onscroll = function (){
+	document.getElementById('top_button').addEventListener("click", function() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	});
+}
+
 
 
  

@@ -10,7 +10,6 @@
  -->
  	<link rel="icon" href="/img/Logo/favicon.ico">
     <!-- Css Styles -->
-    
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/themify-icons.css}" type="text/css">
@@ -19,6 +18,7 @@
     <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css">
+    <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/style1.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/ChonThanhToan.css}" type="text/css">
@@ -26,17 +26,12 @@
     <link rel="stylesheet" th:href="@{/owlcarousel/assets/owl.theme.default.min.css}">
     <script th:src="@{/owlcarousel/owl.carousel.min.js}"></script>
     <script th:src="@{/owlcarousel/lory.min.js}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" th:href="@{/css/ListOrder.css}" type="text/css"> 
+    <link rel="stylesheet" th:href="@{/css/ListOrder.css}" type="text/css">
     <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
-
-    
+    <script th:src="@{/js/AngularController/pagination.js}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body ng-app="app">
 	<header class="header-section">
@@ -68,6 +63,7 @@
     <script th:src="@{/js/main.js}"></script>
     <script th:src="@{/js/data.js}"></script>
     <script th:src="@{/js/productDetail.js}"></script>
+
     <script type="text/javascript">
     $(document).ready(function(){
     	$('.owl-carousel').owlCarousel({
@@ -101,7 +97,12 @@
                 prevEl: '.swiper-button-prev',
             },
         });
-                
+
+        $('.tab-link1').click( function() {
+            var tabID = $(this).attr('data-tab');
+            $(this).addClass('active').siblings().removeClass('active');
+            $('#tab-'+tabID).addClass('active').siblings().removeClass('active');
+        });
     });
     
 

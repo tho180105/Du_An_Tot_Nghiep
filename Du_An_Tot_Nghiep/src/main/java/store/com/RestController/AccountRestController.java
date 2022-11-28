@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import store.com.DAO.AccountDAO;
 import store.com.Entity.Account;
 import store.com.Service.AccountService;
+import store.com.controller.LoginController;
 
 @RestController
 @RequestMapping("/rest/account")
@@ -25,6 +26,7 @@ public class AccountRestController {
     @Autowired
     AccountDAO dao;
     BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+
     
     @GetMapping("/getone")
     public Account getOne(Authentication auth) {
@@ -75,4 +77,5 @@ public class AccountRestController {
 
     @GetMapping("/findAll")
     public List<Account> findAll(){return dao.findAll();}
+
 }
