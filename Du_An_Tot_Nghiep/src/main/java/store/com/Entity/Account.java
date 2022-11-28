@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,8 +26,8 @@ public class Account implements Serializable{
 	String accountid;
 	@NotBlank(message = "Không được bỏ trống mật khẩu")
 	String password;
-	// @NotBlank(message = "Không được bỏ trống email")
-	// @Email(message = "Email không đúng định dạng")
+	@NotBlank(message = "Không được bỏ trống email")
+	@Email(message = "Email không đúng định dạng")
 	String email;
 	String avatar;
 	Integer coin;

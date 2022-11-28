@@ -45,7 +45,7 @@ public class LoginController {
 			cookie.remove("remember-me");
 		}
 		model.addAttribute("message", "Đăng nhập thành công");
-		return "redirect:/home";
+		return "security/login";
 	}
 	
 	@RequestMapping("/security/login/error")
