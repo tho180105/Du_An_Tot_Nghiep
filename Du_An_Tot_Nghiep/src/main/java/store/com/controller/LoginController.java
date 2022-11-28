@@ -31,10 +31,10 @@ public class LoginController {
 	
 	@RequestMapping("/security/login/form")
 	public String login(Model model,Authentication auth) {
-	    if(auth == null) {
+	    // if(auth == null) {
 	        return "security/login";
-	    }
-	    return "redirect:/home";
+	    // }
+	    // return "redirect:/home";
 	}
 	
 	@RequestMapping("/security/login/success")
@@ -45,7 +45,7 @@ public class LoginController {
 			cookie.remove("remember-me");
 		}
 		model.addAttribute("message", "Đăng nhập thành công");
-		return "redirect:/home";
+		return "security/login";
 	}
 	
 	@RequestMapping("/security/login/error")
