@@ -1,31 +1,39 @@
 
-<div class="nav-item" xmlns:th="http://www.thymeleaf.org" >
-            <div class="container">
-                <div class="nav-depart">
-                    <div class="depart-btn">
-                        <i class="ti-menu"></i>
-                        <span>[(#{menu.category})]</span>
-                        <ul class="depart-hover">
-                        	<li> <a th:each="c : ${cates}" th:href="@{|/product/list?cid=${c.categoryid}|}">[[${c.categoryname}]]</a> </li>
-                        </ul>
-                    </div>
-                </div>
-                <nav class="nav-menu mobile-menu">
-                    <ul>
-                        <li class="active"><a href="./index.html">[(#{menu.home})]</a></li>
-                        <li><a href="./shop.html">[(#{menu.shop})]</a></li>
-                        <li><a href="#">Collection</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
+<div class="nav-item bg-dark"  xmlns:th="http://www.thymeleaf.org" >
+            <div class=" container " >
+                <div class="row">
+                    <div class="nav-depart ">
+                        <div class="depart-btn bg-info" style="height: 51px">
+                            <i class="ti-menu"></i>
+                            <span>[(#{menu.category})]</span>
+                            <ul class="depart-hover ">
+                                <li > <a th:each="c : ${cates}" th:href="@{|/product/list?cid=${c.categoryid}|}">[[${c.categoryname}]]</a> </li>
                             </ul>
-                        </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">[(#{menu.contact})]</a></li>
-                        
-                    </ul>
-                </nav>
-                <div id="mobile-menu-wrap"></div>
+                          
+                        </div>
+                    </div>
+                    <style>
+                        .nav-menu li:hover a{
+                            background-color:   rgb(23,162,184)  !important;
+                        }
+                        .depart-btn a:hover {
+                            color:   rgb(2, 75, 221)  !important;
+                            
+                        }
+                        .depart-btn a {
+                            font-weight: 500;                            
+                        }
+                    </style>
+                    <!-- <nav > -->
+                        <ul class="nav-menu mobile-menu col-10 row" style="width: 800px" >
+                            <li class="col-3" style="margin-left: -14px;" ><a style="width: 100% ;text-align: center;"  href="/product/list">[(#{menu.shop})]</a></li>
+                            <li class="col-3" style="margin-left:-30px;"  ><a style="width: 100% ;text-align: center;"  href="/home">[(#{menu.home})]</a></li>
+                            <li class="col-3" style="margin-left:-30px;" ><a style="width: 100% ; text-align: center;" href="/cart">Cart</a></li>
+                            <li class="col-3" style="margin-left:-30px;" ><a style="width: 100% ; text-align: center;" href="/contact">[(#{menu.contact})]</a></li>
+                            
+                        </ul>
+                    <!-- </nav> -->
+                </div>
+               
             </div>
         </div>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,16 +37,13 @@ public class UploadImageRestController {
         
         return node;
     }
-    
-    @PostMapping("/rest/uploadImageVoucher/{folder}")
-    public JsonNode saveVoucher(@PathParam("file") MultipartFile file, 
-            @PathVariable("folder") String folder) {
-        File saveFile = uploadService.save(file, "/voucher/"+folder);
+    @PostMapping("/rest/uploadImage/product")
+    public JsonNode saveimg(@PathParam("file") MultipartFile file) {
+        File saveFile = uploadService.saveimg(file, "/products-main/");
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
         node.put("name", saveFile.getName());
         node.put("size", saveFile.length());
-        
         return node;
     }
 }

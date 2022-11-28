@@ -38,40 +38,23 @@
                 <div class="col-lg-3">
                     <div class="footer-left">
                         <div class="footer-logo">
-                            <a href="#"><img th:src="@{/img/footer-logo.png}" alt=""></a>
+                            <a href="#"><img style="margin-top: -90px;margin-bottom: -120px" th:src="@{/img/logo/logoFooter.png}" alt=""></a>
                         </div>
                         <ul>
                             <li>Address: Lô 42 Tòa nhà Inovation, Công viên phần mềm Quang Trung, P. Tân Thới Hiệp, Q. 12, TPHCM</li>
                             <li>Phone: +84 34606454</li>
                             <li>Email: polystore.gmail.com</li>
                         </ul>
-                        <div class="footer-social" style="display: flex;">
-                            <a href="#" style="display: flex; justify-content: center; align-items: center"><i class="fa fa-facebook"></i></a>
-                            <a href="#" style="display: flex; justify-content: center; align-items: center"><i class="fa fa-instagram"></i></a>
-                            <a href="#" style="display: flex; justify-content: center; align-items: center"><i class="fa fa-twitter"></i></a>
-                            <a href="#" style="display: flex; justify-content: center; align-items: center"><i class="fa fa-pinterest"></i></a>
-                        </div>
                     </div>
                 </div>
-                <div class="col-lg-2 offset-lg-1">
-                    <div class="footer-widget">
-                        <h5>[(#{footer.phone})]</h5>
-                        <ul>
-                            <li><a href="#">[(#{footer.AboutUs})]</a></li>
-                            <li><a href="#">[(#{footer.Checkout})]</a></li>
-                            <li><a href="#">[(#{footer.Contact})]</a></li>
-                            <li><a href="#">[(#{footer.Service})]</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2">
+                <div class="col-lg-4 d-flex justify-content-around">
                     <div class="footer-widget">
                         <h5>[(#{footer.MyAccount})]</h5>
                         <ul>
-                            <li><a href="#">[(#{footer.MyAccount})]</a></li>
-                            <li><a href="#">[(#{footer.Contact})]</a></li>
-                            <li><a href="#">[(#{footer.ShoppingCart})]</a></li>
-                            <li><a href="#">[(#{footer.Shop})]</a></li>
+                            <li><a href="/account">[(#{footer.MyAccount})]</a></li>
+                            <li><a href="/contact">[(#{footer.Contact})]</a></li>
+                            <li><a href="/cart">[(#{footer.ShoppingCart})]</a></li>
+                            <li><a href="/product/list">[(#{footer.Shop})]</a></li>
                         </ul>
                     </div>
                 </div>
@@ -87,21 +70,6 @@
                 </div>
             </div>
         </div>
-        <div class="copyright-reserved">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="copyright-text">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </div>
-                        <div class="payment-pic">
-                            <img th:src="@{/img/payment-method.png}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
     </footer>
 </div>

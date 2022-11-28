@@ -52,6 +52,7 @@ app.controller("ListOrder-ctrl", function ($rootScope, $scope, $http) {
 })
 
 app.controller("DetailOrder-ctrl", function ($rootScope, $scope, $http) {
+	$scope.test = "";
 	var id = location.href.substring(location.href.lastIndexOf("/"), location.href.length);
 	console.log(id);
 	$http.get("/rest/ListOrder/detailOrder" + id).then(resp => {
@@ -73,14 +74,70 @@ app.controller("DetailOrder-ctrl", function ($rootScope, $scope, $http) {
 		console.log(error);
 	})
 	$scope.test123="selected";
+	$scope.mangdangonngu = 
+		[	
+			{
+				"name":"vi",
+				"image":"/img/flag-1.jpg"
+			},
+			{
+				"name":"en",
+				"image":"/img/flag-1.jpg"
+			}
+		];
+	$scope.nn=$scope.mangdangonngu[0].value;
+	$scope.ann = function (){
+		alert("test");
+		/*var id = document.getElementById(x);
+		document.querySelector('#'+x).selected  = true;
+		console.log(document.querySelector('#'+x))
+		
+		window.history.pushState('page2', 'Title', '?lang='+x);
+		location.href = "?lang="+x;*/
+	
+	}
+	
 })
 
+function startDNN(){
+	var nn =localStorage.getItem('nn');
+	console.log("s")
 
-function Dann(x){
-	var id = document.getElementById(x);
-	document.querySelector('#'+x).selected  = true;
-	console.log(document.querySelector('#'+x))
-	window.history.pushState('page2', 'Title', '?lang='+x);
+	
+	if(!nn){
+		nn='en'
+	}
+	console.log(nn)
+	console.log(nn)
+	if(nn!=='vi'){
+		document.getElementById("vnoption").removeAttribute("selected")
+		document.getElementById("enoption").selected ='selected'
+		
+	}else{
+		document.getElementById("enoption").removeAttribute("selected")
+		document.getElementById("vnoption").selected ='selected'
+	}
+		
+	
+	}
+	function Dann(x){
+
+	if(x!=='vi'){
+		localStorage.setItem('nn', 'en');
+		document.getElementById("vnoption").removeAttribute("selected")
+		document.getElementById("enoption").selected
+		
+	}else{
+		localStorage.setItem('nn', 'vi');
+		document.getElementById("enoption").removeAttribute("selected")
+		document.getElementById("vnoption").selected
+	}
+		/*var id = document.getElementById(x);
+		document.querySelector('#'+x).selected  = true;
+		console.log(document.querySelector('#'+x))
+		
+		window.history.pushState('page2', 'Title', '?lang='+x);*/
 	location.href = "?lang="+x;
-
-}
+	
+	}
+startDNN()

@@ -8,8 +8,8 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="breadcrumb-text product-more">
-							<a href="./home.html"><i class="fa fa-home"></i> Home</a> <a
-								href="./shop.html">Shop</a> <span>Detail</span>
+							<a href="/home"><i class="fa fa-home"></i> Home</a> <a
+								href="/shop">Shop</a> <span>Detail</span>
 						</div>
 					</div>
 				</div>
@@ -101,12 +101,12 @@
 												style="width: 100%; padding: 0; margin: 0; font-size: 18px" />
 										</div>
 										<!-- <a th:href="@{|/cart/${item.productid}|}" class="primary-btn pd-cart" disabled="disabled" ng-disabled="check">Add To Cart</a>-->
-										<!-- <button class="primary-btn pd-cart" style="border: none"
+										 <button class="primary-btn pd-cart" style="border: none"
 											ng-disabled="check" th:onclick="|window.location.href='/cart/'+${item.productid}|">Add To Cart
-										</button> -->
-										<button class="primary-btn pd-cart" style="border: none"
-											ng-disabled="check" ng-click="SubmitAddToCart()">Add To Cart
 										</button>
+										<!-- <button class="primary-btn pd-cart" style="border: none"
+											ng-disabled="check" ng-click="SubmitAddToCart()">Add To Cart
+										</button> -->
 									</div>
 
 								</div>
@@ -145,7 +145,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="tab-pane fade" id="tab-2" role="tabpanel">
+									<div class="tab-pane fade-in" id="tab-2" role="tabpanel">
 										<div class="specification-table">
 											<table>
 												<tr>
@@ -189,7 +189,7 @@
 											</table>
 										</div>
 									</div>
-									<div class="tab-pane fade" id="tab-3" role="tabpanel">
+									<div class="tab-pane fade-in" id="tab-3" role="tabpanel">
 										<div class="customer-review-option">
 											<h4>[[${qtyComment}]] Comments</h4>
 											<div class="comment-option" th:each="rate : ${listRate}">
@@ -241,14 +241,10 @@
 											</div>
 											<a href="#">Hiển thị tất cả bình luận</a>
 
-
-
 											<div class="leave-comment "
-												style="display: flex; justify-content: flex-end; align-items: flex-end;">
+												 style="display: flex; justify-content: flex-end; align-items: flex-end;">
 												<button class="site-btn mt-3 open_modal_btn">Bình luận</button>
-
 											</div>
-
 										</div>
 									</div>
 								</div>
@@ -339,10 +335,10 @@
 	                        </div>
 						</form>
 					</div>
-					<div class="message">{{message1}}</div>
+					<div class="message" style="color: red; font-weight: bold">{{message1}}</div>
 				</div>
 				<div class="modal1_footer">
-					<button ng-click="comment()">BÌNH LUẬN</button>
+					<button  ng-click="comment()">BÌNH LUẬN</button>
 				</div>
 			</div>
 		</div>
