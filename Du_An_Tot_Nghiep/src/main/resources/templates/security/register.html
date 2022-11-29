@@ -23,7 +23,7 @@
 					<div class="col-lg-6 offset-lg-3">
 						<div class="register-form">
 							<h2>Register</h2>
-							<form th:action="@{/register/check}" method="post" th:object="${sv}" >
+							<form th:action="@{/register/check}" method="post" th:object="${sv}"  autocapitalize="none">
 								 <div class="group-input">
 									<label for="username">Username</label> <input
 										type="text" id="username" th:field="*{accountid}"> <br>

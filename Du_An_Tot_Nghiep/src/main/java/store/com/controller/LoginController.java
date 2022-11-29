@@ -38,10 +38,10 @@ public class LoginController {
 	
 	@RequestMapping("/security/login/form")
 	public String login(Model model,Authentication auth) {
-	    if(auth == null) {
+//	    if(auth == null) {
 	        return "security/login";
-	    }
-	    return "redirect:/home";
+//	    }
+//	    return "redirect:/home";
 	}
 	
 	@RequestMapping("/security/login/success")

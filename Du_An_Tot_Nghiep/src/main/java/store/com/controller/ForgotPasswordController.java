@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,8 @@ public class ForgotPasswordController {
     private static final String digits = "0123456789"; // 0-9
     private static final String ALPHA_NUMERIC = alpha + alphaUpperCase + digits;
     private static Random generator = new Random();
-
+    @Autowired
+    BCryptPasswordEncoder pe;
     @Autowired
 	MailerService mailer;
     @Autowired
@@ -55,8 +57,8 @@ public class ForgotPasswordController {
                 return "security/forgot-password";
             }
             String passwordNew = randomAlphaNumeric();
-            mailer.send(account.getEmail(), "Xác nhận Email ","Mật khẩu mới của bạn là :"+ passwordNew);
-            account.setPassword(passwordNew);
+            mailer.queue(account.getEmail(), "Xác nhận Email ","Mật khẩu mới của bạn là :"+ passwordNew);
+            account.setPassword(pe.encode(passwordNew));
             accService.update(account);
             model.addAttribute("message","Vui lòng kiểm tra Email của bạn!");
             return "security/forgot-password";
