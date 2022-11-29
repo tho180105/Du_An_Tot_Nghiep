@@ -53,6 +53,45 @@ public class CartController {
 	@Autowired
 	ProductRepositoryDAO pdao;
 
+	@RequestMapping("/cart/{id}")
+	public String cart(Model model, @PathVariable("id") String productRepositoryIdString, Authentication auth,
+			HttpSession se) {
 
+		/*
+		 * if(auth!=null) { // dt.save(new); }
+		 * session.setAttribute("productRepositoryId", productid);
+		 */
+		Integer productRepositoryId = Integer.parseInt(productRepositoryIdString);
+		if (auth != null) {
+			List<DetailCart> detailCarts = dao.findAll();
+			for (DetailCart d : detailCarts) {
+				if (d.getProductrepository().getProductrepositoryid() == productRepositoryId) {
+					d.setQuantity(d.getQuantity() + 1);
+					dao.save(d);
+				}
+			}
+			dao.save(new DetailCart(1, pdao.findById(productRepositoryId).get(), adao.findById(auth.getName()).get()));
+		}
+		List<DetailCart> detailCartSession = (List<DetailCart>) se.getAttribute("detailCartWaiting");
+		ProductRepository newProductRepository = pdao.findById(productRepositoryId).get();
+		if (detailCartSession == null) {
+			detailCartSession = new ArrayList<DetailCart>();
+		}
+		for (DetailCart d : detailCartSession) {
+			// Đã có rồi thì quantity +1
+			if (d.getProductrepository().getProductrepositoryid() == productRepositoryId) {
+				d.setQuantity(d.getQuantity() + 1);
+				se.removeAttribute("detailCartWaiting");
+				se.setAttribute("detailCartWaiting", detailCartSession);
+
+			}
+		}
+		DetailCart cartDetail = new DetailCart(1, newProductRepository);
+		cartDetail.setDetailcartid(detailCartSession.size());
+		detailCartSession.add(cartDetail);
+		se.removeAttribute("detailCartWaiting");
+		se.setAttribute("detailCartWaiting", detailCartSession);
+		return "cart/view";
+	}
 
 }

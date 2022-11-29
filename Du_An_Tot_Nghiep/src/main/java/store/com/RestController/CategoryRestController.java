@@ -26,7 +26,10 @@ public class CategoryRestController {
     public List<Category> findAllCate(){
         return categoryDAO.findAll();
     }
-    
+    @GetMapping("/rest/cate/count")
+    public Integer count(){
+        return categoryDAO.getCount();
+    }
     @Autowired
     CategoryService categoryService;
     
