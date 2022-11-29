@@ -18,12 +18,12 @@ import store.com.Service.StyleService;
 @RestController
 //@RequestMapping("/rest/style")
 public class StyleRestController {
-//    @Autowired
-//    StyleDAO sd;
-//    @GetMapping("/count")
-//    public Integer count() {
-//        return sd.getCount();
-//    }
+   @Autowired
+   StyleDAO sd;
+   @GetMapping("/rest/style/count")
+   public Integer count() {
+       return sd.getCount();
+   }
     @Autowired
     StyleService styleService;
     
