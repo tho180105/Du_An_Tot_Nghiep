@@ -6,19 +6,28 @@
 <div class="content-wrapper">
   <!-- Content -->
   <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Quản Lý /</span> Quản Lý Sản Phẩm</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Quản Lý /</span> Quản Lý Hình Ảnh Sản Phẩm</h4>
+
+    <div class="row">
+      <div class="mb-3 col-md-12">
+        <label for="" class="form-label">Sản Phẩm</label>
+        <select class="form-control" ng-change="change(p.productid)" ng-model="p.productid">
+          <option ng-repeat="p in products" ng-value="p.productid" >{{p.productname}}</option> -->
+        </select>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-md-12">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active " id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-              role="tab" aria-controls="home" aria-selected="true">Quản Lý Sản Phẩm</button>
+              role="tab" aria-controls="home" aria-selected="true">Quản Lý Hình Ảnh</button>
           </li>
 
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab"
-              aria-controls="all" aria-selected="false">Danh Sách Sản Phẩm</button>
+              aria-controls="all" aria-selected="false">Danh Sách Hình Ảnh Của Sản Phẩm</button>
           </li>
         </ul>
 
@@ -32,55 +41,23 @@
                   <div class="card-body">
                     <form id="formAccountSettings" method="POST">
                       <div class="mb-3 col-md-6">
-                        <img ng-src="{{'/Admin/assets/img/products-main/'+form.mainproductimage}}" alt="product-image"
+                        <img ng-src="{{'/Admin/assets/img/products-main/'+form.imagepath}}" alt="product-image"
                           class="d-block rounded" width="50%" for="image" />
                       </div>
                       <div class="row">
                         <div class="mb-3 col-md-12">
-                          <label class="form-label" for="">Mã Sản Phẩm</label>
-                          <input ng-model="form.productid" class="form-control" type="number" disabled>
-                        </div>
-                        <div class="mb-3 col-md-12">
-                          <label class="form-label" for="">Tên Sản Phẩm (*)</label>
-                          <input ng-model="form.productname" class="form-control" type="text">
-                        </div>
-                        <div class="mb-3 col-md-12">
-                          <label class="form-label" for="">Giá Sản Phẩm (*)</label>
-                          <input ng-model="form.purchaseprice" class="form-control" type="number">
-                        </div>
-                        <div class="mb-3 col-md-12">
-                          <label class="form-label" for="">Giá Niêm Yết</label>
-                          <input ng-model="form.listedprice" class="form-control" type="number">
-                        </div>
-                        <div class="mb-3 col-md-12">
-                          <label class="form-label" for="">Giá Bán</label>
-                          <input ng-model="form.sellingprice" class="form-control" type="number">
-                        </div>
-                        <div class="mb-3 col-md-12">
-                          <label class="form-label" for="">Mô Tả Sản Phẩm</label>
-                          <input ng-model="form.describe" class="form-control" type="text">
+                          <label class="form-label" for="">Mã Hình Ảnh</label>
+                          <input ng-model="form.additionalimagesid" class="form-control" type="number" disabled>
                         </div>
                         <div class="mb-3 col-md-12">
                           <label for="image" class="form-label">Hình Sản Phẩm</label>
-                          <input type="file" ng-model="form.mainproductimage" class="form-control" id="image"
+                          <input type="file" ng-model="form.imagepath" class="form-control" id="image"
                             onchange="angular.element(this).scope().imageChanged(this.files)">
                         </div>
                         <div class="mb-3 col-md-12">
-                          <label class="form-label" for="">Trạng Thái Sản Phẩm</label>
-                          <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"
-                            ng-model="form.productstatus">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                          <label for="" class="form-label">Nhóm Sản Phẩm (*)</label>
-                          <select class="form-control" ng-model="form.style.styleid">
-                            <option ng-repeat="s in styles" ng-value="s.styleid">{{s.stylename}}</option> -->
-
-                          </select>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                          <label for="" class="form-label">Loại Sản Phẩm (*)</label>
-                          <select class="form-control" ng-model="form.category.categoryid">
-                            <option ng-repeat="c in cates" ng-value="c.categoryid">{{c.categoryname}}</option>
+                          <label for="" class="form-label">Sản Phẩm (*)</label>
+                          <select class="form-control" ng-model="form.product.productid">
+                            <option ng-repeat="p in products" ng-value="p.productid">{{p.productname}}</option> -->
                           </select>
                         </div>
                       </div>
@@ -103,24 +80,16 @@
                 <thead>
                   <tr>
                     <th>Mã</th>
-                    <th>Tên Sản Phẩm</th>
-                    <th>Giá Sản Phẩm</th>
-                    <th>Giá Niêm Yết</th>
-                    <th>Giá Bán</th>
-                    <th>Trạng Thái</th>
+                    <th>Hình Ảnh</th>
+                    <th>Sản Phẩm</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="item in items">
-                    <td>{{item.productid}}</td>
-                    <td>{{item.productname}}</td>
-                    <td>{{item.purchaseprice}}</td>
-                    <td>{{item.listedprice}}</td>
-                    <td>{{item.sellingprice}}</td>
-                    <td ng-click="edit(item)"> <input class="form-check-input" type="checkbox"
-                        value="{{item.productstatus}}" id="flexCheckDisabled" ng-checked="{{item.productstatus}}"
-                        disabled></td>
+                  <tr ng-repeat="item in itemimgs">
+                    <td>{{item.additionalimagesid}}</td>
+                    <td>{{item.imagepath}}</td>
+                    <td>{{item.product.productname}}</td>
                     <td>
                       <div class="dropdown">
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
