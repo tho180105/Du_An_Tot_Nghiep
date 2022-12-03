@@ -92,4 +92,9 @@ public class ProductRestController {
     public List<Product> getProductByCategory(@PathVariable("categoryid") Integer categoryid) {
         return pd.findByCategoryId(categoryid);
     }
+
+    @GetMapping("/rest/product/searchData/{name}")
+    public List<Product> getProductByName(@PathVariable("name") String productname){
+        return pd.findProductByName('%'+productname+'%');
+    }
 }

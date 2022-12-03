@@ -12,12 +12,11 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@SuppressWarnings("serial")
+
 @Data
 @Getter
 @Setter
 @Entity
-
 public class Product implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,15 +53,15 @@ public class Product implements Serializable{
     public Product() {
         super();
     }
-    public Product(Integer productid, String productname, Float listedprice, Float sellingprice, String describe, String mainproductimage, Double purchaseprice,Boolean productstatus, Style style, Category category, List<AdditionalImages> additionalimagess, List<ProductRepository> productRepositories, List<ProductDiscount> productDiscounts, List<Rate> rates) {
+    public Product(Integer productid, String productname, Float listedprice, Float sellingprice, String describe, String mainproductimage,Boolean productstatus, Double purchaseprice, Style style, Category category, List<AdditionalImages> additionalimagess, List<ProductRepository> productRepositories, List<ProductDiscount> productDiscounts, List<Rate> rates) {
         this.productid = productid;
         this.productname = productname;
         this.listedprice = listedprice;
         this.sellingprice = sellingprice;
         this.describe = describe;
         this.mainproductimage = mainproductimage;
-        this.purchaseprice = purchaseprice;
         this.productstatus = productstatus;
+        this.purchaseprice = purchaseprice;
         this.style = style;
         this.category = category;
         this.additionalimagess = additionalimagess;

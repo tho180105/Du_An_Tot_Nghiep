@@ -3,6 +3,8 @@ app.controller("indexCtrl-ctrl", function($http, $scope) {
 
 	$scope.itemsall = [];
 	$scope.itemscategory = [];
+	$scope.searchData = window.localStorage.getItem("searchItem");
+	$scope.categoryid = window.localStorage.getItem("categoryid");
 	$scope.data = {
 	    availableOptions: [
 	      {id: '1', name: 'Mặc định'},
@@ -55,26 +57,43 @@ app.controller("indexCtrl-ctrl", function($http, $scope) {
 	$scope.initialize = function(){
 		$scope.currentPage = 1;
 		$scope.pageSize = 9;
-        //Load Product
-        $http.get("/rest/product/list2").then(resp => {
-            $scope.itemsall = resp.data;
-            console.log($scope.itemsall);
-          
-        });
-        
+
+		if($scope.searchData.length > 0){
+			$http.get(`/rest/product/searchData/${$scope.searchData}`).then(resp => {
+				$scope.itemsall = resp.data;
+				console.log($scope.itemsall);
+			});
+			window.localStorage.setItem("searchItem", '');
+			$scope.searchData = '';
+		}
+
+		if($scope.categoryid > 0){
+			$http.get(`/rest/product/category/${$scope.categoryid}`).then(resp => {
+				$scope.itemsall = resp.data;
+				console.log($scope.itemsall);
+			});
+			window.localStorage.setItem("categoryid", 0);
+			$scope.categoryid = 0;
+		}else{
+			//Load Product
+			$http.get("/rest/product/list2").then(resp => {
+				$scope.itemsall = resp.data;
+				console.log($scope.itemsall);
+			});
+		}
+
         $http.get("/rest/cate/findAll").then(resp => {
             $scope.itemscategory = resp.data;
             console.log($scope.itemscategory);
           
         });
-        
-    }
+
+	}
     
     $scope.getProductByCategory = function(categoryid) {
         $http.get(`/rest/product/category/${categoryid}`).then(resp => {
             $scope.itemsall = resp.data;
             console.log($scope.itemsall);
-
         });
 	}
 
@@ -108,12 +127,7 @@ app.controller("indexCtrl-ctrl", function($http, $scope) {
 	}
 });
 
-window.onscroll = function (){
-	document.getElementById('top_button').addEventListener("click", function() {
-		document.body.scrollTop = 0;
-		document.documentElement.scrollTop = 0;
-	});
-}
+
 
 
 

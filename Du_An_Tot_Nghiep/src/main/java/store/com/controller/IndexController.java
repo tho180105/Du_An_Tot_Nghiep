@@ -37,18 +37,15 @@ public class IndexController {
 		
 		List<Banner> banners = bannerDAO.findBannerByDate();
 		model.addAttribute("banners", banners);
-		
-//		List<ProductDiscount> discount1 = pdDAO.findProductDiscountByStyleId(1);
-//		model.addAttribute("styleList1", discount1);
-//		List<Product> discount1 = productDAO.findByCategoryId(1);
-//		model.addAttribute("styleList1", discount1);
-//		List<ProductDiscount> discount2 = pdDAO.findProductDiscountByStyleId(2);
-//        model.addAttribute("styleList2", discount2);
-//        List<ProductDiscount> discount3 = pdDAO.findProductDiscountByStyleId(3);
-//        model.addAttribute("styleList3", discount3);
-//        List<ProductDiscount> discount4 = pdDAO.findProductDiscountByStyleId(4);
-//        model.addAttribute("styleList4", discount4);
 
+		List<ProductDiscount> products1 = pdDAO.findProductDiscountByStyleId(1);
+		model.addAttribute("listproduct1", products1);
+		List<ProductDiscount> products2 = pdDAO.findProductDiscountByStyleId(2);
+		model.addAttribute("listproduct2", products2);
+		List<ProductDiscount> products3 = pdDAO.findProductDiscountByStyleId(3);
+		model.addAttribute("listproduct3", products3);
+		List<ProductDiscount> products4 = pdDAO.findProductDiscountByStyleId(4);
+		model.addAttribute("listproduct4", products4);
 		return "home/home";
 	}
 	

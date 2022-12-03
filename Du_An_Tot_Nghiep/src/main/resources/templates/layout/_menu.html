@@ -1,13 +1,13 @@
 
 <div class="nav-item bg-dark"  xmlns:th="http://www.thymeleaf.org" >
-            <div class=" container " >
+            <div class=" container" ng-controller="menuHeader-ctrl">
                 <div class="row">
                     <div class="nav-depart ">
                         <div class="depart-btn bg-info" style="height: 51px">
                             <i class="ti-menu"></i>
                             <span>[(#{menu.category})]</span>
                             <ul class="depart-hover ">
-                                <li > <a th:each="c : ${cates}" th:href="@{|/product/list?cid=${c.categoryid}|}">[[${c.categoryname}]]</a> </li>
+                                <li ng-repeat="cates in itemscategorys"><a ng-click="getCategory(cates.categoryid)" style="cursor: pointer">{{cates.categoryname}}</a> </li>
                             </ul>
                           
                         </div>

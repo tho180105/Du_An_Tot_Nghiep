@@ -36,7 +36,7 @@
 	                    <div class="single-banner">
 	                        <img src="img/banner-1.jpg" alt="">
 	                        <div class="inner-text">
-	                            <h4>Men’s</h4>
+								<a href="" style="color: #252525;font-weight: bold; cursor: pointer; font-size: 24px; padding: 11px 28px; background: #ffffff" >T-shirt</a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -44,7 +44,7 @@
 	                    <div class="single-banner">
 	                        <img src="img/banner-2.jpg" alt="">
 	                        <div class="inner-text">
-	                            <h4>Women’s</h4>
+								<a href="" style="color: #252525;font-weight: bold; cursor: pointer; font-size: 24px; padding: 11px 28px; background: #ffffff" >Outwear</a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -52,7 +52,7 @@
 	                    <div class="single-banner">
 	                        <img src="img/banner-3.jpg" alt="">
 	                        <div class="inner-text">
-	                            <h4>Kid’s</h4>
+								<a href="" style="color: #252525;font-weight: bold; cursor: pointer; font-size: 24px; padding: 11px 28px; background: #ffffff" >Pants</a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -73,7 +73,6 @@
 	                </div>
 	                <div class="col-lg-8 offset-lg-1"> <!-- Product Tab-->
 						<div class="wrapper1">
-
 							<div class="tab-wrapper1">
 								<ul class="tabs1">
 									<li class="tab-link1 active" data-tab="1">THANH LỊCH</li>
@@ -83,161 +82,133 @@
 								</ul>
 							</div>
 
-							<div class="content-wrapper1">
+							<div class="content-wrapper1 tab-content">
+								<div id="tab-1" class="tab-content1 active">
+									<div class="owl-carousel product-slider">
+										<div th:each="itemp1 : ${listproduct1}">
+											<div class="product-item ">
+												<div class="pi-pic">
+													<img th:src="@{|/img/products-main/${itemp1.product.mainproductimage}.jpg|}" alt="">
+													<div class="sale">Sale</div>
+													<div class="icon">
+														<i class="icon_heart_alt"></i>
+													</div>
+													<ul>
+														<li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+														<li class="quick-view"><a th:href="@{|/product/detail/${itemp1.product.productid}|}">+ Quick View</a></li>
+														<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+													</ul>
+												</div>
+												<div class="pi-text">
+													<div class="catagory-name">[[${itemp1.product.category.categoryname}]]</div>
+													<a th:href="@{|/product/detail/${itemp1.product.productid}|}">
+														<h5> [[${itemp1.product.productname}]] </h5>
+													</a>
+													<div class="product-price">
+														$[[${itemp1.product.sellingprice}]]
+														<span>$[[${itemp1.product.listedprice}]]</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div id="tab-2" class="tab-content1">
+									<div class="owl-carousel product-slider">
+										<div th:each="itemp2 : ${listproduct2}">
+											<div class="product-item ">
+												<div class="pi-pic">
+													<img th:src="@{|/img/products-main/${itemp2.product.mainproductimage}.jpg|}" alt="">
+													<div class="sale">Sale</div>
+													<div class="icon">
+														<i class="icon_heart_alt"></i>
+													</div>
+													<ul>
+														<li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+														<li class="quick-view"><a th:href="@{|/product/detail/${itemp2.product.productid}|}">+ Quick View</a></li>
+														<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+													</ul>
+												</div>
+												<div class="pi-text">
+													<div class="catagory-name">[[${itemp2.product.category.categoryname}]]</div>
+													<a th:href="@{|/product/detail/${itemp2.product.productid}|}">
+														<h5> [[${itemp2.product.productname}]] </h5>
+													</a>
+													<div class="product-price">
+														$[[${itemp2.product.sellingprice}]]
+														<span>$[[${itemp2.product.listedprice}]]</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
-								<div id="tab-1" class="tab-content1 active">Hypertext Markup Language (HTML) is the standard markup language for creating web pages and web applications. With Cascading Style Sheets (CSS) and JavaScript, it forms a triad of cornerstone technologies for the World Wide Web. </div>
+								<div id="tab-3"class="tab-content1">
+									<div class="owl-carousel product-slider">
+										<div th:each="itemp3 : ${listproduct3}">
+											<div class="product-item ">
+												<div class="pi-pic">
+													<img th:src="@{|/img/products-main/${itemp3.product.mainproductimage}.jpg|}" alt="">
+													<div class="sale">Sale</div>
+													<div class="icon">
+														<i class="icon_heart_alt"></i>
+													</div>
+													<ul>
+														<li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+														<li class="quick-view"><a th:href="@{|/product/detail/${itemp3.product.productid}|}">+ Quick View</a></li>
+														<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+													</ul>
+												</div>
+												<div class="pi-text">
+													<div class="catagory-name">[[${itemp3.product.category.categoryname}]]</div>
+													<a th:href="@{|/product/detail/${itemp3.product.productid}|}">
+														<h5> [[${itemp3.product.productname}]] </h5>
+													</a>
+													<div class="product-price">
+														$[[${itemp3.product.sellingprice}]]
+														<span>$[[${itemp3.product.listedprice}]]</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
-								<div id="tab-2" class="tab-content1">CSS stands for Cascading Style Sheets. CSS describes how HTML elements are to be displayed on screen, paper, or in other media. CSS saves a lot of work. It can control the layout of multiple web pages all at once.</div>
-
-								<div id="tab-3"class="tab-content1">jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.</div>
-
-								<div id="tab-4"class="tab-content1">AngularJS is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.</div>
+								<div id="tab-4"class="tab-content1">
+									<div class="owl-carousel product-slider">
+										<div th:each="itemp4 : ${listproduct4}">
+											<div class="product-item ">
+												<div class="pi-pic">
+													<img th:src="@{|/img/products-main/${itemp4.product.mainproductimage}.jpg|}" alt="">
+													<div class="sale">Sale</div>
+													<div class="icon">
+														<i class="icon_heart_alt"></i>
+													</div>
+													<ul>
+														<li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+														<li class="quick-view"><a th:href="@{|/product/detail/${itemp4.product.productid}|}">+ Quick View</a></li>
+														<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+													</ul>
+												</div>
+												<div class="pi-text">
+													<div class="catagory-name">[[${itemp4.product.category.categoryname}]]</div>
+													<a th:href="@{|/product/detail/${itemp4.product.productid}|}">
+														<h5> [[${itemp4.product.productname}]] </h5>
+													</a>
+													<div class="product-price">
+														$[[${itemp4.product.sellingprice}]]
+														<span>$[[${itemp4.product.listedprice}]]</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-
 						</div>
-<!--						<div class="tab-item"> &lt;!&ndash;tab-item&ndash;&gt;-->
-<!--							<ul class="nav" role="tablist">-->
-<!--								<li>-->
-<!--									<a class="active" data-toggle="tab" href="#tab-1" role="tab" onclick="getStyle('1')" name="tab">Thanh lịch</a>-->
-<!--								</li>-->
-<!--								<li>-->
-<!--									<a  data-toggle="tab" href="#tab-2" role="tab" onclick="getStyle('2')" name="tab">Dễ thương</a>-->
-<!--								</li>-->
-<!--								<li>-->
-<!--									<a data-toggle="tab" href="#tab-3" role="tab" onclick="getStyle('3')" name="tab">Thoải mái</a>-->
-<!--								</li>-->
-<!--								<li>-->
-<!--									<a data-toggle="tab" href="#tab-4" role="tab" onclick="getStyle('4')" name="tab">Gợi cảm</a>-->
-<!--								</li>-->
-<!--							</ul>-->
-<!--						</div>-->
-<!--                    <div class="tab-item-content">-->
-<!--                        <div class="tab-content">-->
-<!--                            <div class="tab-pane fade-in active" id="tab-1" role="tabpanel">-->
-<!--                            	<div class="owl-carousel product-slider">-->
-<!--                            	 	<div th:each="itemp : ${styleList1}">-->
-<!--                            	 		<div class="product-item ">-->
-<!--					                        <div class="pi-pic">-->
-<!--					                            <img th:src="@{|/img/products-main/${itemp.product.mainproductimage}.jpg|}" alt="">-->
-<!--					                            <div class="sale">Sale</div>-->
-<!--					                            <div class="icon">-->
-<!--					                                <i class="icon_heart_alt"></i>-->
-<!--					                            </div>-->
-<!--					                            <ul>-->
-<!--					                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>-->
-<!--					                                <li class="quick-view"><a th:href="@{|/product/detail/${itemp.product.productid}|}">+ Quick View</a></li>-->
-<!--					                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>-->
-<!--					                            </ul>-->
-<!--					                        </div>-->
-<!--					                        <div class="pi-text">-->
-<!--					                            <div class="catagory-name">[[${itemp.product.category.categoryname}]]</div>-->
-<!--					                            <a href="#">-->
-<!--					                                <h5> [[${itemp.product.productname}]] </h5>-->
-<!--					                            </a>-->
-<!--					                            <div class="product-price">-->
-<!--					                                $[[${itemp.product.sellingprice}]]-->
-<!--					                                <span>$[[${itemp.product.listedprice}]]</span>-->
-<!--					                            </div>-->
-<!--					                        </div>-->
-<!--					                  </div>-->
-<!--                            	 	</div>-->
-<!--                                 </div>-->
-<!--                            </div>-->
 
-<!--                            <div class="tab-pane fade" id="tab-2" role="tabpanel">-->
-<!--                                <div class="product-slider owl-carousel"> &lt;!&ndash;Tab-content&ndash;&gt;-->
-<!--                              		<div th:each="itemp2 : ${styleList2}">-->
-<!--                            	 		<div class="product-item ">-->
-<!--					                        <div class="pi-pic">-->
-<!--					                            <img th:src="@{|/img/products-main/${itemp2.product.mainproductimage}.jpg|}" alt="">-->
-<!--					                            <div class="sale">Sale</div>-->
-<!--					                            <div class="icon">-->
-<!--					                                <i class="icon_heart_alt"></i>-->
-<!--					                            </div>-->
-<!--					                            <ul>-->
-<!--					                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>-->
-<!--					                                <li class="quick-view"><a th:href="@{|/product/detail/${itemp2.product.productid}|}">+ Quick View</a></li>-->
-<!--					                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>-->
-<!--					                            </ul>-->
-<!--					                        </div>-->
-<!--					                        <div class="pi-text">-->
-<!--					                            <div class="catagory-name">[[${itemp2.product.category.categoryname}]]</div>-->
-<!--					                            <a href="#">-->
-<!--					                                <h5> [[${itemp2.product.productname}]] </h5>-->
-<!--					                            </a>-->
-<!--					                            <div class="product-price">-->
-<!--					                                $[[${itemp2.product.sellingprice}]]-->
-<!--					                                <span>$[[${itemp2.product.listedprice}]]</span>-->
-<!--					                            </div>-->
-<!--					                        </div>-->
-<!--					                  </div>-->
-<!--                            	 	</div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="tab-pane fade" id="tab-3" role="tabpanel">-->
-<!--                                <div class="product-slider owl-carousel"> &lt;!&ndash;Tab-content&ndash;&gt;-->
-<!--                                    <div th:each="itemp3 : ${styleList3}">-->
-<!--                            	 		<div class="product-item ">-->
-<!--					                        <div class="pi-pic">-->
-<!--					                            <img th:src="@{|/img/products-main/${itemp3.product.mainproductimage}.jpg|}" alt="">-->
-<!--					                            <div class="sale">Sale</div>-->
-<!--					                            <div class="icon">-->
-<!--					                                <i class="icon_heart_alt"></i>-->
-<!--					                            </div>-->
-<!--					                            <ul>-->
-<!--					                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>-->
-<!--					                                <li class="quick-view"><a th:href="@{|/product/detail/${itemp3.product.productid}|}">+ Quick View</a></li>-->
-<!--					                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>-->
-<!--					                            </ul>-->
-<!--					                        </div>-->
-<!--					                        <div class="pi-text">-->
-<!--					                            <div class="catagory-name">[[${itemp3.product.category.categoryname}]]</div>-->
-<!--					                            <a href="#">-->
-<!--					                                <h5> [[${itemp3.product.productname}]] </h5>-->
-<!--					                            </a>-->
-<!--					                            <div class="product-price">-->
-<!--					                                $[[${itemp3.product.sellingprice}]]-->
-<!--					                                <span>$[[${itemp3.product.listedprice}]]</span>-->
-<!--					                            </div>-->
-<!--					                        </div>-->
-<!--					                  </div>-->
-<!--                            	 	</div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="tab-pane fade" id="tab-4" role="tabpanel">-->
-<!--                                <div class="product-slider owl-carousel"> &lt;!&ndash;Tab-content&ndash;&gt;-->
-<!--                                    <div th:each="itemp4 : ${styleList4}">-->
-<!--                            	 		<div class="product-item ">-->
-<!--					                        <div class="pi-pic">-->
-<!--					                            <img th:src="@{|/img/products-main/${itemp4.product.mainproductimage}.jpg|}" alt="">-->
-<!--					                            <div class="sale">Sale</div>-->
-<!--					                            <div class="icon">-->
-<!--					                                <i class="icon_heart_alt"></i>-->
-<!--					                            </div>-->
-<!--					                            <ul>-->
-<!--					                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>-->
-<!--					                                <li class="quick-view"><a th:href="@{|/product/detail/${itemp4.product.productid}|}">+ Quick View</a></li>-->
-<!--					                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>-->
-<!--					                            </ul>-->
-<!--					                        </div>-->
-<!--					                        <div class="pi-text">-->
-<!--					                            <div class="catagory-name">[[${itemp4.product.category.categoryname}]]</div>-->
-<!--					                            <a href="#">-->
-<!--					                                <h5> [[${itemp4.product.productname}]] </h5>-->
-<!--					                            </a>-->
-<!--					                            <div class="product-price">-->
-<!--					                                $[[${itemp4.product.sellingprice}]]-->
-<!--					                                <span>$[[${itemp4.product.listedprice}]]</span>-->
-<!--					                            </div>-->
-<!--					                        </div>-->
-<!--					                  </div>-->
-<!--                            	 	</div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    -->
-                </div>
+					</div>
 	            </div>
 	        </div>
 	    </section>
