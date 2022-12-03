@@ -51,10 +51,11 @@ app.controller("product-ctrl", function ($scope, $http) {
 	$scope.create = function () {
 		var item = angular.copy($scope.form);
 		console.log(item);
-		if(item.productname == null || item.purchaseprice == null || item.productstatus== null){
-			alert("Vui lòng các thông tin bắc buộc");
+		if($scope.form.productname==null || $scope.form.purchaseprice== null || $scope.form.category == null || $scope.form.style == null){
+			alert("Vui lòng không bỏ trống tên sản phẩm, giá sản phẩm, loại và nhóm giá phẩm");
 			return;
 		}
+		else
 		if ($scope.form.productid < 1) {
 			$http.post(`/rest/products`, item).then(resp => {
 				$scope.items.push(resp.data);
@@ -83,6 +84,10 @@ app.controller("product-ctrl", function ($scope, $http) {
 
 		$scope.update = function () {
 			var item = angular.copy($scope.form);
+			if($scope.form.productid < 1){
+				alert("Vui lòng chọn sản phẩm");
+				return;
+			}
 			$http.put(`/rest/products/${item.productid}`, item).then(resp => {
 				var index = $scope.items.findIndex(p => p.productid == item.productid);
 				$scope.items[index] = item;
@@ -109,10 +114,23 @@ app.controller("product-ctrl", function ($scope, $http) {
 			}
 		}
 
-		$scope.imageChanged = function (files) {
+		// $scope.imageChanged = function (files) {
+		// 	var data = new FormData();
+		// 	data.append("file", files[0]);
+		// 	$http.post('/rest/uploadImage/product', data, {
+		// 		transformRequest: angular.identity,
+		// 		headers: { 'Content-Type': undefined }
+		// 	}).then(resp => {
+		// 		$scope.form.mainproductimage = resp.data.name;
+		// 	}).catch(error => {
+		// 		alert('Lỗi Upload hình ảnh');
+		// 		console.log("Error", error);
+		// 	})
+		// }
+			$scope.imageChanged = function (files) {
 			var data = new FormData();
 			data.append("file", files[0]);
-			$http.post('/rest/uploadImage/product', data, {
+			$http.post('/rest/upload/products-main', data, {
 				transformRequest: angular.identity,
 				headers: { 'Content-Type': undefined }
 			}).then(resp => {

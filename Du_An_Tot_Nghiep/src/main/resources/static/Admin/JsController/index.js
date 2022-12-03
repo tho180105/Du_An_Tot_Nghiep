@@ -34,6 +34,10 @@ app.config(function($routeProvider) {
 			templateUrl: "/Admin/QuanLySanPham.html",
 			controller: "product-ctrl"
 		})
+		.when("/QuanLyHinhAnh", {
+			templateUrl: "/Admin/QuanLyHinhAnh.html",
+			controller: "images"
+		})
 		.when("/QuanLyKho", {
 			templateUrl: "/Admin/QuanLyKho.html",
 			controller: "repository"
