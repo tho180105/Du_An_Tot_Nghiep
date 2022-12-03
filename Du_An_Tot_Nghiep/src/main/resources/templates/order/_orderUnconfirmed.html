@@ -14,16 +14,16 @@
         <!-- ng-repeat orderdetail -->
         <div class="row mt-4" ng-repeat="detail in item.detailorder">
 
-          <div class="col-1">
-            <img src="/Admin/assets/img/avatars/1.png" alt="" height="60px" width="60px">
+          <div  style="width:9%">
+            <img ng-src="{{'/img/products-main/'+detail.productrepository.product.mainproductimage+'.jpg'}}" alt="" height="60px" width="60px">
           </div>
-          <div class="col-9">
-            {{detail.productRepository.product.productname}}
+          <div  style="width:74%">
+            {{detail.productrepository.product.productname}}
             <br>
             SL:   {{detail.quantity}}
           </div>
-          <div class="col-2 text-right" >
-           {{detail.productprice*detail.quantity}}₫
+          <div class="text-right" style="width:17%">
+            {{detail.totalPrice}}₫
           </div>
           <br>
           <div class="col-12 mt-4" style="border-bottom: 1px solid rgb(209, 206, 206);"></div>
@@ -44,10 +44,10 @@
             </div>
 
             <div class="row">
-              <div class="col-2"></div>
-              <div class="button-group col-10 ">
-                <p class="ml-2 col-2"></p>
+              <div class="col-1"></div>
+              <div class="button-group col-11 ">
                 <div class="ml-2" ng-click="cancelOrder(item.orderid)">Hủy đơn hàng</div>
+                <div class="ml-2" ng-click="link(item)">Xem chi tiết</div>
               </div>
             </div>
 

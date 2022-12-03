@@ -19,8 +19,9 @@ app.controller("ListOrder-ctrl", function ($rootScope, $scope, $http) {
 			var totalPrice = 0;
 			for (let j = 0; j < $scope.listDetailOrder.length; j++) {
 				if (order[i].orderid == $scope.listDetailOrder[j].orders.orderid) {
+					$scope.listDetailOrder[j].totalPrice = new Intl.NumberFormat('de-DE').format($scope.listDetailOrder[j].productprice * $scope.listDetailOrder[j].quantity);
 					item.push($scope.listDetailOrder[j]);
-					totalPrice += $scope.listDetailOrder[j].productprice * $scope.listDetailOrder[j].quantity;
+
 				}
 			}
 			order[i].totalmoneyFormat = new Intl.NumberFormat('de-DE').format(order[i].totalmoney);
@@ -60,15 +61,21 @@ app.controller("DetailOrder-ctrl", function ($rootScope, $scope, $http) {
 		// xử lý ngày tháng năm
 		$scope.detailOrder[0].orders.createdate = new Date($scope.detailOrder[0].orders.createdate);
 		// format tiền (10.000,00)
-		$scope.detailOrder[0].orders.totalNoneDiscount = new Intl.NumberFormat('de-DE').format($scope.detailOrder[0].orders.shipfee + $scope.detailOrder[0].orders.productmoney);
-		$scope.detailOrder[0].orders.productmoney = new Intl.NumberFormat('de-DE').format($scope.detailOrder[0].orders.productmoney);
+		// $scope.detailOrder[0].orders.totalNoneDiscount = new Intl.NumberFormat('de-DE').format($scope.detailOrder[0].orders.shipfee + $scope.detailOrder[0].orders.productmoney);
 		$scope.detailOrder[0].orders.totalmoneyFormat = new Intl.NumberFormat('de-DE').format($scope.detailOrder[0].orders.totalmoney);
 		$scope.detailOrder[0].orders.shipfee = new Intl.NumberFormat('de-DE').format($scope.detailOrder[0].orders.shipfee);
 		//
+		$scope.detailOrder[0].orders.totalNoneDiscount = 0;
 		for (let i = 0; i < $scope.detailOrder.length; i++) {
-			$scope.detailOrder[i].totalprice = new Intl.NumberFormat('de-DE').format($scope.detailOrder[i].productprice * $scope.detailOrder[i].quantity);
-			$scope.detailOrder[i].productprice = new Intl.NumberFormat('de-DE').format($scope.detailOrder[i].productprice);
+			var sum = $scope.detailOrder[i].listedprice * $scope.detailOrder[i].quantity;
+			console.log(sum)
+			$scope.detailOrder[i].totalprice = new Intl.NumberFormat('de-DE').format($scope.detailOrder[i].listedprice * $scope.detailOrder[i].quantity);
+			$scope.detailOrder[i].discountDetail = new Intl.NumberFormat('de-DE').format($scope.detailOrder[i].listedprice - $scope.detailOrder[i].productprice);
+			$scope.detailOrder[i].listedprice = new Intl.NumberFormat('de-DE').format($scope.detailOrder[i].listedprice);
+			$scope.detailOrder[0].orders.totalNoneDiscount += sum;
 		}
+		$scope.detailOrder[0].orders.discountPrice = new Intl.NumberFormat('de-DE').format($scope.detailOrder[0].orders.totalNoneDiscount - $scope.detailOrder[0].orders.productmoney);
+		$scope.detailOrder[0].orders.totalNoneDiscount = new Intl.NumberFormat('de-DE').format($scope.detailOrder[0].orders.totalNoneDiscount);
 		console.log($scope.detailOrder);
 	}).catch(error => {
 		console.log(error);

@@ -12,10 +12,11 @@ import store.com.Entity.Rate;
 @CrossOrigin("*")
 @RestController
 public class RateRestController {
-    
+
     @Autowired
     RateDAO dao;
-    
+
+
     @PostMapping("/rest/Rate")
     public Rate save(@RequestBody Rate rate) {
         return dao.save(rate);

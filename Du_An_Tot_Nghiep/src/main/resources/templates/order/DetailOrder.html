@@ -12,7 +12,7 @@
             <div class="card-body">
               <div class="name" > {{detailOrder[0].orders.account.name}}</div>
               <div class="detailorder-content">Địa chỉ: {{detailOrder[0].orders.address}}</div>
-              <div class="detailorder-content">Điện thoại: {{detailOrder[0].orders.account.phonenumber}}</div>
+              <div class="detailorder-content">Điện thoại: {{detailOrder[0].orders.phonenumber}}</div>
               <!--  -->
             </div>
           </div>
@@ -67,7 +67,7 @@
             <div class="row  detailorder pt-4" ng-repeat="item in detailOrder">
               
               <div style="display: flex; width: 45%; margin-left: 3%;">
-                <img src="/Admin/assets/img/avatars/1.png" alt="" height="60px" width="60px"> &ensp;&ensp;
+                <img ng-src="{{'/img/products-main/'+item.productrepository.product.mainproductimage+'.jpg'}}" alt="" height="60px" width="60px"> &ensp;&ensp;
                 <div>
                   <span class="title-detailOrder">{{item.productrepository.product.productname}} {{'- ' + item.productrepository.size.sizeid}}</span>
                   <br>
@@ -75,9 +75,9 @@
                   <div class=" hBVEFq mt-2">
                     <div class="row">
                       <div class=""></div>
-                      <div class="button-group col-10">
-                        <div class="ml-2 ">Mua lại</div>
-                        <div class="ml-2">Viết nhận xét</div>
+                      <div class="button-group col-12">
+                        <div class="ml-2 " ng-if="item.orders.orderstatus.orderstatusid == 4 || item.orders.orderstatus.orderstatusid == 3  ">Mua lại</div>
+                        <div class="ml-2" ng-if="item.orders.orderstatus.orderstatusid == 4 ">Viết nhận xét</div>
                       </div>
                     </div>
                   </div>
@@ -86,7 +86,7 @@
               </div>
 
               <div style=" width: 13%;">
-                {{item.productprice}} ₫
+                {{item.listedprice}} ₫
               </div>
 
               <div style=" width: 13%;">
@@ -94,7 +94,7 @@
               </div>
 
               <div style=" width: 13%;">
-                0 ₫
+                {{item.discountDetail}} ₫
               </div>
 
               <div style=" width: 13%; padding-right: 3%" class="text-right">
@@ -129,10 +129,10 @@
               <div style="width: 16%; padding-right: 3%;" class="text-right">
                 <div class=" hBVEFq">
                     <div class="total">
-                      <div class="mt-2"> {{detailOrder[0].orders.productmoney}} ₫</div>
+                      <div class="mt-2"> {{detailOrder[0].orders.totalNoneDiscount}} ₫</div>
                       <div class="mt-2"> {{detailOrder[0].orders.shipfee}} ₫</div>
-                      <div class="mt-2"> 0 ₫</div>
-                      <div class="mt-2" style="color: rgb(255, 59, 39); font-size: 18px;"> {{detailOrder[0].orders.totalNoneDiscount}} ₫</div>
+                      <div class="mt-2"> -{{detailOrder[0].orders.discountPrice}} ₫</div>
+                      <div class="mt-2" style="color: rgb(255, 59, 39); font-size: 18px;"> {{detailOrder[0].orders.totalmoneyFormat}} ₫</div>
                     </div>
                 </div>
               </div>
