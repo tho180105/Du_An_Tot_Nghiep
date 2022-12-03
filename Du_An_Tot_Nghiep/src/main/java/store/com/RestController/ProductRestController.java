@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 import store.com.DAO.CategoryDAO;
 import store.com.DAO.ProductDAO;
@@ -80,5 +91,10 @@ public class ProductRestController {
     @GetMapping("/rest/product/category/{categoryid}")
     public List<Product> getProductByCategory(@PathVariable("categoryid") Integer categoryid) {
         return pd.findByCategoryId(categoryid);
+    }
+
+    @GetMapping("/rest/product/searchData/{name}")
+    public List<Product> getProductByName(@PathVariable("name") String productname){
+        return pd.findProductByName('%'+productname+'%');
     }
 }

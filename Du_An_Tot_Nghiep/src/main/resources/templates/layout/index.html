@@ -19,7 +19,7 @@
     <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css">
-     <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+<!--<link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />-->
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/style1.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/ChonThanhToan.css}" type="text/css">
@@ -33,6 +33,19 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <script th:src="@{/js/AngularController/pagination.js}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        a.ng-binding{
+            padding: 8px 14px !important;
+            background: #007bff !important;
+            margin-left: 5px !important;
+            margin-right: 5px !important;
+            color: white !important;
+        }
+        .cates-link.ng-binding{
+            background: none !important;
+            padding: 0px;
+        }
+    </style>
 </head>
 <body ng-app="app">
 	<header class="header-section">
@@ -52,6 +65,7 @@
     <script th:src="@{/js/AngularController/ForgotPassword.js}"></script>
 	<script th:src="@{/js/AngularController/productRepository.js}"></script>
 	<script th:src="@{/Admin/JsController/indexController.js}"></script>
+    <script th:src="@{/Admin/JsController/searchItem.js}"></script>
 	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/jquery-ui.min.js}"></script>

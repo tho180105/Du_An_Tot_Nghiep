@@ -180,7 +180,6 @@ form .textarea textarea {
 .tab-wrapper1{
     text-align: center;
     display: block;
-    margin: auto;
     max-width: 1000px;
 }
 .tabs1{
@@ -227,7 +226,7 @@ form .textarea textarea {
     border-color: red;
 }
 .content-wrapper1{
-    padding: 40px 80px;
+    padding: 10px 50px;
 }
 .tab-content1{
     display: none;

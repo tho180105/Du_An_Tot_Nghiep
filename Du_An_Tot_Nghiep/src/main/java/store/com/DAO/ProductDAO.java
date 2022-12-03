@@ -49,4 +49,7 @@ public interface ProductDAO extends JpaRepository<Product, Integer>{
 	//Find Product By Price
 	@Query("select p from Product p where p.sellingprice >= ?1 and p.sellingprice <= ?2")
 	List<Product> findProductByPrice(float sellingprice1, float sellingprice2);
+
+	@Query("select p from Product p where p.productname like ?1 ")
+	List<Product> findProductByName(String name);
 }
