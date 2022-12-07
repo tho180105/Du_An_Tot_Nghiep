@@ -28,14 +28,7 @@
                             <li ng-repeat="cate in itemscategory"><a ng-click="getProductByCategory(cate.categoryid)" class="cates-link" style="cursor: pointer">{{cate.categoryname}}</a> </li>
                         </ul>
                     </div>
-<!--                    <div class="filter-widget">-->
-<!--                        <h4 class="fw-title">Search</h4>-->
-<!--                        <div class="fw-brand-check">-->
-<!--                            <div>-->
-<!--                                <input type="text">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+
                     <div class="filter-widget">
                         <h4 class="fw-title">Price</h4>
 	                        <div class="filter-range-wrap">
@@ -55,6 +48,20 @@
 	                        <button class="filter-btn" style="border: none;" ng-click="FilterByPrice()">Filter</button>
 
                     </div>
+<!--                    <div class="filter-widget">-->
+<!--                        <h4 class="fw-title">Price</h4>-->
+<!--                        <div class="filter-range-wrap">-->
+<!--                            <div class="range-slider">-->
+<!--                                <div class="price-input">-->
+<!--                                    <a href="" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; color: #636363; line-height: 61px">0đ - 150.000đ</a> <br>-->
+<!--                                    <a href="" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; color: #636363; line-height: 25px">150.000đ - 300.000đ</a> <br>-->
+<!--                                    <a href="" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; color: #636363; line-height: 61px">300.000đ - 450.000đ</a> <br>-->
+<!--                                    <a href="" style="min-width: 197px !important; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; color: #636363; line-height: 25px">450.000đ - 600.000đ</a> <br>-->
+<!--                                    <a href="" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; color: #636363; line-height: 61px">600.000đ - 1.000.000đ</a> <br>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="filter-widget">
                         <h4 class="fw-title">Tags</h4>
                         <div class="fw-tags">
@@ -93,7 +100,7 @@
                             <div class="col-lg-4 col-sm-6"  dir-paginate="product in itemsall | filter:q | itemsPerPage: pageSize" current-page="currentPage">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img ng-src="{{'/img/products-main/'+product.mainproductimage+'.jpg'}}" alt="">
+                                        <img ng-href="{{'/product/detail/'+product.productid}}" ng-src="{{'/img/products-main/'+product.mainproductimage+'.jpg'}}" alt="">
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
