@@ -46,100 +46,13 @@ public class ProductController {
 	@Autowired
 	RateDAO rateDAO;
 	
-	String minPrice;
-	String maxPrice;
 
-//	@RequestMapping("/product/list")
-//	public String list(Model model, @RequestParam("cid") Optional<Integer> cid , @RequestParam("p") Optional<Integer> p, @RequestParam(value="search",required = false) String item) {
-//		model.addAttribute("cates", categoryDAO.findAll());
-//		String uri;
-//		Pageable pageable;
-//
-//		Page<Product> list;
-//		if(cid.isPresent()) {
-//		    uri = request.getRequestURI()+"?cid="+cid.get();
-//		    System.out.println(uri);
-//		    if(item != null) {
-//                if(item.equalsIgnoreCase("GiaThap")) {
-//                    pageable = PageRequest.of(p.orElse(0), 9, Sort.by("sellingprice").ascending());
-//                }else if(item.equalsIgnoreCase("GiaCao")){
-//                    pageable = PageRequest.of(p.orElse(0), 9, Sort.by("sellingprice").descending());
-//                } else {
-//                    pageable = PageRequest.of(p.orElse(0), 9);
-//                }
-//                uri = uri+"&&search="+item;
-//                System.out.println(uri);
-//            }else {
-//                pageable = PageRequest.of(p.orElse(0), 9);
-//            }
-//		        list = productDAO.findCategoryId(cid.get(), pageable);
-//	            model.addAttribute("page", list);
-//	            model.addAttribute("cid", cid.get());
-//
-//			long totalItems = list.getTotalElements();
-//			int totalPages = list.getTotalPages();
-//
-//			model.addAttribute("cids", cid);
-//			model.addAttribute("totalItems", totalItems);
-//			model.addAttribute("totalPages", totalPages);
-//		}else {
-//		    if(item != null) {
-//		        if(item.equalsIgnoreCase("GiaThap")) {
-//		            pageable = PageRequest.of(p.orElse(0), 9, Sort.by("sellingprice").ascending());
-//		        }else {
-//		            pageable = PageRequest.of(p.orElse(0), 9, Sort.by("sellingprice").descending());
-//		        }
-//
-//		    }else {
-//		        pageable = PageRequest.of(p.orElse(0), 9);
-//		    }
-//
-//			list = productDAO.findAll(pageable);
-//			service.set("xtypeList", list);
-//			model.addAttribute("page", list);
-//
-//			Page<Product> pageProduct = list;
-//			long totalItems = pageProduct.getTotalElements();
-//			int totalPages = pageProduct.getTotalPages();
-//
-//			model.addAttribute("totalItems", totalItems);
-//			model.addAttribute("totalPages", totalPages);
-//		}
-//
-//		service.set("xtypeList", list);
-//		return "product/list";
-//	}
-
-	@RequestMapping("/product/list2")
-    public String list1(Model model, @RequestParam("cid") Optional<Integer> cid) {
-
+	@RequestMapping("/product/list")
+    public String list1(Model model) {
         return "product/list2";
     }
 
 
-//	@RequestMapping("/product/list/xtype")
-//    public String test(Model model,@RequestParam(value = "min", required = false) String min, @RequestParam(value= "max", required = false) String max
-//            , @RequestParam("cid") Optional<Integer> cid , @RequestParam("p") Optional<Integer> p,
-//            @RequestParam(value="search",required = false) String item) {
-//
-//	    model.addAttribute("cates", categoryDAO.findAll());
-//	    minPrice = min.substring(1);
-//	    maxPrice = max.substring(1);
-//
-//	    Pageable pageable = PageRequest.of(p.orElse(0), 9);
-//        Page<Product> list;
-//
-//        list = productDAO.findAllByPrice(Float.parseFloat(minPrice), Float.parseFloat(maxPrice), pageable);
-//        model.addAttribute("page", list);
-//
-//        long totalItems = list.getTotalElements();
-//        int totalPages = list.getTotalPages();
-//
-//        model.addAttribute("totalItems", totalItems);
-//        model.addAttribute("totalPages", totalPages);
-//
-//        return "product/list";
-//    }
 
 	@RequestMapping("/product/detail/{productid}")
 	public String detail(Model model, @PathVariable("productid") Integer productid) {
