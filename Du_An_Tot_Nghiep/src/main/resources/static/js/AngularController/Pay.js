@@ -6,7 +6,6 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
   $http.get(`/rest/cart`).then((resp) => {
     if(resp.data){
       $rootScope.detailCarts = resp.data;
-      
     }else{
         location.href="/product/list" 
     }

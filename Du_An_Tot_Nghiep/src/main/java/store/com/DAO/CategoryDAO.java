@@ -9,3 +9,4 @@ public interface CategoryDAO extends JpaRepository<Category, Integer>{
     @Query("SELECT count(c.categoryid) FROM Category c ")
     Integer getCount();
 }
+        
