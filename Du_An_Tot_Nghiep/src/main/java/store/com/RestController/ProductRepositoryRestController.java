@@ -67,4 +67,9 @@ public class ProductRepositoryRestController {
     public Integer sumQuantity(@PathVariable("productid") Integer productid) {
         return dao.sumQuantity(productid);
     }
+
+    @GetMapping("/rest/findproductrepository/{productid}/{sizeid}")
+    public ProductRepository getOneProductRepo(@PathVariable("productid") Integer productid, @PathVariable("sizeid") String sizeid) {
+        return dao.findProductRepositoriesByProductId(productid, sizeid);
+    }
 }
