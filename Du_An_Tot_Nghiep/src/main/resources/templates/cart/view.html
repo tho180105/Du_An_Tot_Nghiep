@@ -59,7 +59,7 @@
                                                 name="" id="" productRepositoryId="{{item.detailcartid}}"></td>
 
                                         <td style="width: 10%" class="cart-pic first-row"><img height="100%"
-                                                src="/img/cart-page/product-1.jpg" alt=""></td>
+                                                th:src="@{|/img/products-main/{{item.productrepository.product.mainproductimage}}.jpg|}" alt=""></td>
 
                                         <td class="cart-title first-row text-center"> <a
                                                 href="/product/detail/{{item.productrepository.product.productid}}">

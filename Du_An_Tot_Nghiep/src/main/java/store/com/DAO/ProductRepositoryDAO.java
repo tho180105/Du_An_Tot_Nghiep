@@ -18,4 +18,7 @@ public interface ProductRepositoryDAO extends JpaRepository<ProductRepository, I
     
     @Query("select sum(p.quantity) from ProductRepository p where p.product.productid = ?1")
     Integer sumQuantity(Integer productid);
+
+    @Query("select p from ProductRepository p where p.product.productid = ?1 and p.size.sizeid = ?2")
+    ProductRepository findProductRepositoriesByProductId(Integer productid, String sizeid);
 }
