@@ -4,7 +4,7 @@
 	    <section class="hero-section">
 	        <div class="hero-items owl-carousel">
 		        <div th:each="banner, state : ${banners}">
-		        	<div class="single-hero-items set-bg" th:attr="data-setbg='/Admin/assets/img/banner/images/'+${banner.bannerpath}">
+		        	<div class="single-hero-items set-bg" th:attr="data-setbg='/Admin/assets/img/banner/'+${banner.bannerpath}">
 		                <div class="container">
 		                	
 		                    <div class="row">

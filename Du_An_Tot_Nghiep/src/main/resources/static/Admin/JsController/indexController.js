@@ -5,6 +5,7 @@ app.controller("indexCtrl-ctrl", function($http, $scope) {
 	$scope.itemscategory = [];
 	$scope.searchData = window.localStorage.getItem("searchItem");
 	$scope.categoryid = window.localStorage.getItem("categoryid");
+
 	$scope.data = {
 	    availableOptions: [
 	      {id: '1', name: 'Mặc định'},
@@ -65,9 +66,7 @@ app.controller("indexCtrl-ctrl", function($http, $scope) {
 			});
 			window.localStorage.setItem("searchItem", '');
 			$scope.searchData = '';
-		}
-
-		if($scope.categoryid > 0){
+		}else  if($scope.categoryid > 0){
 			$http.get(`/rest/product/category/${$scope.categoryid}`).then(resp => {
 				$scope.itemsall = resp.data;
 				console.log($scope.itemsall);

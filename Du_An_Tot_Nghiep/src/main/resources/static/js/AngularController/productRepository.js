@@ -71,7 +71,7 @@ app.controller("checksize-ctrl", function($http, $scope, $window){
 		var comment = document.getElementById("comment").value;
 		if(comment.length == 0 && $scope.starNumber == 0){
 			$scope.message1 = "Vui lòng chọn đánh giá hoặc nhập bình luận";
-
+			modal.classList.remove("hide");
 			return;
 		}
         $scope.rate = {
