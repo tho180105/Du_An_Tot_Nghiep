@@ -111,16 +111,17 @@ app.controller("checksize-ctrl", function($http, $scope, $window){
 			$scope.message = 'Vui lòng chọn Size bạn mong muốn';
 			return;
 		}
-		$http.get(`/rest/cart/cart/${item}`).then(resp => {
+		console.log(item)
+		$http.get(`/rest/cart/${item}`).then(resp => {
 			console.log(resp.data);
-			alert("Thêm vào giỏ hàng thành công");
+			Swal.fire('Thêm vào giỏ hàng thành công')
 		}).catch(error => {
-			alert("Thêm thất bại");
+			Swal.fire("Thêm thất bại")
 			console.log("Error", error);
 		})
 
 	}
-});
+});	
 
 var btnOpen = document.querySelector('.open_modal_btn')
 var modal = document.querySelector('.modal1')
