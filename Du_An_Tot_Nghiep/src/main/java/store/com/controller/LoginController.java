@@ -80,7 +80,7 @@ public class LoginController {
 	@RequestMapping("/security/unauthoried")
 	public String denied(Model model) {
 		model.addAttribute("message", "Bạn không có quyển truy xuất!");
-		return "security/login";
+		return "security/confirm-Email";
 	}
 	
 	@RequestMapping("/admin/test") 
