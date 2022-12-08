@@ -57,7 +57,9 @@
                                             <tbody class="mt-3 " style="text-align: center;">
                                                 <tr ng-repeat="item in productsSelected">
                                                     <td style="width: 10%" class="cart-pic first-row pl-2"><img
-                                                            height="100%" src="/img/cart-page/product-1.jpg" alt="">
+                                                            height="100%" 
+                                                            th:src="@{|/img/products-main/{{item.productrepository.product.mainproductimage}}.jpg|}"
+                                                             alt="">
                                                     </td>
                                                     <td style="width: 50%;" class="cart-title first-row text-center"> <a
                                                             href="/product/detail/{{item.productrepository.product.productid}}">

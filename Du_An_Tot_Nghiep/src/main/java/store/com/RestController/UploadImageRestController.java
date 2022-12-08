@@ -29,7 +29,7 @@ public class UploadImageRestController {
     @PostMapping("/rest/uploadImage/{folder}")
     public JsonNode save(@PathParam("file") MultipartFile file, 
             @PathVariable("folder") String folder) {
-        File saveFile = uploadService.save(file, "/banner/"+folder);
+        File saveFile = uploadService.save(file, folder);
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
         node.put("name", saveFile.getName());

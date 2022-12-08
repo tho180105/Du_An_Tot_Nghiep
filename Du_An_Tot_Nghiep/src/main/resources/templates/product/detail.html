@@ -101,12 +101,12 @@
 												style="width: 100%; padding: 0; margin: 0; font-size: 18px" />
 										</div>
 										<!-- <a th:href="@{|/cart/${item.productid}|}" class="primary-btn pd-cart" disabled="disabled" ng-disabled="check">Add To Cart</a>-->
-										 <button class="primary-btn pd-cart" style="border: none"
-											ng-disabled="check" th:onclick="|window.location.href='/cart/'+${item.productid}|">Add To Cart
-										</button>
-										<!-- <button class="primary-btn pd-cart" style="border: none"
+<!--										 <button class="primary-btn pd-cart" style="border: none"-->
+<!--											ng-disabled="check" th:onclick="|window.location.href='/cart/'+${item.productid}|">Add To Cart-->
+<!--										</button>-->
+										<button class="primary-btn pd-cart" style="border: none"
 											ng-disabled="check" ng-click="SubmitAddToCart()">Add To Cart
-										</button> -->
+										</button>
 									</div>
 
 								</div>
@@ -314,7 +314,7 @@
                             <label for="rate-4" class="fa fa-star" ng-click="checkStars('4')"></label>
 
 							<input type="radio" name="rate" id="rate-3"> 
-                            <label for="rate-3" class="fa fa-star" ng-click="checkStarts('3')"></label>
+                            <label for="rate-3" class="fa fa-star" ng-click="checkStars('3')"></label>
 
 							<input type="radio" name="rate" id="rate-2"> 
                             <label for="rate-2" class="fa fa-star" ng-click="checkStars('2')"></label>
@@ -329,8 +329,8 @@
 							</div>
 							<div class="hashtag">
 	                            <a href="" class="tag" onclick="tagNodeList(0)">Chất lượng rất tốt</a>
-	                            <a href="" class="tag" onclick="tagNodeList(1)">Sản phẩm okkk</a> 
-	                            <a href="" class="tag" onclick="tagNodeList(2)">Giao hàng nhanh</a> 
+	                            <a href="" class="tag" onclick="tagNodeList(1)">Sản phẩm okkk</a>
+	                            <a href="" class="tag" onclick="tagNodeList(2)">Giao hàng nhanh</a>
 	                            <a href="" class="tag" onclick="tagNodeList(3)">Sản phẩm tuyệt vời</a>
 	                        </div>
 						</form>

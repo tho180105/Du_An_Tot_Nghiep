@@ -1,7 +1,3 @@
-<!-- Header -->
-<div ng-include="'admin_header.html'"></div> 
-
-<!-- Content wrapper -->
 
 	<div class="content-wrapper">
             <!-- Content -->
@@ -30,29 +26,27 @@
                             <div class="card-body">
                               <form  name="formProductDiscount">
                                 <div class="row">
-                                  
                                    <div class="mb-3 col-md-6">
-                                    <label for="" class="form-label">Product Name</label>
+                                    <label class="form-label">Product Name</label>
                                     <input class="form-control" ng-model="form.product.productid" name="productname" disabled="true" required="required"/>
-                                   
                                   </div>
                                   <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="">Start Date</label>
+                                    <label class="form-label" >Start Date</label>
                                     <input ng-model="form.startdate" class="form-control" type="date" name="startDate" required="required">
                                     <div ng-show="formProductDiscount.startDate.$invalid" style="color: red; font-style: italic; font-weight: 600">Vui lòng nhập ngày bắt đầu</div>
                                   </div>
                                    <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="">End Date</label>
+                                    <label class="form-label">End Date</label>
                                     <input ng-model="form.enddate" class="form-control" type="date" name="endDate" required="required">
                                     <div ng-hide="formProductDiscount.endDate.$valid" style="color: red; font-style: italic; font-weight: 600">Vui lòng chọn ngày kết thúc</div>
                                   </div>
                                   <div class="mb-3 col-md-6">
-                                    <label for="" class="form-label">Discount</label>
+                                    <label class="form-label">Discount</label>
                                     <input class="form-control" ng-model="form.discount" name="discount" required="required"/>
                                     <div ng-hide="formProductDiscount.discount.$valid" style="color: red; font-style: italic; font-weight: 600">Vui lòng nhập giảm giá</div>
                                   </div>
                                   <div class="mb-3 col-md-6">
-                                    <label for="" class="form-label">Account</label>
+                                    <label  class="form-label">Account</label>
                                     <input class="form-control" ng-model="form.account.accountid" ng-value="ANHLN" name="username"/> 
                                     <div ng-hide="formProductDiscount.username.$valid" style="color: red; font-style: italic; font-weight: 600">Vui lòng nhập tài khoản</div>
                                   </div>
@@ -77,14 +71,14 @@
                             	<form action="">
                             		<div class="row">
                             			<div class="mb-3 col-md-4">
-		                                    <label for="organization" class="form-label">Category</label>
+		                                    <label class="form-label">Category</label>
 		                                    <select class="form-control" ng-change="changeEvent()" ng-model="changeModel">
 		                                      <option value="">Selected </option>
 		                                      <option ng-repeat = "c in cates" ng-value="c.categoryid" >{{c.categoryname}}</option>
 		                                    </select>
 		                                  </div>
 		                                   <div class="mb-3 col-md-6">
-		                                    <label class="form-label" for="">Keyword</label>
+		                                    <label class="form-label">Keyword</label>
 		                                    <input  class="form-control" type="text">
 		                                  </div>
 		                                  <div class="col-md-2" style="margin-top: 30px">
@@ -212,6 +206,4 @@
 	</div>
             <!-- / Content -->
 
-<!-- Footer------------------------------------------->
- <div ng-include="'admin-footer.html'"></div> 
   

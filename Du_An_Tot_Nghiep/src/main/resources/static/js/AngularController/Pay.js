@@ -6,7 +6,6 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
   $http.get(`/rest/cart`).then((resp) => {
     if(resp.data){
       $rootScope.detailCarts = resp.data;
-      
     }else{
         location.href="/product/list" 
     }
@@ -133,12 +132,12 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
   $scope.addDetailOrdersFinish = function (orderid) {
     console.log($rootScope.productsSelected)
     for (const iterator of $rootScope.productsSelected) {
-      console.log("a")
       $scope.newDetailOrder = {};
       $scope.newDetailOrder.productprice =    iterator.productrepository.product.sellingprice;
       $scope.newDetailOrder.productrepository = {};
       $scope.newDetailOrder.productrepository.productrepositoryid = iterator.productrepository.productrepositoryid;
       $scope.newDetailOrder.orders = {};
+      $scope.newDetailOrder.listedprice = iterator.productrepository.product.listedprice
       $scope.newDetailOrder.orders.orderid = orderid
       $scope.newDetailOrder.quantity = iterator.quantity
         $http.post("/rest/detailorder", $scope.newDetailOrder)

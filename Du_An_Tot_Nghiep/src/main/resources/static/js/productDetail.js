@@ -6,16 +6,16 @@ var btnOpen = document.querySelector('.open_modal_btn')
     var comment = document.getElementById("comment");
     var AllComment = '';
     
-    function toggleModal() {
+    function toggleModal1() {
         modal.classList.toggle('hide')
     }
 	
-    btnOpen.addEventListener('click', toggleModal)
-    btnClose.addEventListener('click', toggleModal)
-    iconClose.addEventListener('click', toggleModal)
+    btnOpen.addEventListener('click', toggleModal1)
+    btnClose.addEventListener('click', toggleModal1)
+    iconClose.addEventListener('click', toggleModal1)
     modal.addEventListener('click', function (e) {
         if (e.target == e.currentTarget) {
-            toggleModal()
+            toggleModal1()
         }
     })
     
