@@ -173,19 +173,42 @@ app.controller("voucher-ctrl", function($http, $scope) {
 			console.log("Error",error);
 		})
     }
+
+	$scope.pager = {
+		page : 0,
+		size : 10,
+
+		get items() {
+			var start = this.page * this.size;
+			var end = start + this.size;
+			return $scope.itemsall.slice(start, end);
+		},
+
+		get count() {
+			return Math.ceil(1.0 * $scope.itemsall.length / this.size);
+		},
+
+		first() {
+			this.page = 0;
+		},
+
+		prev() {
+			this.page--;
+			if(this.page < 0) {
+				this.last();
+			}
+		},
+
+		next() {
+			this.page++;
+			if(this.page >= this.count){
+				this.first();
+			}
+		},
+
+		last(){
+			this.page = this.count - 1;
+		}
+	}
 });
 
-
-function checkUser() {
-	var value = true;
-	let check = document.querySelector(".togglex");
-	let showForm = document.querySelector(".showForm");
-	check.classList.toggle("active");
-	if(check.classList.contains("active")) {
-		value = false;
-		showForm.classList.remove("hidex");
-	}else{
-		value = true;
-		showForm.classList.add("hidex");
-	}
-}
