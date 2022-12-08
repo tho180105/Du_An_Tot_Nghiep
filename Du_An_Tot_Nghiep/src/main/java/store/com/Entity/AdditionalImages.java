@@ -28,18 +28,6 @@ public class AdditionalImages implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "Productid")
 	Product product;
-	public Integer getAdditionalImagesId() {
-		return additionalimagesid;
-	}
-	public void setAdditionalImagesId(Integer additionalimagesid) {
-		this.additionalimagesid = additionalimagesid;
-	}
-	public String getImagePath() {
-		return imagepath;
-	}
-	public void setImagePath(String imagePath) {
-		this.imagepath = imagePath;
-	}
 	public AdditionalImages(Integer additionalimagesid, String imagepath, Product product) {
 		super();
 		this.additionalimagesid = additionalimagesid;
