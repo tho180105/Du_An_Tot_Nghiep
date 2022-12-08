@@ -95,14 +95,11 @@
                                     <input ng-model="form.enddate" class="form-control" type="date" name="enddate" required="required">
                                     <div ng-hide="formVoucher.enddate.$valid" style="color: red; font-style: italic; font-weight: 600" >Vui lòng nhập ngày kết thúc</div>
                                   </div>
-                                    <div class="form-check form-switch mb-3" style="margin-left: 24px">
-                                        <input class="form-check-input togglex" type="checkbox" id="flexSwitchCheckChecked" checked onclick="checkUser()" style="font-size: 20px"/>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Thêm voucher cho tất cả tài khoản</label>
-                                    </div>
+
                                 </div>
                                 <div class="mt-2">
-                                  <button ng-click="create()" class="btn btn-primary me-2" ng-disabled="chi_so!=-1">Save changes</button>
-                                  <button ng-click="update()" class="btn btn-success me-2" ng-disabled="chi_so == -1 && formVoucher.$invalid">Update</button>
+                                  <button ng-click="create()" class="btn btn-primary me-2" ng-disabled="formVoucher.$invalid">Save changes</button>
+                                  <button ng-click="update()" class="btn btn-success me-2" ng-disabled="formVoucher.$invalid">Update</button>
                                   <button ng-click="delete(form)" class="btn btn-danger me-2" ng-disabled="chi_so == -1">Delete</button>
                                   <button ng-click="reset()" class="btn btn-outline-secondary">Cancel</button>
                                 </div>
@@ -113,55 +110,6 @@
                          
                         </div>
                       </div>
-                      
-                      <div class="row showForm hidex">
-                        <div class="col-md-12">
-                          <div class="card mb-4">
-                            <div class="card-body">
-                            	<form action="">
-                            		<div class="row">
-		                                   <div class="mb-3 col-md-6">
-		                                    <label class="form-label" for="">Keyword</label>
-		                                    <input  class="form-control" type="text">
-		                                  </div>
-		                                  <div class="col-md-2" style="margin-top: 30px">
-			                                  <button class="btn btn-primary me-2">Search</button>
-			                               </div>
-	                            		</div>
-                            	</form>
-                              	<table class="table table-bordered table-hover">
-		                          <thead>
-		                            <tr>
-		                              <th> <input type="checkbox" ng-model="selectAll" ng-click="checkAll()"> </th>
-		                              <th>Username</th>
-		                              <th>Fullname</th>
-		                              <th>Email</th>
-		                              <th>Phonenumber</th>
-		                              <th>Coin</th>
-		                              <th>Image</th>
-
-		                            </tr>
-		                          </thead>
-		                          <tbody>
-		                            <tr ng-repeat ="acc in listAccount">
-		                                <td> <input type="checkbox" ng-model="selected" ng-checked="exists(acc)" ng-click="toggle(acc)"> </td>
-		                                <td>{{acc.accountid}}</td>
-		                                <td>{{acc.name}}</td>
-		                                <td>{{acc.email}}</td>
-		                                <td>{{acc.phonenumber}}</td>
-		                                <td>{{acc.coin}}</td>
-		                                <td>{{acc.image}}</td>
-
-		                              </tr>
-		                          </tbody>
-		                        </table>
-                        		
-                            </div>
-                          </div>
-               
-                        </div>
-                      </div>
-                      
                     </div>
 					
                     <div class="tab-pane fade" id="use" role="tabpanel" aria-labelledby="use-tab">
@@ -208,23 +156,6 @@
 		                          </tbody>
 		                        </table>       
                       </div>
-                      <nav aria-label="Page navigation example" class="mt-3 mx-auto" style="display: flex; align-items: center; justify-content: center;">
-                        <ul class="pagination">
-                          <li class="page-item">
-                            <a class="page-link bg-primary text-white fw-bold" href="" aria-label="First Page" ng-click="pager.first()">
-                              <span aria-hidden="true">&laquo;</span>
-                            </a>
-                          </li>
-                          <li class="page-item"><a class="page-link bg-light fw-bold"  href="" ng-click="pager.prev()">Previous Page</a></li>
-                          <li class="page-item"><a class="page-link bg-light fw-bold" href="">{{pager.page+1}} of {{pager.count}}</a></li>
-                          <li class="page-item"><a class="page-link bg-light fw-bold" href="" ng-click="pager.next()">Next Page</a></li>
-                          <li class="page-item">
-                            <a class="page-link bg-primary text-white fw-bold" ng-click="pager.last()" aria-label="Last Page">
-                              <span aria-hidden="true">&raquo;</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
                     </div>
                     
                     
@@ -244,7 +175,7 @@
 		                            </tr>
 		                          </thead>
 		                          <tbody>
-		                            <tr ng-repeat="item in itemsall">
+		                            <tr ng-repeat="item in pager.items">
 		                                <td>{{item.voucherid}}</td>
 		                                <td>{{item.vouchertitle}}</td>
 		                                <td>{{item.minimunmoney}}</td>
