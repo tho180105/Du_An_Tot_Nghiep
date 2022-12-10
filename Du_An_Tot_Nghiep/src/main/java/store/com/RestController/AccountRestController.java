@@ -5,13 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import store.com.DAO.AccountDAO;
 import store.com.Entity.Account;
@@ -77,5 +71,11 @@ public class AccountRestController {
 
     @GetMapping("/findAll")
     public List<Account> findAll(){return dao.findAll();}
+
+    @PostMapping("/authority")
+    public Account authority(@RequestBody Account account){
+        account.setPassword(pe.encode(account.getPassword()));
+        return accountService.update(account);
+    }
 
 }
