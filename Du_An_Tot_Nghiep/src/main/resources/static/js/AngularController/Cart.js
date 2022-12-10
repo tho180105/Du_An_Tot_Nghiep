@@ -1,13 +1,12 @@
-const app = angular.module("app", ['angularUtils.directives.dirPagination']);
+const app = angular.module("app", ["angularUtils.directives.dirPagination"]);
 
 app.controller("pay-ctrl", function ($rootScope, $scope) {
   $scope.orderIdPayedDone = $rootScope.orderIdPayed;
 });
 app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
   $http.get(`/rest/cart`).then((resp) => {
-    $rootScope.detailCarts = resp.data
-    console.log($rootScope.detailCarts)
-  }); 
+    $rootScope.detailCarts = resp.data;
+  });
   $scope.decreaseQuantity = function (element) {
     oldValue = element.currentTarget.nextElementSibling.value;
     oldValueNumber = parseFloat(oldValue);
@@ -56,7 +55,7 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
   //Check thì thêm tổng không check thì trừ ra khai báo =0;
   $scope.create = function (productRepositoryId) {
     if ($rootScope.detailCarts == "") {
-      $rootScope.detailCarts   = [];
+      $rootScope.detailCarts = [];
     }
     var checkExist = $rootScope.detailCarts.findIndex(
       (item) =>
@@ -69,12 +68,22 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
           $rootScope.detailCarts.push(resp.data);
         })
         .catch((error) => {
-          alert("Thêm lỗi");
-          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Thông báo",
+            text: "Add failed!",
+          });
         });
     } else {
-      if($rootScope.detailCarts[checkExist].productrepository.quantity<$rootScope.detailCarts[checkExist].quantity +1){
-        alert("Kho hết hàng, quý khách thông cảm")
+      if (
+        $rootScope.detailCarts[checkExist].productrepository.quantity <
+        $rootScope.detailCarts[checkExist].quantity + 1
+      ) {
+        Swal.fire({
+          icon: "warning",
+          title: "Thông báo",
+          text: "Kho hết hàng, quý khách thông cảm",
+        });
         return;
       }
       $rootScope.detailCarts[checkExist].quantity += 1;
@@ -82,8 +91,11 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
         .put("/rest/cart", $rootScope.detailCarts[checkExist])
         .then((resp) => {})
         .catch((error) => {
-          alert("Thêm lỗi");
-          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Thông báo",
+            text: "Add failed",
+          });
         });
     }
     $timeout($scope.calculateFee, 200);
@@ -99,33 +111,37 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
         .put("/rest/cart", detailCart)
         .then((resp) => {})
         .catch((error) => {
-          alert("Thay đổi số lượng lỗi");
-          console.log(error);
+          Swal.fire({
+            icon: "warning",
+            title: "Thông báo",
+            text: "Thay đổi số lượng lỗi",
+          });
         });
       $timeout($scope.calculateFee, 200);
       return true;
     } else {
-      alert("Kho hết hàng, quý khách thông cảm");
+      Swal.fire({
+        icon: "error",
+        title: "Thông báo",
+        text: "Kho hết hàng, quý khách thông cảm",
+      });
       return false;
     }
   };
   $scope.updateBlur = function (element) {
     let quantity = element.currentTarget.value;
-   
-    detailCartId=element.currentTarget.getAttribute("detailCartId")
+
+    detailCartId = element.currentTarget.getAttribute("detailCartId");
     var detailCart = $rootScope.detailCarts.find(
       (item) => item.detailcartid == detailCartId
     );
-    if(quantity<1){
-      element.currentTarget.value=detailCart.quantity
+    if (quantity < 1) {
+      element.currentTarget.value = detailCart.quantity;
       return;
     }
-    let checkLimitQuantity=$scope.update(
-      detailCartId  ,
-      quantity 
-    );
-   
-    if(!checkLimitQuantity)element.currentTarget.value=detailCart.quantity
+    let checkLimitQuantity = $scope.update(detailCartId, quantity);
+
+    if (!checkLimitQuantity) element.currentTarget.value = detailCart.quantity;
   };
   $scope.delete = function (detailCartId) {
     var index = $rootScope.detailCarts.findIndex(
@@ -136,8 +152,11 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
       .delete("/rest/cart/" + detailCartId)
       .then((resp) => {})
       .catch((error) => {
-        alert("Xóa  lỗi");
-        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Thông báo",
+          text: "Delete failed!",
+        });
       });
     $timeout($scope.calculateFee, 200);
   };

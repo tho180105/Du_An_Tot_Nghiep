@@ -1,7 +1,8 @@
 <div xmlns:th="http://www.thymeleaf.org" taglib uri="http://www.springframework.org/tags" prefix="s">
     <div class="header-top" style="padding-top: 0">
         <div class="container  " style="background-color: rgb(255, 255, 255);">
-            <div class="row d-flex align-items-center justify-content-between " style="margin-top: -10px;margin-bottom: -10px;">
+            <div class="row d-flex align-items-center justify-content-between "
+                style="margin-top: -10px;margin-bottom: -10px;">
                 <div class="col-4 d-flex justify-content-around">
                     <div class="mail-service">
                         <i class=" fa fa-envelope"></i>
@@ -22,10 +23,11 @@
                         </svg>
                     </label>
                     <select name="countries" class="custom-select"
-                        onchange="Dann(this.options[this.selectedIndex].value)" id="countries" style="width:150px;font-size: 13px;border-radius: 5px;">
+                        onchange="Dann(this.options[this.selectedIndex].value)" id="countries"
+                        style="width:150px;font-size: 13px;border-radius: 5px;">
                         <option id='enoption' value='eng' data-image="/img/flag-1.jpg" data-imagecss="flag yt"
-                            data-title="English" >English</option>
-                        <option id='vnoption'  value='vi' data-image="/img/flag-2.jpg" data-imagecss="flag yu"
+                            data-title="English">English</option>
+                        <option id='vnoption' value='vi' data-image="/img/flag-2.jpg" data-imagecss="flag yu"
                             data-title="Bangladesh">Vietnamese</option>
                     </select>
                 </div>
@@ -33,11 +35,13 @@
                     <th:block th:if="${#request.remoteUser}">
                         <a href="/account" class="login-panel" style="color :rgb(62, 62, 62) !important"><i
                                 class="fa fa-user "
-                                style="font-size: 20px;margin-right:10px ;"></i>[(#{header.profile})]</a>|
+                                style="font-size: 20px;margin-right:10px ;;padding-top: 2px;"></i>[(#{header.profile})]</a>|
+                        <a th:if="${#request.isUserInRole('2')} OR  ${#request.isUserInRole('3')}" href="/admin/index"
+                            class="login-panel"
+                            style="color :rgb(62, 62, 62) !important ;margin-right: 5px;padding-top: 2px;">Quản lý</a>|
                         <a href="/logoff" class="login-panel"
                             style="color :rgb(62, 62, 62) !important ;margin-right: 5px;padding-top: 2px;">Đăng xuất</a>
-                        <a th:if="${#request.isUserInRole('2')} OR  ${#request.isUserInRole('3')}" href="/admin/index" class="login-panel"
-                           style="color :rgb(62, 62, 62) !important ;margin-right: 5px;padding-top: 2px;">Quản lý</a>
+
                     </th:block>
                     <th:block th:unless="${#request.remoteUser}">
                         <a href="/security/login/form" style="color :rgb(62, 62, 62) !important" class="login-panel"><i
@@ -60,10 +64,10 @@
                 </div>
                 <div class="col-lg-7 col-md-7">
                     <div class="form" style="position: relative;">
-                         <i class="fa fa-search" style="position: absolute;right: 10px;top: 13px;"
+                        <i class="fa fa-search" style="position: absolute;right: 10px;top: 13px;"
                             onclick="searchItem()"></i>
-                        <input style="height: 42px;border-radius: 25px;" type="text" class="form-control form-input" id="searchInput"
-                            placeholder="Search anything...">
+                        <input style="height: 42px;border-radius: 25px;" type="text" class="form-control form-input"
+                            id="searchInput" placeholder="Search anything...">
                     </div>
 
                 </div>
@@ -71,7 +75,7 @@
                     style="margin-bottom: -20px;margin-top: -12px;">
                     <ul class="nav-right pr-4">
                         <li class="cart-icon" id="a_hover_cart">
-                            <a href="/cart"  class="d-flex justify-content-around align-items-center"
+                            <a href="/cart" class="d-flex justify-content-around align-items-center"
                                 style="width:45px;height:45px ;border-radius: 100%;border: gray dotted 1px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30"
                                     class="  bi bi-cart-dash text-secondary " height="27" style="margin-top: 0;"
@@ -83,14 +87,31 @@
                             </a>
                         </li>
                     </ul>
+                    <th:block th:if="${#request.remoteUser}">
+                        <ul class="nav-right pr-4">
+                            <li class="cart-icon" id="a_hover_cart">
+                                <a href="/listorder" class="d-flex justify-content-around align-items-center"
+                                    style="width:45px;height:45px ;border-radius: 100%;border: gray dotted 1px;">
+                                    <svg  xmlns="http://www.w3.org/2000/svg" width="30" height="27" fill="currentColor" style="color: gray;"
+                                        class="bi bi-receipt-cutoff" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zM11.5 4a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
+                                        <path
+                                            d="M2.354.646a.5.5 0 0 0-.801.13l-.5 1A.5.5 0 0 0 1 2v13H.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H15V2a.5.5 0 0 0-.053-.224l-.5-1a.5.5 0 0 0-.8-.13L13 1.293l-.646-.647a.5.5 0 0 0-.708 0L11 1.293l-.646-.647a.5.5 0 0 0-.708 0L9 1.293 8.354.646a.5.5 0 0 0-.708 0L7 1.293 6.354.646a.5.5 0 0 0-.708 0L5 1.293 4.354.646a.5.5 0 0 0-.708 0L3 1.293 2.354.646zm-.217 1.198.51.51a.5.5 0 0 0 .707 0L4 1.707l.646.647a.5.5 0 0 0 .708 0L6 1.707l.646.647a.5.5 0 0 0 .708 0L8 1.707l.646.647a.5.5 0 0 0 .708 0L10 1.707l.646.647a.5.5 0 0 0 .708 0L12 1.707l.646.647a.5.5 0 0 0 .708 0l.509-.51.137.274V15H2V2.118l.137-.274z" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </th:block>
+
                     <style>
-                        .cart-icon  :hover svg{
-                            color:rgb(255, 210, 165) !important
+                        .cart-icon :hover svg {
+                            color: rgb(255, 210, 165) !important
                         }
                     </style>
                 </div>
                 <style>
-                   
+
                 </style>
                 <script>
                 </script>
