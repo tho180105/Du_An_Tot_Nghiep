@@ -2,7 +2,7 @@ var app = angular.module("AnhApp", ["ngRoute"]);
 app.config(function($routeProvider) {
 	$routeProvider
 		.when("/main", {
-			templateUrl: "/Admin/main.html"
+			templateUrl: "/Admin/ThongKeDoanhThu.html"
 		})
 
 		.when("/ThongKeDoanhThu", {
@@ -11,10 +11,6 @@ app.config(function($routeProvider) {
 
 		.when("/ThongKeSanPham", {
 			templateUrl: "/Admin/ThongKeSanPham.html"
-		})
-
-		.when("/ThongKeDonHang", {
-			templateUrl: "/Admin/ThongKeDonHang.html"
 		})
 
 		.when("/QuanLyCategory", {
@@ -63,11 +59,15 @@ app.config(function($routeProvider) {
 			controller: "voucher-ctrl"
 		})
 
+		.when("/QuanLyDonHang", {
+			templateUrl: "/Admin/QuanLyDonHang.html",
+			controller: "statusorder-ctrl"
+		})
+
 		.when("/MyProfile", {
 			templateUrl: "./index2.html"
 		})
 
-		
 		.when("/cart", {
 			templateUrl: "./cart/view.html"
 		})
@@ -75,6 +75,7 @@ app.config(function($routeProvider) {
 		.when("/cart/order", {
 			templateUrl: "./cart/order.html"
 		})
+
 		.when("/Authority", {
 			templateUrl: "/Admin/Authority.html",
 			controller: "Authority-ctrl"

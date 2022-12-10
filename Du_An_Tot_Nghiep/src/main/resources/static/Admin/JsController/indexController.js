@@ -1,5 +1,5 @@
 
-app.controller("indexCtrl-ctrl", function($http, $scope) {
+app.controller("indexCtrl-ctrl", function($http, $scope, $rootScope) {
 
 	$scope.itemsall = [];
 	$scope.itemscategory = [];
