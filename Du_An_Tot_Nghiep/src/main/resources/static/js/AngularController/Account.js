@@ -23,7 +23,6 @@
 
 
 
-	console.log(child);
 	$http.get("/rest/account/getone").then(resp => {
 		$scope.acc = resp.data;
 		$scope.inPutPassword = "******";
@@ -31,15 +30,12 @@
 		if ($scope.acc.avatar == null) {
 			$scope.reset();
 		}
-		console.log($scope.acc);
 		$scope.securityEmail($scope.acc.email);
 	}).catch(error => {
-		console.log("Error", error);
 	});
 	$http.get("/rest/account").then(resp => {
 		$scope.listAcc = resp.data;
 	}).catch(error => {
-		console.log("Error", error);
 	});
 
 	$scope.reset = function () {
@@ -50,7 +46,6 @@
 		if ($scope.acc.phonenumber == null || $scope.acc.phonenumber == "") {
 			$scope.phonenumberCurrent = "0327987350";
 			parentPhone.removeChild(child);
-			console.log(parentPhone);
 		} else {
 			$scope.securityPhone($scope.acc.phonenumber);
 		}
@@ -58,7 +53,6 @@
 	$scope.checkPhoneAfterChange = function (phone) {
 		if ($scope.acc.phonenumber != null) {
 			parentPhone.appendChild(child);
-			console.log(parentPhone);
 			$scope.securityPhone($scope.acc.phonenumber);
 		}
 	}
@@ -91,7 +85,6 @@
 				}
 				
 			}).catch(error => {
-				console.log(error);
 			})
 		}
 		else{
@@ -120,7 +113,6 @@
 			})
 			$scope.nameNew = "";
 		}).catch(error => {
-			console.log(error)
 		})
 	}
 
@@ -175,7 +167,6 @@
 				$scope.checkPhoneAfterChange($scope.acc.phonenumber);
 				$scope.updateListAcc($scope.acc);
 			}).catch(error => {
-				console.log(error)
 			})
 		}
 		else if ($scope.phonenumberCurrent == $scope.acc.phonenumber) {
@@ -216,7 +207,6 @@
 				$scope.securityPhone($scope.acc.phonenumber);
 				$scope.updateListAcc($scope.acc);
 			}).catch(error => {
-				console.log(error)
 			})
 		} else {
 			$scope.phonenumberCurrent = null;
@@ -290,7 +280,6 @@
 				$scope.emailNew = null;
 				$scope.updateListAcc($scope.acc);
 			}).catch(error => {
-				console.log(error)
 			})
 		} else {
 			Swal.fire({
@@ -338,13 +327,10 @@
 			var item = $scope.acc;
 			$http.put("/rest/account", item).then(resp1 => {
 				files = null;
-				console.log($scope.acc);
 			}).catch(error1 => {
-				console.log(error1)
 			})
 		}).catch(error => {
 			alert("Lỗi upload hình ảnh");
-			console.log("Error", error);
 		})
 	}
 
@@ -352,9 +338,7 @@
 	$scope.resetImage = function () {
 		$scope.reset();
 		$http.put("/rest/account", $scope.acc).then(resp => {
-			console.log($scope.acc);
 		}).catch(error => {
-			console.log(error)
 		})
 	}
 

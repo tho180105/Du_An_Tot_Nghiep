@@ -25,7 +25,6 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
         $scope.account.forEach(item=>{
             item.createdate = new Date(item.createdate);
         })
-        console.log($scope.account);
         $http.get("/rest/role").then(resp =>{
             $scope.role = resp.data;
         })
@@ -64,7 +63,6 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
             $scope.reset();
         }).catch(error => {
 			alert("Delete thất bại");
-			console.log("Error", error);
 		});
     }
 
@@ -103,7 +101,6 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
                 title: 'Thông báo',
                 text: 'Cập nhật thất bại!',
             })
-			console.log("Error", error);
 		});
     }
 
@@ -141,7 +138,6 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
         $scope.form.coin = null;
         $scope.form.status = null;
         $scope.form.createdate = new Date();
-        console.log($scope.form);
         var item = angular.copy($scope.form);
         $http.post("/rest/account/authority",item).then(resp =>{
             $scope.account.push(resp.data);
@@ -157,7 +153,6 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
                 title: 'Thông báo',
                 text: 'Thêm mới thất bại!',
             })
-			console.log("Error", error);
 		});
     }
 
