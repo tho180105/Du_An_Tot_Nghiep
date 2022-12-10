@@ -64,10 +64,10 @@
           <div class="ng-tongOrder">
             
             <!-- ng-repeat orderdetail -->
-            <div class="row  detailorder pt-4" ng-repeat="item in detailOrder">
+            <div class="row  detailorder pt-4" style="  padding-top: 1rem!important;margin-bottom: 10px !important;" ng-repeat="item in detailOrder">
               
               <div style="display: flex; width: 45%; margin-left: 3%;">
-                <img ng-src="{{'/img/products-main/'+item.productrepository.product.mainproductimage+'.jpg'}}" alt="" height="60px" width="60px"> &ensp;&ensp;
+                <img ng-src="{{'/img/products-main/'+item.productrepository.product.mainproductimage+'.jpg'}}" alt="" height="80px" width="80px"> &ensp;&ensp;
                 <div>
                   <span class="title-detailOrder">{{item.productrepository.product.productname}} {{'- ' + item.productrepository.size.sizeid}}</span>
                   <br>
@@ -75,9 +75,10 @@
                   <div class=" hBVEFq mt-2">
                     <div class="row">
                       <div class=""></div>
-                      <div class="button-group col-12">
-                        <div class="ml-2 " >Mua lại</div>
-                        <div class="ml-2" ng-if="item.orders.orderstatus.orderstatusid == 4 ">Viết nhận xét</div>
+                      <div  class="button-group col-12">
+                        <div class="ml-2 h-75" ng-if="item.productrepository.quantity>0"  productrepository="{{item.productrepository.productrepositoryid}}"
+                         ng-click="handleAction($event)"  >Mua lại</div>
+                        <div class="ml-2 h-75" ng-if="item.orders.orderstatus.orderstatusid == 4 ">Viết nhận xét</div>
                       </div>
                     </div>
                   </div>

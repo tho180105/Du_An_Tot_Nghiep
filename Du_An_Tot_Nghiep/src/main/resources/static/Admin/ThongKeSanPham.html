@@ -117,8 +117,7 @@
             </tr>
           </thead>
           <tbody>
-            <!-- <tr ng-repeat="item in doneArrage  |limitTo :5"> -->
-            <tr ng-repeat="item in doneArrage|orderBy:'-totalSold'">
+            <tr ng-repeat="item in doneRange|orderBy:'-totalSold'">
               <th>{{$index+1}}</th>
               <th scope="row">
                 <img src="../img/products-main/{{item.product.mainproductimage}}.jpg" height="80" alt="View Badge User"

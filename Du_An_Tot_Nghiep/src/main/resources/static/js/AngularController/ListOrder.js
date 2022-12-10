@@ -103,6 +103,17 @@ app.controller("DetailOrder-ctrl", function ($rootScope, $scope, $http) {
 		location.href = "?lang="+x;*/
 	
 	}
+	$scope.handleAction=function(e){
+		let productrepository =e.target.getAttribute("productrepository")
+		console.log(productrepository)
+		$http.get(`/rest/cart/`+productrepository).then(resp => {
+			console.log(resp.data);
+			Swal.fire('Thêm vào giỏ hàng thành công')
+		}).catch(error => {
+			Swal.fire("Thêm thất bại")
+			console.log("Error", error);
+		})
+	}
 	
 })
 
@@ -147,4 +158,5 @@ function startDNN(){
 	location.href = "?lang="+x;
 	
 	}
+	
 startDNN()

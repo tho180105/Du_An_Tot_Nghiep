@@ -34,5 +34,8 @@ public class DetailOrderRestController {
         prdao.save(product);
         return dao.save(detailOrder);
     }
-
+    @GetMapping("/byStatus")
+    public List<DetailOrder> getByStatus(){
+      return  dao.getAllByStatues();
+    }
 }

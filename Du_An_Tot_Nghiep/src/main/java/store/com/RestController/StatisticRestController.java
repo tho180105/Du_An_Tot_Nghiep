@@ -79,7 +79,7 @@ public class StatisticRestController {
             } catch (Exception e) {
                 profitAYear.add(0.0);
             }
-        }
+        }   
         return profitAYear;
     }
 
