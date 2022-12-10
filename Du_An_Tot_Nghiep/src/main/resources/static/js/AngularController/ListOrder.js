@@ -1,9 +1,20 @@
 app.controller("ListOrder-ctrl", function ($rootScope, $scope, $http) {
+//thông báo
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 3000,
+		timerProgressBar: true,
+		didOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer)
+			toast.addEventListener('mouseleave', Swal.resumeTimer)
+		}
+	})
 
 	$http.get("/rest/ListOrder/order").then(resp => {
 		
 		$rootScope.order = resp.data;
-		console.log($rootScope.order)
 		$http.get("/rest/ListOrder/detail").then(resp => {
 			$scope.listDetailOrder = resp.data;
 			$scope.checkOrder($rootScope.order)
@@ -38,15 +49,16 @@ app.controller("ListOrder-ctrl", function ($rootScope, $scope, $http) {
 		var tempOrder =$scope.tempOrder.findIndex(x => x.orderid == item);
 		$scope.tempOrder[tempOrder].orderstatus.orderstatusid=3;
 		$scope.tempOrder[tempOrder].createdate = new Date($scope.tempOrder[tempOrder].createdate);
-		console.log($scope.tempOrder[tempOrder]);
 		var index = $scope.order.findIndex(x => x.orderid ==item);
 		$scope.order[index].orderstatus.orderstatusid =3;
 		$scope.order[index].orderstatus.orderstatustitle ="Đã hủy";
 		$http.put("/rest/order",$scope.tempOrder[tempOrder]).then(resp =>{
-			
-			console.log($scope.order[index]);
+			Swal.fire({
+				icon: 'success',
+				title: 'Thông báo',
+				text: 'Hủy đơn hàng thành công!',
+			})
 		}).catch(error => {
-			console.log("lỗi");
 		})
 	}
 
@@ -55,7 +67,6 @@ app.controller("ListOrder-ctrl", function ($rootScope, $scope, $http) {
 app.controller("DetailOrder-ctrl", function ($rootScope, $scope, $http) {
 	$scope.test = "";
 	var id = location.href.substring(location.href.lastIndexOf("/"), location.href.length);
-	console.log(id);
 	$http.get("/rest/ListOrder/detailOrder" + id).then(resp => {
 		$scope.detailOrder = resp.data;
 		// xử lý ngày tháng năm
@@ -68,7 +79,6 @@ app.controller("DetailOrder-ctrl", function ($rootScope, $scope, $http) {
 		$scope.detailOrder[0].orders.totalNoneDiscount = 0;
 		for (let i = 0; i < $scope.detailOrder.length; i++) {
 			var sum = $scope.detailOrder[i].listedprice * $scope.detailOrder[i].quantity;
-			console.log(sum)
 			$scope.detailOrder[i].totalprice = new Intl.NumberFormat('de-DE').format($scope.detailOrder[i].listedprice * $scope.detailOrder[i].quantity);
 			$scope.detailOrder[i].discountDetail = new Intl.NumberFormat('de-DE').format($scope.detailOrder[i].listedprice - $scope.detailOrder[i].productprice);
 			$scope.detailOrder[i].listedprice = new Intl.NumberFormat('de-DE').format($scope.detailOrder[i].listedprice);
@@ -76,9 +86,7 @@ app.controller("DetailOrder-ctrl", function ($rootScope, $scope, $http) {
 		}
 		$scope.detailOrder[0].orders.discountPrice = new Intl.NumberFormat('de-DE').format($scope.detailOrder[0].orders.totalNoneDiscount - $scope.detailOrder[0].orders.productmoney);
 		$scope.detailOrder[0].orders.totalNoneDiscount = new Intl.NumberFormat('de-DE').format($scope.detailOrder[0].orders.totalNoneDiscount);
-		console.log($scope.detailOrder);
 	}).catch(error => {
-		console.log(error);
 	})
 	$scope.test123="selected";
 	$scope.mangdangonngu = 
@@ -108,14 +116,12 @@ app.controller("DetailOrder-ctrl", function ($rootScope, $scope, $http) {
 
 function startDNN(){
 	var nn =localStorage.getItem('nn');
-	console.log("s")
+
 
 	
 	if(!nn){
 		nn='en'
 	}
-	console.log(nn)
-	console.log(nn)
 	if(nn!=='vi'){
 		document.getElementById("vnoption").removeAttribute("selected")
 		document.getElementById("enoption").selected ='selected'
