@@ -32,4 +32,8 @@ public interface OrdersDAO extends JpaRepository<Orders, Integer>{
     @Query("select new ReportModel (o.orderstatus.orderstatustitle,count (o.orderid))from Orders o where  o.createdate between ?1 and ?2 group by o.orderstatus.orderstatustitle")
     List<ReportModel> getReport(Date date1, Date date2);
 
+
+    //List order status = 1 (chưa xử lý)
+    @Query("select o from Orders o where o.orderstatus.orderstatusid = 1")
+    List<Orders> findOrdersNoProcess();
 }

@@ -6,6 +6,7 @@ app.controller("checksize-ctrl", function($http, $scope, $window){
 	 */
 	let x = location.href;
 	let item = Number(x.slice(x.lastIndexOf('/')+1, x.length));
+	$scope.itemscategory = [];
 	$scope.sizeName = "";
 	$scope.message = "";
 	$scope.message1 = "";
@@ -30,6 +31,10 @@ app.controller("checksize-ctrl", function($http, $scope, $window){
 
 		$http.get(`/rest/product/${item}`).then(resp => {
 			$scope.product = resp.data;
+		});
+
+		$http.get("/rest/cate/findAll").then(resp => {
+			$scope.itemscategory = resp.data;
 		});
 	}
 
@@ -125,6 +130,13 @@ app.controller("checksize-ctrl", function($http, $scope, $window){
 		}).catch(error => {
 			console.log("Error", error);
 		})
+	}
+
+	$scope.getProductByCategory = function(categoryid) {
+		$http.get(`/rest/product/category/${categoryid}`).then(resp => {
+			$scope.itemsall = resp.data;
+			window.location = '/product/list'
+		});
 	}
 });	
 

@@ -60,9 +60,21 @@ app.controller("banner-ctrl", function($http, $scope) {
 				$scope.items = [];
 				$scope.itemsall = [];
 				$scope.initialize();
-				alert("Insert thành công");
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'success',
+					title: 'Thêm mới thành công!',
+					showConfirmButton: false,
+					timer: 1500
+				})
 			}).catch(error => {
-				alert("Insert thất bại");
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'error',
+					title: 'Thêm mới thất bại',
+					showConfirmButton: false,
+					timer: 1500
+				})
 				console.log("Error", error);
 			});	
 	}	
@@ -79,9 +91,21 @@ app.controller("banner-ctrl", function($http, $scope) {
 			$scope.items = [];
 			$scope.itemsall = [];
 			$scope.initialize();
-			alert("Update thành công");
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'success',
+				title: 'Update thành công!',
+				showConfirmButton: false,
+				timer: 1500
+			})
 		}).catch(error => {
-			alert("Update thất bại");
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Update thất bại',
+				showConfirmButton: false,
+				timer: 1500
+			});
 			console.log("Error", error);
 		});
 	}
@@ -94,9 +118,21 @@ app.controller("banner-ctrl", function($http, $scope) {
 			$scope.itemsall.splice(indexall,1);
 			$scope.items.splice(index,1);
 			$scope.reset();
-			alert("Delete thành công");
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'success',
+				title: 'Xóa thành công',
+				showConfirmButton: false,
+				timer: 1500
+			})
 		}).catch(error => {
-			alert("Delete thất bại");
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Xóa thất bại',
+				showConfirmButton: false,
+				timer: 1500
+			})
 			console.log('Error', error);
 		});
 	}
@@ -110,7 +146,13 @@ app.controller("banner-ctrl", function($http, $scope) {
 		}).then(resp =>{
 			$scope.form.bannerpath = resp.data.name;
 		}).catch(error =>{
-			alert('Lỗi Upload hình ảnh');
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Lỗi upload file ảnh!',
+				showConfirmButton: false,
+				timer: 1500
+			})
 			console.log("Error",error);
 		});
     }

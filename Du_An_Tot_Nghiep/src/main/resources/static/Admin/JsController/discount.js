@@ -122,8 +122,21 @@ app.controller("discount-ctrl", function($http, $scope) {
 				$scope.reset();
 				$scope.items = [];
 				$scope.initialize();
-				
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'success',
+					title: 'Thêm mới thành công',
+					showConfirmButton: false,
+					timer: 1500
+				})
 			}).catch(error => {
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'error',
+					title: 'Thêm mới thất bại',
+					showConfirmButton: false,
+					timer: 1500
+				})
 				console.log("Error", error);
 			});
 		}
@@ -141,9 +154,21 @@ app.controller("discount-ctrl", function($http, $scope) {
 			var index = $scope.items.findIndex(p => p.productdiscountid == item.productdiscountid);
 			$scope.items[index] = item;
 			$scope.reset();
-			alert("Update thành công");
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'success',
+				title: 'Update thành công',
+				showConfirmButton: false,
+				timer: 1500
+			})
 		}).catch(error => {
-			alert("Update thất bại");
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Update thất bại',
+				showConfirmButton: false,
+				timer: 1500
+			})
 			console.log("Error", error);
 		});
 	}
@@ -154,9 +179,21 @@ app.controller("discount-ctrl", function($http, $scope) {
 			var index = $scope.items.findIndex(p => p.productdiscountid == item.productdiscountid);
 			$scope.items.splice(index,1);
 			$scope.reset();
-			alert("Delete thành công");
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'success',
+				title: 'Xóa thành công',
+				showConfirmButton: false,
+				timer: 1500
+			})
 		}).catch(error => {
-			alert("Delete thất bại");
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Xóa thất bại',
+				showConfirmButton: false,
+				timer: 1500
+			})
 			console.log("Error", error);
 		});
 	}

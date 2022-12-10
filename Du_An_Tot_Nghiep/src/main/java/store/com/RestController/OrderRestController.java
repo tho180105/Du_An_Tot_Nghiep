@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.criterion.Order;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,6 +69,11 @@ public class OrderRestController {
 		System.out.println(orders.getOrderid());
 		System.out.println(orders.getOrderstatus().getOrderstatusid());
 		return dao.save(orders);
+	}
+
+	@GetMapping("/NoProcess")
+	public List<Orders> listNoProcess(){
+		return dao.findOrdersNoProcess();
 	}
 	
 }
