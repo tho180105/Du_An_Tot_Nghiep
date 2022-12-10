@@ -3,22 +3,10 @@ app.controller("IncomeTotal", function ($rootScope, $http, $scope, $timeout) {
     $scope.getProfitByAPI = function (year) {
         $http.get("/rest/statistic/profit?year=" + year).then((resp) => {
             $rootScope.profitAYear = resp.data;
-            console.log($rootScope.profitAYear)
         });
     }
+
     $scope.getProfitByAPI(new Date().getFullYear())
-    // 
-    // $http.get("/rest/statistic/payment?year="+new Date().getFullYear()).then((resp) => {
-    //     $rootScope.paymentYear = resp.data;
-    //     console.log($rootScope.paymentYear)
-    // });
-
-    // $http.get("/rest/statistic/sales?year="+new Date().getFullYear()).then((resp) => {
-    //     $rootScope.salesYear = resp.data;
-    //     console.log($rootScope.salesYear)
-    // });
-
-
     $scope.indexGeneralDate = new Date();
     $scope.chartPieProfit = function () {
         $scope.getProfitByAPI($scope.chartYear)
@@ -51,32 +39,22 @@ app.controller("IncomeTotal", function ($rootScope, $http, $scope, $timeout) {
         });
         $http.get("/rest/statistic/index?year=" + year + "&month=" + month).then((resp) => {
             $rootScope.indexMonthYear = resp.data;
-            console.log($rootScope.indexMonthYear)
             $scope.salesShow = $rootScope.indexMonthYear[0]
             $scope.paymentShow = $rootScope.indexMonthYear[1]
             $scope.profitShow = $scope.salesShow - $scope.paymentShow
             $scope.profitPercentShow = $scope.profitShow / $scope.salesShow * 100
             $scope.paymentPercentShow = 100 - $scope.profitPercentShow;
-
+            if(!$scope.salesShow) $scope.salesShow=0;
         });
     }
 
 
-// Load category- Tên
-// Load lợi nhuận và % mỗi loại
-
-// Load profit by date và cate
 
     $scope.changeIndexGeneralDate()
     $scope.chartPieProfit()
 
-    // $http.get("/rest/statistic/quantityOrder?year="+year+"&month="+month).then((resp) => {
-    //    console.log(resp.data)
-    // });
-
 
     ctx = document.getElementById('productMainChart').getContext('2d');
-// setup
     const data = {
         labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
         datasets: [{

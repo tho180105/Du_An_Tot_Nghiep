@@ -94,8 +94,8 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
     $http.get(`/rest/order/createNew`).then((resp) => {
       $scope.newOrder = resp.data;
       let province = document.getElementById("province_search").value;
-      let district = document.getElementById("province_search").value;
-      let ward = document.getElementById("province_search").value;
+      let district = document.getElementById("district_search").value;
+      let ward = document.getElementById("ward_search").value;
       let radio_pays = document.getElementsByClassName("radio_pay")[0];
       if (radio_pays.checked == true) {
         $scope.newOrder.paymentmethod = "Thanh toán tiền mặt";
@@ -121,7 +121,6 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
       $scope.newOrder.shipfee = $scope.shipfee;
       $scope.newOrder.phonenumber =document.getElementById("phoneNumber").value;
       $scope.newOrder.totalmoney = $scope.calculateTotalMoney();
-      console.log($scope.newOrder)
       $http.post("/rest/order", $scope.newOrder).then((resp) => {
         $rootScope.orderIdPayed=resp.data.orderid;
         $scope.addDetailOrdersFinish(resp.data.orderid);
@@ -130,7 +129,6 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
   };
 
   $scope.addDetailOrdersFinish = function (orderid) {
-    console.log($rootScope.productsSelected)
     for (const iterator of $rootScope.productsSelected) {
       $scope.newDetailOrder = {};
       $scope.newDetailOrder.productprice =    iterator.productrepository.product.sellingprice;

@@ -16,7 +16,6 @@
                                     your profile.
                                 </p>
 
-                                <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
                             </div>
                         </div>
                         <div class="col-sm-5 text-center text-sm-left">
@@ -40,21 +39,11 @@
                                         <img src="../Admin/assets/img/icons/unicons/chart-success.png"
                                              alt="chart success" class="rounded"/>
                                     </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <span class="fw-semibold d-block mb-1">Profit</span>
                                 <h4 class="card-title mb-2">{{profitShow|number}}</h4>
-                                               <small class="text-success fw-semibold"> {{profitPercentShow | number:2}}%</small>
+                                <small class="text-success fw-semibold"> {{profitPercentShow | number:2}}%</small>
                             </div>
                         </div>
                     </div>
@@ -66,21 +55,11 @@
                                         <img src="../Admin/assets/img/icons/unicons/wallet-info.png" alt="Credit Card"
                                              class="rounded"/>
                                     </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <span>Sales</span>
                                 <h4 class="card-title text-nowrap mb-1">{{salesShow|number}}</h4>
-                                               <small class="text-success fw-semibold"> Total</small>
+                                <small class="text-success fw-semibold"> Total</small>
                             </div>
                         </div>
                     </div>
@@ -110,17 +89,7 @@
                                         <img src="../Admin/assets/img/icons/unicons/paypal.png" alt="Credit Card"
                                              class="rounded"/>
                                     </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-0" type="button" id="cardOpt4" data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
-                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <span class="d-block mb-1">Payments</span>
                                 <h4 class="card-title text-nowrap mb-2">{{paymentShow|number}}</h4>
@@ -128,40 +97,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title d-flex align-items-start justify-content-between">
-                                    <div class="avatar flex-shrink-0">
-                                        <img src="../Admin/assets/img/icons/unicons/cc-primary.png" alt="Credit Card"
-                                             class="rounded"/>
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <span class="fw-semibold d-block mb-1">Transactions</span>
-                                <h3 class="card-title mb-2">$14,857</h3>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- </div>
-                    <div class="row"> -->
                     <div class="col-12 mb-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
-                                    <input class="form-control w-100" type="month" ng-change="changeIndexGeneralDate()" ng-model="indexGeneralDate" id="startMonth" name="start"
-                                           min="2020-08" value="2020-10" >
-<!--                                    <div id="profileReportChart"></div>-->
+                                    <input class="form-control w-100" type="month" ng-change="changeIndexGeneralDate()"
+                                           ng-model="indexGeneralDate" id="startMonth" name="start"
+                                           min="2020-08" value="2020-10">
                                 </div>
                             </div>
                         </div>
@@ -169,35 +111,17 @@
                     <div class="col-md-12 col-lg-12 col-xl-12 order-0 mb-4">
                         <div class="card h-100">
                             <div class="card-header d-flex align-items-center justify-content-between pb-0">
-                                <div class="card-title mb-0">
-                                    <h5 class="m-0 me-2">Order Statistics</h5>
-                                    <small class="text-muted">42.82k Total Sales</small>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn p-0" type="button" id="orederStatistics" data-bs-toggle="dropdown"
-                                            aria-haspopup="true"
-                                            aria-expanded="false">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
-                                        <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                                    </div>
+                                <div class="card-title pb-0">
+                                    <h5 class="m-0 me-2 mb-3">Order Statistics</h5>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <div class="d-flex flex-column align-items-center gap-1">
-                                        <h2 class="mb-2">8,258</h2>
-                                        <span>Total Orders</span>
-                                    </div>
-                                    <div id="orderStatisticsChart"></div>
-                                </div>
                                 <ul class="p-0 m-0">
                                     <li class="d-flex mb-4 pb-1" ng-repeat="item in quantityOrders">
                                         <div class="avatar flex-shrink-0 me-3">
-                                    <span class="avatar-initial rounded bg-label-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt" viewBox="0 0 16 16">
+                                    <span class="avatar-initial rounded bg-label-primary"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-receipt" viewBox="0 0 16 16">
   <path d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27zm.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0l-.509-.51z"/>
   <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"/>
 </svg></span>
@@ -205,7 +129,7 @@
                                         <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                             <div class="me-2">
                                                 <h6 class="mb-0">{{item.orderStatusTitle}}</h6>
-<!--                                                <small class="text-muted">Mobile, Earbuds, TV</small>-->
+                                                <!--                                                <small class="text-muted">Mobile, Earbuds, TV</small>-->
                                             </div>
                                             <div class="user-progress">
                                                 <small class="fw-semibold">{{item.quantity}}</small>

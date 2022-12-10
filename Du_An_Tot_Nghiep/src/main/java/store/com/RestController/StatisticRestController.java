@@ -62,7 +62,6 @@ public class StatisticRestController {
             } catch (Exception e) {
                 productByMonth.add(0.0);
             }
-
         }
         return productByMonth;
     }
