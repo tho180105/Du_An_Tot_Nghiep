@@ -48,20 +48,6 @@
 	                        <button class="filter-btn" style="border: none;" ng-click="FilterByPrice()">Filter</button>
 
                     </div>
-<!--                    <div class="filter-widget">-->
-<!--                        <h4 class="fw-title">Price</h4>-->
-<!--                        <div class="filter-range-wrap">-->
-<!--                            <div class="range-slider">-->
-<!--                                <div class="price-input">-->
-<!--                                    <a href="" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; color: #636363; line-height: 61px">0đ - 150.000đ</a> <br>-->
-<!--                                    <a href="" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; color: #636363; line-height: 25px">150.000đ - 300.000đ</a> <br>-->
-<!--                                    <a href="" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; color: #636363; line-height: 61px">300.000đ - 450.000đ</a> <br>-->
-<!--                                    <a href="" style="min-width: 197px !important; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; color: #636363; line-height: 25px">450.000đ - 600.000đ</a> <br>-->
-<!--                                    <a href="" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; color: #636363; line-height: 61px">600.000đ - 1.000.000đ</a> <br>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
                     <div class="filter-widget">
                         <h4 class="fw-title">Tags</h4>
                         <div class="fw-tags">
@@ -116,8 +102,8 @@
                                             <h5>{{product.productname}}</h5>
                                         </a>
                                         <div class="product-price">
-                                            ${{product.sellingprice}}
-                                            <span>${{product.listedprice}}</span>
+                                            {{product.sellingprice|number}}đ
+                                            <span>${{product.listedprice|number}}đ</span>
                                         </div>
                                     </div>
                                 </div>
