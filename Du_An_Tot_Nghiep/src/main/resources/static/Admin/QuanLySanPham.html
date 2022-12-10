@@ -31,24 +31,38 @@
                         <img ng-src="{{'/Admin/assets/img/products-main/'+form.mainproductimage}}" alt="product-image"
                           class="d-block rounded" width="50%" for="image" />
                       </div>
+                      
                       <div class="row">
-                        <div class="mb-3 col-md-12">
+                        <div class="mb-3 col-md-6">
                           <label class="form-label" for="">Mã Sản Phẩm</label>
                           <input ng-model="form.productid" class="form-control" type="number" disabled>
                         </div>
-                        <div class="mb-3 col-md-12">
+                        <div class="mb-3 col-md-6">
                           <label class="form-label" for="">Tên Sản Phẩm (*)</label>
                           <input ng-model="form.productname" class="form-control" type="text">
                         </div>
-                        <div class="mb-3 col-md-12">
+                        <div class="mb-3 col-md-6">
+                          <label for="" class="form-label">Nhóm Sản Phẩm (*)</label>
+                          <select class="form-control" ng-model="form.style.styleid">
+                            <option ng-repeat="s in styles" ng-value="s.styleid">{{s.stylename}}</option> -->
+
+                          </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="" class="form-label">Loại Sản Phẩm (*)</label>
+                          <select class="form-control" ng-model="form.category.categoryid">
+                            <option ng-repeat="c in cates" ng-value="c.categoryid">{{c.categoryname}}</option>
+                          </select>
+                        </div>
+                        <div class="mb-3 col-md-4">
                           <label class="form-label" for="">Giá Sản Phẩm (*)</label>
                           <input ng-model="form.purchaseprice" class="form-control" type="number">
                         </div>
-                        <div class="mb-3 col-md-12">
+                        <div class="mb-3 col-md-4">
                           <label class="form-label" for="">Giá Niêm Yết</label>
                           <input ng-model="form.listedprice" class="form-control" type="number">
                         </div>
-                        <div class="mb-3 col-md-12">
+                        <div class="mb-3 col-md-4">
                           <label class="form-label" for="">Giá Bán</label>
                           <input ng-model="form.sellingprice" class="form-control" type="number">
                         </div>
@@ -66,19 +80,7 @@
                           <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"
                             ng-model="form.productstatus">
                         </div>
-                        <div class="mb-3 col-md-6">
-                          <label for="" class="form-label">Nhóm Sản Phẩm (*)</label>
-                          <select class="form-control" ng-model="form.style.styleid">
-                            <option ng-repeat="s in styles" ng-value="s.styleid">{{s.stylename}}</option> -->
-
-                          </select>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                          <label for="" class="form-label">Loại Sản Phẩm (*)</label>
-                          <select class="form-control" ng-model="form.category.categoryid">
-                            <option ng-repeat="c in cates" ng-value="c.categoryid">{{c.categoryname}}</option>
-                          </select>
-                        </div>
+                        
                       </div>
                       <div class="mt-2">
                         <button ng-click="create()" class="btn btn-primary me-2">Save</button>
