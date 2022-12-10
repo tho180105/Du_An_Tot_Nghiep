@@ -5,6 +5,20 @@
 app.controller("Authority-ctrl",function($scope,$http,$location){
     $scope.account = [];
     $scope.role = [];
+
+    //thông báo
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
     $http.get("/rest/account/authorities").then(resp =>{
         disabledUpdate();
         $scope.account = resp.data;
@@ -42,7 +56,11 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
         $http.delete("/rest/account/"+item.accountid).then(resp =>{
             var index = $scope.account.findIndex(x => x.accountid == item.accountid);
             $scope.account.splice(index,1);
-            alert("Xóa thành công !")
+            Swal.fire({
+                icon: 'success',
+                title: 'Thông báo',
+                text: 'Xóa thành công!',
+            })
             $scope.reset();
         }).catch(error => {
 			alert("Delete thất bại");
@@ -53,7 +71,11 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
     // cập nhật
     $scope.Update = function(){
         if($scope.form == undefined || $scope.roleId == undefined){
-            alert("Vui lòng chọn tải khoản và role !")
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Vui lòng chọn tài khoản và role!',
+            })
             return;
         }
         var flag = checkFormSave();
@@ -69,10 +91,18 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
         $http.put("/rest/account",item).then(resp =>{
             var index = $scope.account.findIndex(x => x.accountid == item.accountid);
             $scope.account[index] = resp.data;
-            alert("Cập nhật thành công !")
+            Swal.fire({
+                icon: 'success',
+                title: 'Thông báo',
+                text: 'Cập nhật thành công!',
+            })
             $scope.reset();
         }).catch(error => {
-			alert("Cập nhật thất bại");
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Cập nhật thất bại!',
+            })
 			console.log("Error", error);
 		});
     }
@@ -80,15 +110,24 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
     // thêm mới
     $scope.Save = function(){
         if($scope.form == undefined || $scope.roleId == undefined){
-            alert("Vui lòng chọn tải khoản và role!")
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Vui lòng chọn tài khoản và role!',
+            })
             return;
         }
         for(let i= 0; i< $scope.account.length;i++){
             if($scope.form.accountid == $scope.account[i].accountid){
-                alert("Tài khoản đã tồn tại!");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Thông báo',
+                    text: 'Tài khoản đã tồn tại!',
+                })
                 return;
             }
         }
+        $scope.form.password = "1";
         var flag = checkFormSave();
         if(flag==false){
             return;
@@ -104,12 +143,20 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
         $scope.form.createdate = new Date();
         console.log($scope.form);
         var item = angular.copy($scope.form);
-        $http.put("/rest/account",item).then(resp =>{
+        $http.post("/rest/account/authority",item).then(resp =>{
             $scope.account.push(resp.data);
-            alert("Thêm mới thành công!")
+            Swal.fire({
+                icon: 'success',
+                title: 'Thông báo',
+                text: 'Thêm mới thành công!',
+            })
             $scope.reset();
         }).catch(error => {
-			alert("Thêm mới thất bại");
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Thêm mới thất bại!',
+            })
 			console.log("Error", error);
 		});
     }
@@ -136,33 +183,53 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
     function checkFormSave(){
         var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if (filter.test($scope.form.email) == false) {
-			alert("Email không đúng định dạng!");
+        if ($scope.form.email == undefined ||  $scope.form.email == null || $scope.form.email == ""){
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Không được bỏ trống Email!',
+            })
             return false;
-		}
-        if (vnf_regex.test($scope.form.phonenumber) == false) {
-			alert("Số điện thoại không đúng định dạng!");
-            return false;
-		}
-        if($scope.form.name== null || $scope.form.name== ""){
-            alert("Vui lòng nhập tên!");
+        } else if (filter.test($scope.form.email) == false) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Email không đúng định dạng!',
+            })
             return false;
         }
-        if($scope.form.password== null || $scope.form.password== ""){
-            alert("Vui lòng nhập password!");
+        if ($scope.form.phonenumber == undefined || $scope.form.phonenumber == null || $scope.form.phonenumber == ""){
+
+        }else if (vnf_regex.test($scope.form.phonenumber) == false) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Số điện thoại không đúng định dạng!',
+            })
             return false;
         }
+
         return true;
     }
 
     function checkSaveExists(){
         for(let i= 0; i< $scope.account.length;i++){
-            if($scope.form.email == $scope.account[i].email ){
-                alert("Email đã tồn tại!");
+             if($scope.form.email == $scope.account[i].email ){
+                 Swal.fire({
+                     icon: 'error',
+                     title: 'Thông báo',
+                     text: 'Email đã tồn tại!',
+                 })
                 return false;
             }
-            if($scope.form.phonenumber == $scope.account[i].phonenumber){
-                alert("Số điện thoại đã tồn tại!");
+            if ($scope.form.phonenumber == null || $scope.form.phonenumber == ""){
+
+            } else if($scope.form.phonenumber == $scope.account[i].phonenumber){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Thông báo',
+                    text: 'Số điện thoại đã tồn tại!',
+                })
                 return false;
             }
         }
@@ -173,13 +240,21 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
         for(let i= 0; i< $scope.account.length;i++){
             var index = $scope.account.findIndex(x => x.accountid == $scope.form.accountid);
             if($scope.form.email == $scope.account[i].email && i != index){
-                alert("Email đã tồn tại!");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Thông báo',
+                    text: 'Email đã tồn tại!',
+                })
                 return false;
             }
-            if($scope.form.phonenumber == $scope.account[i].phonenumber && i != index){
+            if ($scope.form.phonenumber == null || $scope.form.phonenumber == ""){
+
+            }
+            else if($scope.form.phonenumber == $scope.account[i].phonenumber && i != index){
                 alert("Số điện thoại đã tồn tại!");
                 return false;
             }
         }
+        return  true;
     }
 })
