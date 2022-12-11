@@ -63,6 +63,7 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
           };
           $scope.getShipFee = function (element) {
               $scope.shipfee = element.currentTarget.value;
+              $scope.payService=element.currentTarget.getAttribute("payService")
           };
           $scope.applyVoucher = function (element) {
               var buttonApplyClasses = document.getElementsByClassName("btn-apply");
@@ -119,6 +120,7 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
       }
       $scope.newOrder.productmoney = $scope.subTotalMoney;
       $scope.newOrder.shipfee = $scope.shipfee;
+      $scope.newOrder.paymentservice = $scope.payService;
       $scope.newOrder.phonenumber =document.getElementById("phoneNumber").value;
       $scope.newOrder.totalmoney = $scope.calculateTotalMoney();
       $http.post("/rest/order", $scope.newOrder).then((resp) => {

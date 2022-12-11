@@ -131,7 +131,7 @@
                                             <div class="mt-3 col-6 box d-flex flex-row justify-content-center align-items-center "
                                                 ng-repeat="item in phigiaohang.data track by $index">
                                                 <input required class="mr-3" type="radio" ng-value="item.total_fee"
-                                                    ng-click="getShipFee($event)" name="shipServiceOption" id=""
+                                                    ng-click="getShipFee($event)" payService="{{item.service}}" name="shipServiceOption" id=""
                                                     style="transform: scale(1.5);">
                                                 <img class="mr-3" src="/img/giao-hang-tiet-kiem-la-gi.png" width="80px"
                                                     alt="">
