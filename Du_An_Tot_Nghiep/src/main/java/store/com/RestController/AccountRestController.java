@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import store.com.DAO.AccountDAO;
 import store.com.Entity.Account;
+import store.com.Entity.UserLogin;
 import store.com.Service.AccountService;
 import store.com.controller.LoginController;
 
@@ -76,6 +77,12 @@ public class AccountRestController {
     public Account authority(@RequestBody Account account){
         account.setPassword(pe.encode(account.getPassword()));
         return accountService.update(account);
+    }
+
+    @GetMapping("/userLogin")
+    public Account userLogin(){
+        String username = UserLogin.account.getAccountid();
+        return accountService.findById(username);
     }
 
 }
