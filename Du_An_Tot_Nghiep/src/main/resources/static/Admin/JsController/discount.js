@@ -8,6 +8,7 @@ app.controller("discount-ctrl", function($http, $scope) {
 	$scope.cates = [];
 	$scope.categoryCombobox = "";
 	$scope.selected = [];
+	$scope.userLogin = {};
 	
 	$scope.initialize = function(){
         //Load Product
@@ -23,6 +24,11 @@ app.controller("discount-ctrl", function($http, $scope) {
         //LoadProduct
         $http.get("/rest/categoryAll").then(resp => {
 			$scope.cates = resp.data;
+		});
+
+		$http.get("/rest/account/userLogin").then(resp => {
+			$scope.userLogin = resp.data;
+			$scope.form.account = $scope.userLogin;
 		});
 		
     }
@@ -45,10 +51,8 @@ app.controller("discount-ctrl", function($http, $scope) {
 		var idx = $scope.selected.indexOf(item);
 		if(idx > -1) {
 			$scope.selected.splice(idx, 1);
-			console.log($scope.selected);
 		}else {
 			$scope.selected.push(item);
-			console.log($scope.selected);
 		}
 		
 	}
@@ -66,7 +70,6 @@ app.controller("discount-ctrl", function($http, $scope) {
 		}else {
 			$scope.selected = [];
 		}
-		console.log($scope.selected);
 	}
     
    

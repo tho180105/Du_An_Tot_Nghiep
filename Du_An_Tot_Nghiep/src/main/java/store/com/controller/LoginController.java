@@ -7,6 +7,7 @@ import javax.servlet.http.Cookie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import store.com.DAO.AccountDAO;
 import store.com.Entity.Account;
+import store.com.Entity.UserLogin;
 import store.com.Service.CookieService;
 import store.com.Service.SessionService;
 import store.com.Service.UserService;
@@ -35,6 +37,7 @@ public class LoginController {
 	@Autowired
 	private ServletContext servletContext;
 
+	UserLogin userLogin;
 	
 	@RequestMapping("/security/login/form")
 	public String login(Model model,Authentication auth) {
@@ -51,8 +54,7 @@ public class LoginController {
 			cookie.add("JSESSIONID", acc.getValue(), 24*30);
 			cookie.remove("remember-me");
 		}
-		System.out.println(auth.getName());
-		servletContext.setAttribute("UserLogin", auth.getName());
+		UserLogin.account = dao.getById(auth.getName());
 		model.addAttribute("message", "Đăng nhập thành công");
 
 		return "redirect:/home";
