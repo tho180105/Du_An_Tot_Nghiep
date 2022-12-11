@@ -34,43 +34,8 @@ app.controller("voucher-ctrl", function($http, $scope) {
 		});
     }
 
-    //Start-------------------------------------------------------------------------//
     $scope.initialize();
 
-	$scope.exists = function(item) {
-		return $scope.selected.indexOf(item) > -1;
-	}
-
-	$scope.toggle = function(item) {
-		var idx = $scope.selected.indexOf(item);
-		if(idx > -1) {
-			$scope.selected.splice(idx, 1);
-			console.log($scope.selected);
-		}else {
-			$scope.selected.push(item);
-			console.log($scope.selected);
-		}
-
-	}
-
-	$scope.checkAll = function() {
-		if($scope.selectAll) {
-			angular.forEach($scope.listAccount, function(item){
-				var idx = $scope.selected.indexOf(item);
-				if(idx >= 0){
-					return true;
-				}else {
-					$scope.selected.push(item);
-				}
-			})
-		}else {
-			$scope.selected = [];
-		}
-		console.log($scope.selected);
-	}
-
-
-    //Clear form
     $scope.reset = function() {
 		$scope.form = {
 			voucherid: '',
@@ -98,32 +63,42 @@ app.controller("voucher-ctrl", function($http, $scope) {
 	//SaveAll
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
-		console.log(item);
-		$http.post('/rest/voucher/insert', item).then(resp => {
-			resp.data.startdate = new Date(resp.data.startdate);
-			resp.data.enddate = new Date(resp.data.enddate);
-			$scope.itemsall.push(item);
-			$scope.reset();
-			$scope.items = [];
-			$scope.itemsall = [];
-			$scope.initialize();
-			Swal.fire({
-				position: 'top-middle',
-				icon: 'success',
-				title: 'Thêm mới thành công',
-				showConfirmButton: false,
-				timer: 1500
-			})
-		}).catch(error => {
+		var index = checkExists(item, $scope.itemsall);
+		if(index != undefined){
 			Swal.fire({
 				position: 'top-middle',
 				icon: 'error',
-				title: 'Thêm mới thất bại',
+				title: 'Voucher này đã tồn tại',
 				showConfirmButton: false,
 				timer: 1500
 			})
-			console.log("Error", error);
-		});
+			return;
+		}else{
+			$http.post('/rest/voucher/insert', item).then(resp => {
+				resp.data.startdate = new Date(resp.data.startdate);
+				resp.data.enddate = new Date(resp.data.enddate);
+				$scope.itemsall.push(item);
+				$scope.reset();
+				$scope.items = [];
+				$scope.itemsall = [];
+				$scope.initialize();
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'success',
+					title: 'Thêm mới thành công',
+					showConfirmButton: false,
+					timer: 1500
+				})
+			}).catch(error => {
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'error',
+					title: 'Thêm mới thất bại',
+					showConfirmButton: false,
+					timer: 1500
+				})
+			});
+		}
 	}	
 	
 	
@@ -183,30 +158,7 @@ app.controller("voucher-ctrl", function($http, $scope) {
 			console.log('Error', error);
 		});
 	}
-	
-	$scope.deleteall = function(item) {
-		$http.delete(`/rest/banner/${item.bannerid}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.bannerid == item.bannerid);
-			$scope.items.splice(index,1);
-			$scope.reset();
-			Swal.fire({
-				position: 'top-middle',
-				icon: 'success',
-				title: 'Xóa thành công',
-				showConfirmButton: false,
-				timer: 1500
-			})
-		}).catch(error => {
-			Swal.fire({
-				position: 'top-middle',
-				icon: 'error',
-				title: 'Xóa thất bại',
-				showConfirmButton: false,
-				timer: 1500
-			})
-			console.log('Error', error);
-		});
-	}
+
 	
 	$scope.imageChanged = function(files){
 		var data = new FormData();
@@ -265,4 +217,14 @@ app.controller("voucher-ctrl", function($http, $scope) {
 		}
 	}
 });
+
+function checkExists(item, itemsall) {
+	var x;
+	for(x = 0 ; x< itemsall.length ; x++){
+		if(item.voucherid == itemsall[x].voucherid){
+			return x;
+			break;
+		}
+	}
+}
 

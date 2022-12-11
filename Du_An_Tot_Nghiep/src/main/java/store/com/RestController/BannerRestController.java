@@ -40,7 +40,6 @@ public class BannerRestController {
     
     @PostMapping("/rest/banner")
     public Banner save(@RequestBody Banner banner) {
-        System.out.println(banner);
         return bannerDAO.save(banner);
     }
     

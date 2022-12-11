@@ -42,37 +42,37 @@
                                 <div class="row">
                                   
                                    <div class="mb-3 col-md-6">
-                                    <label for="" class="form-label">Voucher Id</label>
-                                    <input class="form-control" ng-model="form.voucherid" placeholder="GIAMGIA..." name="voucherid" required="required"/>
+                                    <label  class="form-label">Voucher Id</label>
+                                    <input class="form-control" ng-model="form.voucherid" placeholder="GIAMGIA..." name="voucherid" required="required" id="voucherid" ng-disabled ="chi_so == 1"/>
                                     <div ng-hide="formVoucher.voucherid.$valid" style="color: red; font-style: italic; font-weight: 600">Vui lòng nhập mã giảm giá</div>
                                   </div>
                                   <div class="mb-3 col-md-6">
-                                    <label for="" class="form-label">Voucher Title</label>
+                                    <label  class="form-label">Voucher Title</label>
                                     <input class="form-control" ng-model="form.vouchertitle" placeholder="Giảm giá sự kiện..." name="vouchertitle" required="required"/>
                                     <div ng-hide="formVoucher.vouchertitle.$valid" style="color: red; font-style: italic; font-weight: 600">Vui lòng nhập tên giảm giá</div>
                                   </div>
                                   <div class="mb-3 col-md-6">
-                                    <label for="" class="form-label">Voucher Content</label>
+                                    <label  class="form-label">Voucher Content</label>
                                     <input class="form-control" ng-model="form.vouchercontent" placeholder="Giảm giá 20k cho đơn hàng 60k" name="vouchercontent" required="required"/>
                                     <div ng-hide="formVoucher.vouchercontent.$valid" style="color: red; font-style: italic; font-weight: 600">Vui lòng nhập mô tả giảm giá</div>
                                   </div>
                                   <div class="mb-3 col-md-6">
-                                    <label for="" class="form-label">Minimum Money</label>
+                                    <label  class="form-label">Minimum Money</label>
                                     <input class="form-control" ng-model="form.minimunmoney" type="number" min="1" name="minimunmoney" required="required"/>
                                     <div ng-hide="formVoucher.minimunmoney.$valid" style="color: red; font-style: italic; font-weight: 600">Vui lòng nhập số tiền giảm ít nhất</div>
                                   </div>
                                   <div class="mb-3 col-md-6">
-                                    <label for="" class="form-label">Percent Discount (%)</label>
+                                    <label  class="form-label">Percent Discount (%)</label>
                                     <input class="form-control" ng-model="form.percentdiscount" type="number" min="1" placeholder="15%" name="percentdiscount" required="required"/>
                                     <div ng-hide="formVoucher.percentdiscount.$valid" style="color: red; font-style: italic; font-weight: 600">Vui lòng nhập phần trăm giảm giá</div>
                                   </div>
                                   <div class="mb-3 col-md-6">
-                                    <label for="" class="form-label">Money Discount</label>
+                                    <label  class="form-label">Money Discount</label>
                                     <input class="form-control" ng-model="form.moneydiscount" type="number" min="1" name="moneydiscount" required="required"/>
                                     <div ng-hide="formVoucher.moneydiscount.$valid" style="color: red; font-style: italic; font-weight: 600">Vui lòng nhập số tiền giảm</div>
                                   </div>
                                   <div class="mb-3 col-md-6">
-                                    <label for="" class="form-label">Quantity</label>
+                                    <label  class="form-label">Quantity</label>
                                     <input class="form-control" ng-model="form.quantity" type="number" min="1" name="quantity" required="required"/>
                                     <div ng-hide="formVoucher.quantity.$valid" style="color: red; font-style: italic; font-weight: 600">Vui lòng nhập số lượng giảm</div>
                                   </div>
@@ -82,12 +82,12 @@
                                      onchange="angular.element(this).scope().imageChanged(this.files)">
                                   </div>
                                   <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="">Start Date</label>
+                                    <label class="form-label" >Start Date</label>
                                     <input ng-model="form.startdate" class="form-control" type="date" name="startdate" required="required">
                                     <div ng-hide="formVoucher.startdate.$valid" style="color: red; font-style: italic; font-weight: 600" >Vui lòng nhập ngày bắt đầu</div>
                                   </div>
                                    <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="">End Date</label>
+                                    <label class="form-label" >End Date</label>
                                     <input ng-model="form.enddate" class="form-control" type="date" name="enddate" required="required">
                                     <div ng-hide="formVoucher.enddate.$valid" style="color: red; font-style: italic; font-weight: 600" >Vui lòng nhập ngày kết thúc</div>
                                   </div>

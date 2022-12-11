@@ -94,6 +94,16 @@ app.controller("discount-ctrl", function($http, $scope) {
 	
 	//SaveAll
 	$scope.create = function() {
+		if ($scope.selected.length == 0){
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Vui lòng chọn sản phẩm giảm giá',
+				showConfirmButton: false,
+				timer: 1500
+			})
+			return;
+		}
 		for(var i = 0; i < $scope.selected.length ; i++) {
 			$scope.forms.startdate = angular.copy($scope.form.startdate);
 			$scope.forms.enddate = angular.copy($scope.form.enddate);
@@ -110,11 +120,7 @@ app.controller("discount-ctrl", function($http, $scope) {
 				style: $scope.selected[i].style,
 				category: $scope.selected[i].category
 			};
-			console.log($scope.forms.product);
-			console.log($scope.forms.account);
-			
 			var item = angular.copy($scope.forms);
-			console.log(item);
 			$http.post('/rest/productdiscount', item).then(resp => {
 				resp.data.startdate = new Date(resp.data.startdate);
 				resp.data.enddate = new Date(resp.data.enddate);
@@ -137,11 +143,9 @@ app.controller("discount-ctrl", function($http, $scope) {
 					showConfirmButton: false,
 					timer: 1500
 				})
-				console.log("Error", error);
 			});
 		}
-		
-		alert("Thêm mới thành công");
+
 		$scope.changeModel = null;
 		$scope.itemsCategory = {};
 	}
