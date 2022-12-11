@@ -6,12 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.criterion.Order;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import store.com.DAO.AccountDAO;
 import store.com.DAO.OrdersDAO;
@@ -74,6 +69,36 @@ public class OrderRestController {
 	@GetMapping("/NoProcess")
 	public List<Orders> listNoProcess(){
 		return dao.findOrdersNoProcess();
+	}
+
+	@GetMapping("/Delivery")
+	public List<Orders> listDelivery(){
+		return dao.findOrdersDelivery();
+	}
+
+	@GetMapping("/Cancel")
+	public List<Orders> listCancel(){
+		return dao.findOrdersCancel();
+	}
+
+	@GetMapping("/Success")
+	public List<Orders> listSuccess(){
+		return dao.findOrdersSuccess();
+	}
+
+	@PutMapping("/NoProcessToDelivery/{id}")
+	public Orders fromNoProcessToDelivery(@PathVariable("id") Integer Orderid, @RequestBody Orders order){
+		return dao.save(order);
+	}
+
+	@PutMapping("/NoProcessToCancel/{id}")
+	public Orders fromNoProcessToCancel(@PathVariable("id") Integer Orderid, @RequestBody Orders order){
+		return dao.save(order);
+	}
+
+	@PutMapping("/DeliveryToSuccess/{id}")
+	public Orders fromDeliveryToSuccess(@PathVariable("id") Integer Orderid, @RequestBody Orders order){
+		return dao.save(order);
 	}
 	
 }
