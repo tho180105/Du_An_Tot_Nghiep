@@ -34,4 +34,16 @@ public interface OrdersDAO extends JpaRepository<Orders, Integer>{
     //List order status = 1 (chưa xử lý)
     @Query("select o from Orders o where o.orderstatus.orderstatusid = 1")
     List<Orders> findOrdersNoProcess();
+
+    //List order status = 2 (đang giao)
+    @Query("select o from Orders o where o.orderstatus.orderstatusid = 2")
+    List<Orders> findOrdersDelivery();
+
+    //List order status = 3 (Hủy)
+    @Query("select o from Orders o where o.orderstatus.orderstatusid = 3")
+    List<Orders> findOrdersCancel();
+
+    //List order status = 4 (Thành công)
+    @Query("select o from Orders o where o.orderstatus.orderstatusid = 4")
+    List<Orders> findOrdersSuccess();
 }
