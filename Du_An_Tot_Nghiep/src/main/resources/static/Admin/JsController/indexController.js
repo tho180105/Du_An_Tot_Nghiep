@@ -102,9 +102,7 @@ app.controller("indexCtrl-ctrl", function($http, $scope, $rootScope) {
 	$scope.FilterByPrice = function (){
 		let minimum = document.querySelector('#minamount').value;
 		let maximum = document.querySelector('#maxamount').value;
-		let mini = minimum.substring(1, minimum.length) * 23000;
-		let max = maximum.substring(1, maximum.length) * 23000;
-		$http.get(`/rest/product/findByPrice/${mini}/${max}`).then(resp => {
+		$http.get(`/rest/product/findByPrice/${minimum}/${maximum}`).then(resp => {
 			$scope.itemsall = resp.data
 		}).catch( error => {
 			console.log('Error', error);
