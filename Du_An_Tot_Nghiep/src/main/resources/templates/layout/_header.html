@@ -38,9 +38,9 @@
                                 style="font-size: 20px;margin-right:10px ;;padding-top: 2px;"></i>[(#{header.profile})]</a>|
                         <a th:if="${#request.isUserInRole('2')} OR  ${#request.isUserInRole('3')}" href="/admin/index"
                             class="login-panel"
-                            style="color :rgb(62, 62, 62) !important ;margin-right: 5px;padding-top: 2px;">Quản lý</a>|
+                            style="color :rgb(62, 62, 62) !important ;margin-right: 5px;padding-top: 2px;">[(#{header.manager})]</a>|
                         <a href="/logoff" class="login-panel"
-                            style="color :rgb(62, 62, 62) !important ;margin-right: 5px;padding-top: 2px;">Đăng xuất</a>
+                            style="color :rgb(62, 62, 62) !important ;margin-right: 5px;padding-top: 2px;">[(#{header.logoff})]</a>
 
                     </th:block>
                     <th:block th:unless="${#request.remoteUser}">

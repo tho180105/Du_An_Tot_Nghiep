@@ -57,18 +57,6 @@
 									alt="" th:src="@{/img/Logo/google_50px.png}">
 								</a>
 							</div>
-							<th:block th:if="${#request.remoteUser}">
-							Username: <b>[[${#request.remoteUser}]]</b>
-							
-							<ul th:object="${#request.UserPrincipal}">
-								<li>
-									Username: <b>[[*{name}]]</b>
-								</li>
-								<li>
-									Role: <b>[[*{authorities}]]</b>
-								</li>
-							</ul>
-							</th:block>
 						</div>
 					</div>
 				</div>
