@@ -75,7 +75,6 @@ app.controller("banner-ctrl", function($http, $scope) {
 					showConfirmButton: false,
 					timer: 1500
 				})
-				console.log("Error", error);
 			});	
 	}	
 	
@@ -83,14 +82,11 @@ app.controller("banner-ctrl", function($http, $scope) {
 	//Update
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
-		console.log(item);
 		$http.put(`/rest/banner/${item.bannerid}`, item).then(resp => {
 			var index = $scope.itemsall.findIndex(p => p.bannerid == item.bannerid);
 			$scope.itemsall[index] = item;
+			$scope.items[index] = item;
 			$scope.reset();
-			$scope.items = [];
-			$scope.itemsall = [];
-			$scope.initialize();
 			Swal.fire({
 				position: 'top-middle',
 				icon: 'success',
@@ -106,7 +102,6 @@ app.controller("banner-ctrl", function($http, $scope) {
 				showConfirmButton: false,
 				timer: 1500
 			});
-			console.log("Error", error);
 		});
 	}
 	
@@ -114,10 +109,11 @@ app.controller("banner-ctrl", function($http, $scope) {
 	$scope.delete = function(item) {
 		$http.delete(`/rest/banner/${item.bannerid}`).then(resp => {
 			var indexall = $scope.itemsall.findIndex(p => p.bannerid == item.bannerid);
-			var index = $scope.items.findIndex(p => p.bannerid == item.bannerid);
 			$scope.itemsall.splice(indexall,1);
-			$scope.items.splice(index,1);
 			$scope.reset();
+			$scope.items = [];
+			$scope.itemsall = [];
+			$scope.initialize();
 			Swal.fire({
 				position: 'top-middle',
 				icon: 'success',
@@ -133,7 +129,6 @@ app.controller("banner-ctrl", function($http, $scope) {
 				showConfirmButton: false,
 				timer: 1500
 			})
-			console.log('Error', error);
 		});
 	}
 	
@@ -153,7 +148,6 @@ app.controller("banner-ctrl", function($http, $scope) {
 				showConfirmButton: false,
 				timer: 1500
 			})
-			console.log("Error",error);
 		});
     }
 
