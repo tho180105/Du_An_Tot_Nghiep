@@ -7,6 +7,7 @@ app.controller("statusorder-ctrl", function($http, $scope) {
     $scope.listSuccess = [];
     $scope.orderNumber = 0;
     $scope.item = {};
+    $scope.itemOrderDetail = [];
 	
 	$scope.initialize = function(){
         //Load Product
@@ -42,6 +43,15 @@ app.controller("statusorder-ctrl", function($http, $scope) {
     //Chọn Order
     $scope.chooseOrder = function(item) {
         $scope.item =  angular.copy(item);
+        $scope.orderNumber = $scope.item.orderid;
+
+        $http.get(`/rest/detailorder/order/${$scope.item.orderid}`).then(resp => {
+           $scope.itemOrderDetail = resp.data;
+        }).catch(error => {
+            console.log('Error', error);
+        });
+        var classHide = document.querySelector(".order-detail");
+        classHide.classList.remove("hidex");
     }
 
     //Chuyển từ chưa xử lý sang đang giao
@@ -82,6 +92,7 @@ app.controller("statusorder-ctrl", function($http, $scope) {
                     timer: 1500
                 })
                 $scope.item = {};
+                showOrderDetail();
             }).catch(error => {
                 Swal.fire({
                     position: 'top-middle',
@@ -90,7 +101,6 @@ app.controller("statusorder-ctrl", function($http, $scope) {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                console.log("Error", error);
             });
         }
     }
@@ -133,6 +143,7 @@ app.controller("statusorder-ctrl", function($http, $scope) {
                     timer: 1500
                 })
                 $scope.item = {};
+                showOrderDetail();
             }).catch(error => {
                 Swal.fire({
                     position: 'top-middle',
@@ -141,12 +152,11 @@ app.controller("statusorder-ctrl", function($http, $scope) {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                console.log("Error", error);
             });
         }
     }
 
-    //Chuyển từ chưa xử lý sang hủy đơn hàng
+    //Chuyển từ chưa xử lý sang thành công
     $scope.fromDeliveryToSuccess = function (){
         if ($scope.item.orderid == undefined) {
             Swal.fire({
@@ -184,6 +194,7 @@ app.controller("statusorder-ctrl", function($http, $scope) {
                     timer: 1500
                 })
                 $scope.item = {};
+                showOrderDetail();
             }).catch(error => {
                 Swal.fire({
                     position: 'top-middle',
@@ -192,7 +203,6 @@ app.controller("statusorder-ctrl", function($http, $scope) {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                console.log("Error", error);
             });
         }
     }
@@ -351,5 +361,9 @@ app.controller("statusorder-ctrl", function($http, $scope) {
             this.page = this.count - 1;
         }
     }
-
 });
+
+function showOrderDetail(){
+    var classHide = document.querySelector(".order-detail");
+    classHide.classList.add("hidex");
+}

@@ -33,7 +33,7 @@
 						<div class="row">
 							<div class="col-lg-6">
 	                            <div class="product-pic-zoom">
-	                                <img class="product-big-img" th:src="@{|/img/products-main/${item.mainproductimage}.jpg|}" alt="">
+	                                <img class="product-big-img" th:src="@{|/Admin/assets/img/products-main/${item.mainproductimage}.jpg|}" alt="">
 	                                <div class="zoom-icon">
 	                                    <i class="fa fa-search-plus"></i>
 	                                </div>
@@ -41,8 +41,8 @@
 	                            <div class="product-thumbs">
 	                                <div class="product-thumbs-track ps-slider owl-carousel">
 	                                    <div th:each="i :${listimage}">
-	                                    	<div class="pt" th:attr="data-imgbigurl='/img/products-main/'+${i.imagepath}+'.jpg'"><img
-	                                            th:src="@{|/img/products-main/${i.imagepath}.jpg|}" alt=""></div>
+	                                    	<div class="pt" th:attr="data-imgbigurl='/Admin/assets/img/products-main/'+${i.imagepath}+'.jpg'"><img
+	                                            th:src="@{|/Admin/assets/img/products-main/${i.imagepath}.jpg|}" alt=""></div>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -240,7 +240,7 @@
 					<div th:each="p : ${item.category.products}">
 						<div class="product-item ">
 							<div class="pi-pic">
-								<img th:src="@{|/img/products-main/${p.mainproductimage}.jpg|}"
+								<img th:src="@{|/Admin/assets/img/products-main/${p.mainproductimage}.jpg|}"
 									alt="">
 								<div class="sale">Sale</div>
 								<div class="icon">

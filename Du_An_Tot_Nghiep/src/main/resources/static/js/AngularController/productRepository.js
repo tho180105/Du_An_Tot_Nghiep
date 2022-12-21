@@ -1,9 +1,5 @@
 
 app.controller("checksize-ctrl", function($http, $scope, $window){
-	
-	/**
-		QUẢN LÝ CHECKSIZE
-	 */
 	let x = location.href;
 	let item = Number(x.slice(x.lastIndexOf('/')+1, x.length));
 	$scope.itemscategory = [];
@@ -17,8 +13,7 @@ app.controller("checksize-ctrl", function($http, $scope, $window){
 	$scope.rate = {};
 	$scope.sumQuantity = '';
 	$scope.product = {};
-	$scope.user = {};
-
+	$scope.userLogin = {};
 
 	$scope.initialize = function (){
 		$http.get(`/rest/productrepository/${item}`).then(resp => {
@@ -36,13 +31,16 @@ app.controller("checksize-ctrl", function($http, $scope, $window){
 		$http.get("/rest/cate/findAll").then(resp => {
 			$scope.itemscategory = resp.data;
 		});
+
+		$http.get("/rest/account/userLogin").then(resp => {
+			$scope.userLogin = resp.data;
+		});
 	}
 
 	$scope.initialize();
 
 	 $scope.getSizegetItem = function(size) {
 		$scope.sizeName = size;
-		
 		$http.get(`/rest/productrepository/${item}/${size}`).then(resp => {
 			$scope.itemProduct = resp.data;
 			if ($scope.itemProduct.quantity != 0 && $scope.itemProduct.quantity != null && $scope.itemProduct.quantity != undefined) {
@@ -56,23 +54,28 @@ app.controller("checksize-ctrl", function($http, $scope, $window){
 				var disabled = document.querySelector(".pd-cart");
             	disabled.style.backgroundColor = '#808080'
 			}
-			
 		}).catch(error => {
 			console.log("Error", error);
 		});
-		
-			console.log(item);
-			console.log(size);
-			console.log($scope.itemProduct.quantity);
 	}
 	
 	$scope.checkStars =  function(item){
         $scope.starNumber = item;
-        console.log($scope.starNumber);
     }
 	
 	//Comment
 	$scope.comment = function() {
+		 if ($scope.userLogin.accountid == null){
+			 Swal.fire({
+				 position: 'top-middle',
+				 icon: 'error',
+				 title: 'Vui lòng đăng nhập để đánh giá sản phẩm!',
+				 showConfirmButton: false,
+				 timer: 1500
+			 });
+			 return;
+		 }
+
 		var comment = document.getElementById("comment").value;
 		if(comment.length == 0 && $scope.starNumber == 0){
 			$scope.message1 = "Vui lòng chọn đánh giá hoặc nhập bình luận";
@@ -88,22 +91,30 @@ app.controller("checksize-ctrl", function($http, $scope, $window){
 			picture3: '',
 			picture4: '',
 			account: {
-				accountid: 'anh'
+				accountid: $scope.userLogin.accountid
 			},
 			product: {
 				productid: item
 			}
 		}
-        console.log($scope.rate);
         $http.post("/rest/Rate", $scope.rate).then(resp => {
 			resp.data.ratedate = new Date(resp.data.ratedate);
-			alert('Bình luận thành công');
-			window.location= location.href;
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'success',
+				title: 'Bình luận thành công!',
+				showConfirmButton: false,
+				timer: 1500
+			})
 		}).catch(error => {
-			alert('Bình luận thất bại');
-			console.log('Error', error);
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Đánh giá thất bại, vui lòng kiểm tra lại!',
+				showConfirmButton: false,
+				timer: 1500
+			})
 		})
-        
 	}
 	
 	//Submit Add to Cart

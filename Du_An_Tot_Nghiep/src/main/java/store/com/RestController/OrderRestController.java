@@ -100,5 +100,9 @@ public class OrderRestController {
 	public Orders fromDeliveryToSuccess(@PathVariable("id") Integer Orderid, @RequestBody Orders order){
 		return dao.save(order);
 	}
-	
+
+	@GetMapping("/{id}")
+	public Orders getOneOrder(@PathVariable("id") Integer Orderid, @RequestBody Orders order){
+		return dao.findById(Orderid).get();
+	}
 }
