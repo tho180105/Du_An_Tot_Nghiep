@@ -4,11 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import store.com.DAO.DetailOrderDAO;
 import store.com.DAO.ProductRepositoryDAO;
@@ -37,5 +33,10 @@ public class DetailOrderRestController {
     @GetMapping("/byStatus")
     public List<DetailOrder> getByStatus(){
       return  dao.getAllByStatues();
+    }
+
+    @GetMapping("/order/{id}")
+    public List<DetailOrder> getOne(@PathVariable("id") Integer orderid){
+        return dao.findByOrderId(orderid);
     }
 }

@@ -81,6 +81,9 @@ public class AccountRestController {
 
     @GetMapping("/userLogin")
     public Account userLogin(){
+        if (UserLogin.account == null){
+            return new Account();
+        }
         String username = UserLogin.account.getAccountid();
         return accountService.findById(username);
     }

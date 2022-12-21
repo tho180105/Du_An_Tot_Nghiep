@@ -16,4 +16,7 @@ public interface DetailOrderDAO extends JpaRepository<DetailOrder, Integer>{
 
     @Query("select do  from DetailOrder do where do.orders.orderstatus.orderstatusid=4 ")
     List<DetailOrder> getAllByStatues();
+
+    @Query("select de from DetailOrder de where de.orders.orderid = ?1")
+    List<DetailOrder> findByOrderId(Integer orderid);
 }

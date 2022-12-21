@@ -76,6 +76,7 @@ public class LoginController {
 	@RequestMapping("/security/logoff/success")
 	public String logoff(Model model) {
 		model.addAttribute("message", "Đăng xuất thành công!");
+		UserLogin.account = null;
 		return "forward:/security/login/form";
 	}
 	

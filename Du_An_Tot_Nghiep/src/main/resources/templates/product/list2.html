@@ -70,15 +70,11 @@
 									<form method="post">
 										<select name="mySelect" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.id" 
 										ng-model="data.selectedOption" ng-change="onchangeSearch()" style="padding: 6px;border-radius: 5px;">
-		                                   
 		                                </select>
-		                          
 									</form>
                                 </div>
                             </div>
-                            <div class="col-lg-5 col-md-5 text-right">
-                                <p>Show {{pager.size}} Of {{pager.count}} Product</p>
-                            </div>
+
                         </div>
                     </div> 
                     <div class="product-list">
@@ -86,7 +82,7 @@
                             <div class="col-lg-4 col-sm-6"  dir-paginate="product in itemsall | filter:q | itemsPerPage: pageSize" current-page="currentPage">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img ng-href="{{'/product/detail/'+product.productid}}" ng-src="{{'/img/products-main/'+product.mainproductimage+'.jpg'}}" alt="">
+                                        <img ng-href="{{'/product/detail/'+product.productid}}" ng-src="{{'/Admin/assets/img/products-main/'+product.mainproductimage+'.jpg'}}" alt="">
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
