@@ -20,17 +20,21 @@ app.controller("size", function($scope, $http){
 		//$(".nav-tabs a:eq(0)").tab("0");
 	//}
 	$scope.edit = function(item) {
-		console.log(item);
+		
         $scope.form = angular.copy(item);
 		$(".nav-tabs .nav-item button.nav-link:eq(0)").tab('show');
 	}
 
 	$scope.create = function(){
 		var item = angular.copy($scope.form);
-		console.log(item);
-		$http.post(`/rest/sizes`, item).then(resp => {
+		if($scope.items.findIndex(p => p.sizeid == item.sizeid) >=0){
+			alert("Mã size sản phẩm đã có");
+			return;
+		}
+		$http.post(`/rest/sizes`, item).then(resp => {S
 			$scope.items.push(resp.data);
 			$scope.reset();
+			location.reload();
 			alert("Thêm mới thành công!");
 		}).catch(error => {
 			alert("Lỗi thêm mới !");
@@ -40,6 +44,11 @@ app.controller("size", function($scope, $http){
 
 	$scope.update = function(){
 		var item = angular.copy($scope.form);
+		if(!$scope.items.findIndex(p => p.sizeid == item.sizeid) >=0){
+			alert("Size sản phẩm không tồn tại, Lỗi cập nhật !");
+			console.log("Error", error);
+			return;
+		}
 		$http.put(`/rest/sizes/${item.sizeid}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.sizeid == item.sizeid);
 			$scope.items[index] = item;
@@ -82,7 +91,8 @@ app.controller("size", function($scope, $http){
 			return $scope.items.slice(start, start + this.size)
 		},
 		get count(){
-			return Math.ceil(1.0 * $scope.items.length / this.size);
+			var num = $scope.items.length;
+			return Math.ceil(1.0 * num / this.size);
 		},
 		first(){
 			this.page = 0;
