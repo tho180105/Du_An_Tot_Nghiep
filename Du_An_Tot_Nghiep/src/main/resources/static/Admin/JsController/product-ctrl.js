@@ -157,7 +157,8 @@ app.controller("product-ctrl", function ($scope, $http) {
 				return $scope.items.slice(start, start + this.size)
 			},
 			get count() {
-				return Math.ceil(1.0 * $scope.items.length / this.size);
+				var num = $scope.items.length;
+				return Math.ceil(1.0 * num / this.size);
 			},
 			first() {
 				this.page = 0;
