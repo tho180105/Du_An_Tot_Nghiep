@@ -41,14 +41,17 @@ public class LoginController {
 	
 	@RequestMapping("/security/login/form")
 	public String login(Model model,Authentication auth) {
-//	    if(auth == null) {
+	    if(auth == null) {
 	        return "security/login";
-//	    }
-//	    return "redirect:/home";
+	    }
+	    return "redirect:/home";
 	}
 	
 	@RequestMapping("/security/login/success")
 	public String success(Model model,Authentication auth){
+		if(auth == null) {
+			return "redirect:/security/login/form";
+		}
 		if(cookie.get("remember-me")!=null) {
 			Cookie acc = cookie.get("JSESSIONID");
 			cookie.add("JSESSIONID", acc.getValue(), 24*30);
@@ -56,7 +59,7 @@ public class LoginController {
 		}
 		UserLogin.account = dao.getById(auth.getName());
 		model.addAttribute("message", "Đăng nhập thành công");
-
+		se.set("LoginSuccess", "Thành công");
 		return "redirect:/home";
 	}
 	
