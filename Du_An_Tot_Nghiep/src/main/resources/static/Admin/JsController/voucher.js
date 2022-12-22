@@ -163,7 +163,7 @@ app.controller("voucher-ctrl", function($http, $scope) {
 	$scope.imageChanged = function(files){
 		var data = new FormData();
 		data.append("file",files[0]);
-		$http.post('/rest/uploadImageVoucher/images',data,{
+		$http.post('/rest/uploadImage/voucher',data,{
 			transformRequest: angular.identity,
 			headers:{'Content-Type':undefined}
 		}).then(resp =>{

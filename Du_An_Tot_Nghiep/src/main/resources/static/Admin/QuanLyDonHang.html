@@ -24,6 +24,7 @@
                     aria-controls="thanhcong" aria-selected="false">THÀNH CÔNG</button>
           </li>
         </ul>
+        <p style="vertical-align: middle; text-align: right; margin-right: 20px; font-size: 20px; color: black;"> Đã chọn đơn hàng: {{orderNumber}}</p>
 
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="chuaxuly" role="tabpanel" aria-labelledby="chuaxuly-tab">
@@ -141,7 +142,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat = "item in pagerCancel.items">
+                <tr ng-repeat = "item in pagerCancel.items" ng-click="chooseOrder(item)">
                   <td>{{item.orderid}}</td>
                   <td>{{item.createdate|date:'dd/MM/yyyy'}}</td>
                   <td>{{item.shipfee|number}}</td>
@@ -189,7 +190,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat = "item in pagerSuccess.items">
+                <tr ng-repeat = "item in pagerSuccess.items" ng-click="chooseOrder(item)">
                   <td>{{item.orderid}}</td>
                   <td>{{item.createdate|date:'dd/MM/yyyy'}}</td>
                   <td>{{item.shipfee|number}}</td>
@@ -223,6 +224,58 @@
         </div>
       </div>
     </div>
+
+    <div class="order-detail mt-3 hidex">
+      <h3>CHI TIẾT ĐƠN HÀNG</h3>
+      <div class="row mb-4" style="display: flex; justify-content: space-around;">
+        <div class="col-4" style="border: 2px solid #697a8d; border-radius: 7px; padding-top: 10px;">
+          <p style="color: black; font-weight: bold">Mã đơn hàng: <i style="color: #697a8d">{{item.orderid}}</i> </p>
+          <p style="color: black; font-weight: bold">Người nhận: <i style="color: #697a8d">{{item.account.name}}</i> </p>
+          <p style="color: black; font-weight: bold">Địa chỉ: <span style="color: #697a8d">{{item.address}}</span></p>
+        </div>
+        <div class="col-3" style="border: 2px solid #697a8d; border-radius: 7px; padding-top: 10px;">
+          <p style="color: black; font-weight: bold">Tiền sản phẩm: <i style="color: #697a8d">{{item.productmoney|number}}đ</i> </p>
+          <p style="color: black; font-weight: bold">Tiền ship: <i style="color: #697a8d">{{item.shipfee|number}}đ</i> </p>
+          <p style="color: black; font-weight: bold">Tổng tiền: <i style="color: #697a8d">{{item.totalmoney|number}}đ</i> </p>
+        </div>
+        <div class="col-3" style="border: 2px solid #697a8d; border-radius: 7px; padding-top: 10px;">
+          <p style="color: black; font-weight: bold">Voucher: <i style="color: #697a8d">{{item.voucher.voucherid}}</i> </p>
+          <p style="color: black; font-weight: bold">Thanh toán: <span style="color: #697a8d">{{item.paymentmethod}}</span></p>
+        </div>
+      </div>
+      <div class="row bg-light" style="overflow-x: scroll; height: fit-content;max-height: 50vh;">
+        <table class="table table-bordered table-hover">
+          <thead style="background-color: rgba(255,220,186,0.3) !important; font-size: 16px; ">
+            <tr>
+              <th>STT</th>
+              <th>Sản phẩm</th>
+              <th>Thành tiền</th>
+              <th>Tồn kho</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in itemOrderDetail">
+              <td>{{item.detailorderid}}</td>
+              <td class="info">
+                <div class="row">
+                  <img ng-src="{{'/Admin/assets/img/products-main/'+item.productrepository.product.mainproductimage+'.jpg'}}" alt="" style="width: 160px; height: 160px; float: left;">
+                  <div class="name-product" style="float: left; width: 300px; padding-top: 15px; margin-bottom: 10px">
+                    <p style="color: black; font-weight: bold">{{item.productrepository.product.productname}}</p>
+                    <p style="color: black;">Size: <i>{{item.productrepository.size.sizeid}}</i></p>
+                    <p style="color: black;">Số lượng: {{item.quantity}}</p>
+                  </div>
+                </div>
+              </td>
+              <td>{{item.productprice|number}}đ</td>
+              <td>{{item.productrepository.quantity}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Show MODAL-->
   </div>
 
 </div>
