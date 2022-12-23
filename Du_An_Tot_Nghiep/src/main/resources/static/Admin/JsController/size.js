@@ -28,35 +28,67 @@ app.controller("size", function($scope, $http){
 	$scope.create = function(){
 		var item = angular.copy($scope.form);
 		if($scope.items.findIndex(p => p.sizeid == item.sizeid) >=0){
-			alert("Mã size sản phẩm đã có");
+			Swal.fire({
+					position: 'top-middle',
+					icon: 'error',
+					title: 'Mã size đã tồn tại',
+					showConfirmButton: false,
+					timer: 1500
+				})
 			return;
 		}
-		$http.post(`/rest/sizes`, item).then(resp => {S
+		$http.post(`/rest/sizes`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
 			location.reload();
-			alert("Thêm mới thành công!");
+			Swal.fire({
+					position: 'top-middle',
+					icon: 'success',
+					title: 'Thêm mới thành công!',
+					showConfirmButton: false,
+					timer: 1500
+				})
 		}).catch(error => {
-			alert("Lỗi thêm mới !");
-			console.log("Error", error);
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'error',
+					title: 'Thêm mới thất bại',
+					showConfirmButton: false,
+					timer: 1500
+				})
 		});
 	}
 
 	$scope.update = function(){
 		var item = angular.copy($scope.form);
 		if(!$scope.items.findIndex(p => p.sizeid == item.sizeid) >=0){
-			alert("Size sản phẩm không tồn tại, Lỗi cập nhật !");
-			console.log("Error", error);
+			Swal.fire({
+					position: 'top-middle',
+					icon: 'error',
+					title: 'Mã size sản phẩm không tồn tại',
+					showConfirmButton: false,
+					timer: 1500
+				})
 			return;
 		}
 		$http.put(`/rest/sizes/${item.sizeid}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.sizeid == item.sizeid);
 			$scope.items[index] = item;
-			alert("Cập nhật thành công!");
-		})
-		.catch(error => {
-			alert("Lỗi cập nhật !");
-			console.log("Error", error);
+			Swal.fire({
+					position: 'top-middle',
+					icon: 'success',
+					title: 'Cập nhật thành công!',
+					showConfirmButton: false,
+					timer: 1500
+				})
+		}).catch(error => {
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'error',
+					title: 'Cập nhật thất bại',
+					showConfirmButton: false,
+					timer: 1500
+				})
 		});
 	}
 
@@ -66,11 +98,21 @@ app.controller("size", function($scope, $http){
 				var index = $scope.items.findIndex(p => p.sizeid == item.sizeid);
 				$scope.items.splice(index, 1);
 				$scope.reset();
-				alert("Xóa thành công!");
-				
-			}).catch(error => {
-				alert("Lỗi xóa !");
-				console.log("Error", error);
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'success',
+					title: 'Xóa thành công!',
+					showConfirmButton: false,
+					timer: 1500
+				})
+		}).catch(error => {
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'error',
+					title: 'Xóa thất bại',
+					showConfirmButton: false,
+					timer: 1500
+				})
 			})
 		}
 	}

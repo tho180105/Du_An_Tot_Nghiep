@@ -35,28 +35,44 @@ app.controller("images", function ($scope, $http) {
         }).then(resp => {
             $scope.form.imagepath = resp.data.name;
         }).catch(error => {
-            alert('Lỗi Upload hình ảnh');
-            console.log("Error", error);
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'error',
+					title: 'Tải ảnh thất bại',
+					showConfirmButton: false,
+					timer: 1500
+				})
         })
     }
     $scope.edit = function (item) {
-        console.log(item);
+        
         $scope.form = angular.copy(item);
         $(".nav-tabs .nav-item button.nav-link:eq(0)").tab('show');
     };
 
     $scope.create = function () {
         var item = angular.copy($scope.form);
-        console.log(item);
+        
         if ($scope.form.additionalimagesid < 1) {
             $http.post(`/rest/images`, item).then(resp => {
                 // $scope.itemimgs.push(resp.data);
                 $scope.reset();
                 location.reload();
-                alert("Thêm mới hình sản phẩm thành công!");
-            }).catch(error => {
-                alert("Lỗi thêm mới hình sản phẩm!");
-                console.log("Error", error);
+                Swal.fire({
+					position: 'top-middle',
+					icon: 'success',
+					title: 'Thêm mới thành công!',
+					showConfirmButton: false,
+					timer: 1500
+				})
+		}).catch(error => {
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'error',
+					title: 'Thêm mới thất bại',
+					showConfirmButton: false,
+					timer: 1500
+				})
             });
         }
 
@@ -65,18 +81,34 @@ app.controller("images", function ($scope, $http) {
     $scope.update = function () {
         var item = angular.copy($scope.form);
         if ($scope.form.additionalimagesid < 1) {
-            alert("Vui lòng chọn hình sản phẩm");
+            Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Vui lòng chọn hình sản phẩm',
+				showConfirmButton: false,
+				timer: 1500
+			});
             return;
         }
         item.imagepath= $scope.form.imagepath;
         $http.put(`/rest/images/${item.additionalimagesid}`, item).then(resp => {
             var index = $scope.items.findIndex(p => p.additionalimagesid == item.additionalimagesid);
             $scope.items[index] = item;
-            alert("Cập nhật hình sản phẩm thành công!");
-        })
-            .catch(error => {
-                alert("Lỗi cập nhật hình sản phẩm!");
-                console.log("Error", error);
+            Swal.fire({
+				position: 'top-middle',
+				icon: 'success',
+				title: 'Cập nhật thành công!',
+				showConfirmButton: false,
+				timer: 1500
+			})
+		}).catch(error => {
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Cập nhật thất bại',
+				showConfirmButton: false,
+				timer: 1500
+			});
             });
     }
 
@@ -86,12 +118,22 @@ app.controller("images", function ($scope, $http) {
                 var index = $scope.items.findIndex(p => p.additionalimagesid == item.additionalimagesid);
                 $scope.items.splice(index, 1);
                 $scope.reset();
-                alert("Xóa hình sản phẩm thành công!");
                 location.reload();
-
-            }).catch(error => {
-                alert("Lỗi xóa hình sản phẩm!");
-                console.log("Error", error);
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'success',
+				title: 'Xóa thành công',
+				showConfirmButton: false,
+				timer: 1500
+			})
+		}).catch(error => {
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Cập nhật thất bại',
+				showConfirmButton: false,
+				timer: 1500
+			});
             })
         }
     }
