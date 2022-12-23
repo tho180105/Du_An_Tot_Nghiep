@@ -3,7 +3,12 @@ package store.com.RestController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +16,7 @@ import store.com.DAO.AccountDAO;
 import store.com.Entity.Account;
 import store.com.Entity.UserLogin;
 import store.com.Service.AccountService;
+import store.com.Service.UserService;
 import store.com.controller.LoginController;
 
 @RestController
@@ -20,6 +26,8 @@ public class AccountRestController {
     AccountService accountService;
     @Autowired
     AccountDAO dao;
+//    @Autowired
+//    AuthenticationManager authen1;
     BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
 
     
@@ -34,7 +42,7 @@ public class AccountRestController {
     }
 
     @GetMapping()
-    public List<Account> getAll(Authentication auth) {
+    public List<Account> getAll() {
         return accountService.findAll();
     }
 
@@ -44,8 +52,26 @@ public class AccountRestController {
     }
 
     @GetMapping("/authorities")
-    public List<Account> getAll() {
+    public List<Account> getAll(Authentication auth) {
+//        Account acc = accountService.findById(auth.getName());
+//        UserService userService = new UserService();
+//        UserDetails userDetails = userService .loadUserByUsername(auth.getName());
+//        UsernamePasswordAuthenticationToken authReq
+//                = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword());
+//        Authentication auth1 = authen1.authenticate(authReq);
+//        SecurityContext sc = SecurityContextHolder.getContext();
+//        sc.setAuthentication(auth1);
         return accountService.findAll();
+    }
+
+    @GetMapping("/check")
+    public boolean check(Authentication auth) {
+        Account acc = accountService.findById(auth.getName());
+        System.out.println(acc.getRole().getRoleid());
+        if(acc.getRole().getRoleid().equals("3")){
+            return true;
+        }
+       return false;
     }
 
     @DeleteMapping("/{id}")

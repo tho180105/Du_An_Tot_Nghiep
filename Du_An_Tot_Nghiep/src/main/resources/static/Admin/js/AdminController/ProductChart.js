@@ -1,10 +1,17 @@
-app.controller("productTotal", function ($rootScope, $http, $scope) {
+app.controller("productTotal", function ($rootScope, $http, $scope,$location) {
   $http.get("/rest/style/count").then((resp) => {
     $rootScope.styleCount = resp.data;
   });
   $http.get("/rest/statistic/countCate").then((resp) => {
     $rootScope.cateCount = resp.data;
+
   });
+  $http.get("/rest/account/check").then(resp =>{
+    console.log(resp.data);
+    if( resp.data == false){
+      $location.path("/unauthorized");
+    }
+  })
   $http.get("/rest/product/count").then((resp) => {
     $rootScope.productCount = resp.data;
   });

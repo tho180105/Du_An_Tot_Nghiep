@@ -56,7 +56,7 @@
 <body ng-app="AnhApp">
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
+    <div class="layout-container" >
         <!-- Menu -->
 
         <aside id="layout-menu"
@@ -82,7 +82,7 @@
                 </a></li>
 
                 <!-- Layouts -->
-                <li class="menu-item"><a href="javascript:void(0);"
+                <li th:if="${#request.isUserInRole('3')}" class="menu-item"><a href="javascript:void(0);"
                                          class="menu-link menu-toggle"> <i
                         class="menu-icon tf-icons bx bx-layout"></i>
                     <div data-i18n="Layouts">Thống kê</div>
@@ -148,7 +148,7 @@
                                                  class="menu-link">
                             <div data-i18n="Connections">Quản lý đơn hàng</div>
                         </a></li>
-                        <li class="menu-item"><a href="#!Authority"
+                        <li class="menu-item"><a href="#!Authority" th:if=" ${#request.isUserInRole('3')}"
                                                  class="menu-link">
                             <div data-i18n="Connections">Quản lý tài khoản</div>
                         </a></li>

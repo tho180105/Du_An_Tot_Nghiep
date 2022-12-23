@@ -28,6 +28,12 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
         $http.get("/rest/role").then(resp =>{
             $scope.role = resp.data;
         })
+        $http.get("/rest/account/check").then(resp =>{
+            console.log(resp.data);
+            if( resp.data == false){
+                $location.path("/unauthorized");
+            }
+        })
     }).catch(resp => {
         $location.path("/unauthorized");
     })
@@ -94,6 +100,12 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
                 title: 'Thông báo',
                 text: 'Cập nhật thành công!',
             })
+            $http.get("/rest/account/check").then(resp =>{
+                console.log(resp.data);
+                if( resp.data == false){
+                    $location.path("/unauthorized");
+                }
+            })
             $scope.reset();
         }).catch(error => {
             Swal.fire({
@@ -102,6 +114,7 @@ app.controller("Authority-ctrl",function($scope,$http,$location){
                 text: 'Cập nhật thất bại!',
             })
 		});
+
     }
 
     // thêm mới

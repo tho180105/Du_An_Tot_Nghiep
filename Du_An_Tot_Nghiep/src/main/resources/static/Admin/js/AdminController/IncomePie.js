@@ -1,11 +1,17 @@
-app.controller("IncomeTotal", function ($rootScope, $http, $scope, $timeout) {
+app.controller("IncomeTotal", function ($rootScope, $http, $scope, $timeout,$location) {
     $scope.chartYear = new Date().getFullYear();
     $scope.getProfitByAPI = function (year) {
         $http.get("/rest/statistic/profit?year=" + year).then((resp) => {
             $rootScope.profitAYear = resp.data;
         });
-    }
 
+    }
+    $http.get("/rest/account/check").then(resp =>{
+        console.log(resp.data);
+        if( resp.data == false){
+            $location.path("/unauthorized");
+        }
+    })
     $scope.getProfitByAPI(new Date().getFullYear())
     $scope.indexGeneralDate = new Date();
     $scope.chartPieProfit = function () {
