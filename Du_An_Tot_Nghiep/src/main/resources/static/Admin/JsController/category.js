@@ -20,21 +20,32 @@ app.controller("category", function($scope, $http){
 		//$(".nav-tabs a:eq(0)").tab("0");
 	//}
 	$scope.edit = function(item) {
-		console.log(item);
+		
         $scope.form = angular.copy(item);
 		$(".nav-tabs .nav-item button.nav-link:eq(0)").tab('show');
 	}
 
 	$scope.create = function(){
 		var item = angular.copy($scope.form);
-		console.log(item);
+		
 		$http.post(`/rest/categorys`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
-			alert("Thêm mới thành công!");
+			Swal.fire({
+					position: 'top-middle',
+					icon: 'success',
+					title: 'Thêm mới thành công!',
+					showConfirmButton: false,
+					timer: 1500
+				})
 		}).catch(error => {
-			alert("Lỗi thêm mới !");
-			console.log("Error", error);
+				Swal.fire({
+					position: 'top-middle',
+					icon: 'error',
+					title: 'Thêm mới thất bại',
+					showConfirmButton: false,
+					timer: 1500
+				})
 		});
 	}
 
@@ -43,11 +54,21 @@ app.controller("category", function($scope, $http){
 		$http.put(`/rest/categorys/${item.categoryid}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.categoryid == item.categoryid);
 			$scope.items[index] = item;
-			alert("Cập nhật thành công!");
-		})
-		.catch(error => {
-			alert("Lỗi cập nhật !");
-			console.log("Error", error);
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'success',
+				title: 'Cập nhật thành công!',
+				showConfirmButton: false,
+				timer: 1500
+			})
+		}).catch(error => {
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Cạpa nhật thất bại',
+				showConfirmButton: false,
+				timer: 1500
+			});
 		});
 	}
 
@@ -57,11 +78,21 @@ app.controller("category", function($scope, $http){
 				var index = $scope.items.findIndex(p => p.categoryid == item.categoryid);
 				$scope.items.splice(index, 1);
 				$scope.reset();
-				alert("Xóa thành công!");
-				
-			}).catch(error => {
-				alert("Lỗi xóa !");
-				console.log("Error", error);
+				Swal.fire({
+				position: 'top-middle',
+				icon: 'success',
+				title: 'Xóa thành công',
+				showConfirmButton: false,
+				timer: 1500
+			})
+		}).catch(error => {
+			Swal.fire({
+				position: 'top-middle',
+				icon: 'error',
+				title: 'Xóa thất bại',
+				showConfirmButton: false,
+				timer: 1500
+			})
 			})
 		}
 	}
